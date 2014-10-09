@@ -1,0 +1,18 @@
+<!DOCTYPE module PUBLIC "-//Google Inc.//DTD Google Web Toolkit 2.0//EN"
+        "http://google-web-toolkit.googlecode.com/svn/releases/2.0/distro-source/core/src/gwt-module.dtd">
+<module rename-to="adminmode">
+
+    <inherits name="ua.coral.ugcc.common.Common" />
+    <inherits name="com.smartgwt.SmartGwt"/>
+    <inherits name="com.google.api.gwt.oauth2.OAuth2" />
+    <inherits name='com.google.gwt.user.User'/>
+    <inherits name="com.google.gwt.place.Place"/>
+    <inherits name="com.google.gwt.activity.Activity"/>
+
+    <entry-point class='ua.coral.ugcc.admin.client.AdminMode'/>
+    <servlet path="/AdminModeService" class="ua.coral.ugcc.admin.server.AdminModeServiceImpl"/>
+
+    <replace-with class="ua.coral.ugcc.admin.client.view.impl.ClientFactoryImpl">
+        <when-type-is class="ua.coral.ugcc.common.view.ClientFactory"/>
+    </replace-with>
+</module>
