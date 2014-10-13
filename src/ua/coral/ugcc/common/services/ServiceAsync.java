@@ -1,10 +1,9 @@
 package ua.coral.ugcc.common.services;
 
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import java.util.List;
-
-import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public interface ServiceAsync {
 

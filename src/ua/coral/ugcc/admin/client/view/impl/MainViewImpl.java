@@ -1,11 +1,5 @@
 package ua.coral.ugcc.admin.client.view.impl;
 
-import ua.coral.ugcc.admin.client.AdminModeServiceDelegate;
-import ua.coral.ugcc.common.dto.impl.News;
-import ua.coral.ugcc.common.view.MainView;
-
-import java.util.List;
-
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Label;
@@ -16,11 +10,15 @@ import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.HTMLFlow;
 import com.smartgwt.client.widgets.RichTextEditor;
 import com.smartgwt.client.widgets.Window;
-import com.smartgwt.client.widgets.events.ClickEvent;
-import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.events.*;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import ua.coral.ugcc.admin.client.AdminModeServiceDelegate;
+import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.view.MainView;
+
+import java.util.List;
 
 public class MainViewImpl extends AbstractView implements MainView {
 
@@ -32,16 +30,23 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     private List<News> listNews;
     private News currentNews;
-    private AdminModeServiceDelegate serviceDelegate = new AdminModeServiceDelegate();
+    private AdminModeServiceDelegate serviceDelegate;
 
     private VLayout newsLayout;
+    private HLayout mainLayout;
 
     public MainViewImpl() {
         super();
-        serviceDelegate.gui = this;
+        getServiceDelegate().gui = this;
 
-        serviceDelegate.listNews();
         wireGUIEvents();
+    }
+
+    private AdminModeServiceDelegate getServiceDelegate() {
+        if (serviceDelegate == null) {
+            serviceDelegate = new AdminModeServiceDelegate();
+        }
+        return serviceDelegate;
     }
 
     private void wireGUIEvents() {
@@ -67,10 +72,10 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     @Override
     protected HLayout getContent() {
-        final HLayout hLayout = new HLayout();
-        hLayout.setWidth100();
-        hLayout.setHeight100();
-        hLayout.setMembersMargin(20);
+        mainLayout = new HLayout();
+        mainLayout.setWidth100();
+        mainLayout.setHeight100();
+        mainLayout.setMembersMargin(20);
 
         final VLayout vLayout = new VLayout();
         vLayout.setWidth(1000);
@@ -82,11 +87,11 @@ public class MainViewImpl extends AbstractView implements MainView {
         vLayout.addMember(getCenterPanel());
         vLayout.addMember(getBottomPanel());
 
-        hLayout.addMember(getEmptyPanel());
-        hLayout.addMember(vLayout);
-        hLayout.addMember(getEmptyPanel());
+        mainLayout.addMember(getEmptyPanel());
+        mainLayout.addMember(vLayout);
+        mainLayout.addMember(getEmptyPanel());
 
-        return hLayout;
+        return mainLayout;
     }
 
     private Widget getEmptyPanel() {
@@ -145,16 +150,63 @@ public class MainViewImpl extends AbstractView implements MainView {
         newsLayout.setHeight100();
         newsLayout.setMembersMargin(20);
 
+        getServiceDelegate().listNews();
+
         return newsLayout;
     }
 
-    private Widget getNews(final String message) {
-        final HTMLFlow flow = new HTMLFlow();
-        flow.setHeight(150);
-        flow.setWidth100();
-        flow.setContents(message);
+    private Widget getNews(final News news) {
+        final VLayout layout = new VLayout();
+        layout.setWidth100();
+        layout.setHeight100();
 
-        return flow;
+        final HLayout hLayout = new HLayout();
+        hLayout.setWidth100();
+        hLayout.setHeight(23);
+        hLayout.setAlign(Alignment.RIGHT);
+        hLayout.setMembersMargin(10);
+
+        final Button editButton = new Button("Edit");
+        final Button removeButton = new Button("Remove");
+
+        editButton.setVisible(false);
+        removeButton.setVisible(false);
+
+        hLayout.addMember(editButton);
+        hLayout.addMember(removeButton);
+
+        final HTMLFlow flow = new HTMLFlow();
+        //flow.setHeight(150);
+        flow.setWidth100();
+        flow.setContents(news.getContent());
+        layout.addMouseOverHandler(new MouseOverHandler() {
+            @Override
+            public void onMouseOver(final MouseOverEvent event) {
+                editButton.setVisible(true);
+                removeButton.setVisible(true);
+            }
+        });
+        layout.addMouseOutHandler(new MouseOutHandler() {
+            @Override
+            public void onMouseOut(final MouseOutEvent event) {
+                editButton.setVisible(false);
+                removeButton.setVisible(false);
+            }
+        });
+
+        removeButton.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(final ClickEvent event) {
+                getServiceDelegate().removeNews(news);
+                layout.setVisible(false);
+                layout.clear();
+            }
+        });
+
+        layout.addMember(hLayout);
+        layout.addMember(flow);
+
+        return layout;
     }
 
     private Widget getAddNewsPanel() {
@@ -193,18 +245,19 @@ public class MainViewImpl extends AbstractView implements MainView {
     }
 
     public void service_eventAddContactSuccessful() {
-        messageBox("Contact was successfully added");
-        serviceDelegate.listNews();
+        //messageBox("Contact was successfully added");
+        //serviceDelegate.listNews();
+        newsLayout.addMember(getNews(currentNews));
     }
 
     public void service_eventUpdateSuccessful() {
-        messageBox("Contact was successfully updated");
-        serviceDelegate.listNews();
+        //messageBox("Contact was successfully updated");
+        //serviceDelegate.listNews();
     }
 
     public void service_eventRemoveContactSuccessful() {
-        messageBox("Contact was removed");
-        serviceDelegate.listNews();
+        //messageBox("Contact was removed");
+        //serviceDelegate.listNews();
     }
 
     public void service_eventUpdateContactFailed(Throwable caught) {
@@ -212,7 +265,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     }
 
     public void service_eventAddContactFailed(Throwable caught) {
-        messageBox("Unable to update contact");
+        messageBox(caught.getMessage());
     }
 
     public void service_eventRemoveContactFailed(Throwable caught) {
@@ -224,7 +277,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     }
 
     public void service_eventListRetrievedFromService(final List<News> listNews) {
-        messageBox("Retrieved News list");
+        //messageBox("Retrieved News list");
 
         this.listNews = listNews;
 
@@ -233,23 +286,17 @@ public class MainViewImpl extends AbstractView implements MainView {
         }
 
         for (final News news : listNews) {
-            newsLayout.addMember(getNews(news.getContent()));
+            newsLayout.addMember(getNews(news));
         }
     }
 
     public void gui_eventAddNewButtonClicked() {
         final News news = new News();
         news.setId(System.currentTimeMillis());
-
-        loadForm(news);
-    }
-
-    private void loadForm(final News news) {
+        news.setContent(richTextEditor.getValue());
         currentNews = news;
-        serviceDelegate.addNews(currentNews);
-        serviceDelegate.listNews();
-//        title.setText(news.getTitle());
-//        content.setText(news.getContent());
+        getServiceDelegate().addNews(currentNews);
+        richTextEditor.setValue("");
     }
 
     private void messageBox(final String message) {

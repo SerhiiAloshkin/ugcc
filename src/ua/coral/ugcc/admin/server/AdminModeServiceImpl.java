@@ -1,5 +1,6 @@
 package ua.coral.ugcc.admin.server;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import ua.coral.ugcc.admin.client.AdminModeService;
 import ua.coral.ugcc.common.dao.NewsDao;
 import ua.coral.ugcc.common.dao.impl.NewsDaoImpl;
@@ -7,8 +8,6 @@ import ua.coral.ugcc.common.dto.impl.News;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class AdminModeServiceImpl extends RemoteServiceServlet implements AdminModeService {
 

@@ -14,5 +14,6 @@
     <source path="activity"/>
     <source path="place"/>
     <source path="view"/>
+    <source path="annotation"/>
 
 </module>

@@ -1,12 +1,11 @@
 package ua.coral.ugcc.admin.client;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import ua.coral.ugcc.admin.client.view.impl.MainViewImpl;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import java.util.List;
-
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 
 public class AdminModeServiceDelegate {
 

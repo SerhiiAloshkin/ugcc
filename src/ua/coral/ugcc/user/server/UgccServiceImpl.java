@@ -1,11 +1,10 @@
 package ua.coral.ugcc.user.server;
 
+import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.user.client.UgccService;
 
 import java.util.List;
-
-import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 
 public class UgccServiceImpl extends RemoteServiceServlet implements UgccService {
     // Implementation of sample interface method

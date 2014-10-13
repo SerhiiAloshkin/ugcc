@@ -1,12 +1,13 @@
 package ua.coral.ugcc.common.mapper;
 
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.Text;
+import ua.coral.ugcc.common.annotation.LongString;
 import ua.coral.ugcc.common.dto.Dto;
 import ua.coral.ugcc.common.exception.UGCCRuntimeException;
 
 import java.lang.reflect.Field;
 import java.util.Map;
-
-import com.google.appengine.api.datastore.Entity;
 
 public class Mapper {
 
@@ -21,7 +22,12 @@ public class Mapper {
                 final Entity entity = new Entity(object.getClass().getSimpleName(), object.getId());
                 for (final Field field : fields) {
                     field.setAccessible(true);
-                    entity.setProperty(field.getName(), field.get(object));
+                    if (field.isAnnotationPresent(LongString.class)) {
+                        entity.setProperty(field.getName(), new Text(field.get(object).toString()));
+                    } else {
+                        entity.setProperty(field.getName(), field.get(object));
+                    }
+
                 }
                 return entity;
             } catch (IllegalAccessException ex) {
@@ -39,7 +45,11 @@ public class Mapper {
                 for (final Map.Entry<String, Object> entry : map.entrySet()) {
                     final Field field = object.getClass().getDeclaredField(entry.getKey());
                     field.setAccessible(true);
-                    field.set(object, entry.getValue());
+                    if (field.isAnnotationPresent(LongString.class)) {
+                        field.set(object, ((Text) entry.getValue()).getValue());
+                    } else {
+                        field.set(object, entry.getValue());
+                    }
                 }
                 return object;
             } catch (InstantiationException | IllegalAccessException | NoSuchFieldException ex) {
