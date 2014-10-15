@@ -57,7 +57,7 @@ public abstract class AbstractView extends Composite implements View {
 
     private Image getLogoPanel() {
         final Image image = new Image();
-        image.setUrl("/images/logo2.png");
+        image.setUrl("/src/main/web/images/logo2.png");
 
         return image;
     }

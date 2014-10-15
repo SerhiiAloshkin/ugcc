@@ -219,6 +219,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         richTextEditor.setHeight(155);
         richTextEditor.setOverflow(Overflow.HIDDEN);
         richTextEditor.setCanDragResize(true);
+        richTextEditor.setShowEdges(true);
 
         final HLayout hLayout = new HLayout();
         hLayout.setAlign(Alignment.RIGHT);
