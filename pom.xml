@@ -8,17 +8,31 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <gae.version>1.9.12</gae.version>
+        <appengine.version>1.9.13</appengine.version>
         <java.version>1.7</java.version>
-        <gwt.version>2.5.1</gwt.version>
+        <gwt.version>2.6.1</gwt.version>
+        <smartgwt.version>2.5-patch</smartgwt.version>
+        <groovy.version>2.4.0-beta-3</groovy.version>
     </properties>
 
     <dependencies>
+        <!-- Included libs -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <version>${gwt.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.api</groupId>
+            <artifactId>gwt-oauth2</artifactId>
+            <version>0.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.appengine</groupId>
+            <artifactId>appengine-api-1.0-sdk</artifactId>
+            <version>${appengine.version}</version>
+        </dependency>
+        <!-- Provided libs -->
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-dev</artifactId>
@@ -27,31 +41,27 @@
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>${gae.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.appengine</groupId>
             <artifactId>appengine-testing</artifactId>
-            <version>${gae.version}</version>
+            <version>${appengine.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-stubs</artifactId>
-            <version>${gae.version}</version>
+            <version>${appengine.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.smartgwt</groupId>
             <artifactId>smartgwt</artifactId>
-            <version>2.4</version>
+            <version>${smartgwt.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Test`s libs -->
         <dependency>
             <groupId>org.codehaus.groovy</groupId>
             <artifactId>groovy-all</artifactId>
-            <version>2.3.7</version>
+            <version>${groovy.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -59,13 +69,6 @@
             <artifactId>spock-core</artifactId>
             <version>0.7-groovy-2.0</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.api.gwt.oauth2</groupId>
-            <artifactId>oauth2</artifactId>
-            <version>2.0.2</version>
-            <systemPath>${project.basedir}/lib/gwt-oauth2-0.2-alpha.jar</systemPath>
-            <scope>system</scope>
         </dependency>
     </dependencies>
 
@@ -104,15 +107,67 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
                 <configuration>
                     <source>${java.version}</source>
                     <target>${java.version}</target>
+                    <compilerId>groovy-eclipse-compiler</compilerId>
+                    <verbose>true</verbose>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-compiler</artifactId>
+                        <version>2.8.0-01</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy-eclipse-batch</artifactId>
+                        <version>2.0.7-03</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.gmaven</groupId>
+                <artifactId>gmaven-plugin</artifactId>
+                <version>1.5</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.codehaus.gmaven.runtime</groupId>
+                        <artifactId>gmaven-runtime-2.0</artifactId>
+                        <version>1.5</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.codehaus.groovy</groupId>
+                        <artifactId>groovy</artifactId>
+                        <version>${groovy.version}</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <debug>false</debug>
+                    <verbose>true</verbose>
+                    <stacktrace>true</stacktrace>
+                    <defaultScriptExtension>.groovy</defaultScriptExtension>
+                    <providerSelection>2.0</providerSelection>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>testCompile</goal>
+                            <goal>compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
-                <version>${gae.version}</version>
+                <version>${appengine.version}</version>
                 <configuration>
                     <enableJarClasses>false</enableJarClasses>
                     <port>4567</port>

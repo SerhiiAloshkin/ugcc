@@ -1,5 +1,6 @@
 package ua.coral.ugcc.common.mapper
 
+import com.google.appengine.api.datastore.Text
 import spock.lang.Specification
 import ua.coral.ugcc.common.dto.impl.News
 
@@ -26,7 +27,7 @@ class MapperTest extends Specification {
         entity != null
         entity.getProperty("id") == news.getId()
         entity.getProperty("title") == news.getTitle()
-        entity.getProperty("content") == news.getContent()
+        entity.getProperty("content") == new Text(news.getContent())
 
         helper.tearDown()
     }
@@ -36,7 +37,7 @@ class MapperTest extends Specification {
         Entity entity = new Entity("News", 123l)
         entity.setProperty("id", 123l)
         entity.setProperty("title", "testTitle")
-        entity.setProperty("content", "testContent")
+        entity.setProperty("content", new Text("testContent"))
 
         when:
         News news = Mapper.getObject(News.class, entity)
