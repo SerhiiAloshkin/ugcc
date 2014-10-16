@@ -8,7 +8,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <appengine.version>1.9.13</appengine.version>
+        <gae.version>1.9.13</gae.version>
         <java.version>1.7</java.version>
         <gwt.version>2.6.1</gwt.version>
         <smartgwt.version>2.5-patch</smartgwt.version>
@@ -30,7 +30,7 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>${appengine.version}</version>
+            <version>${gae.version}</version>
         </dependency>
         <!-- Provided libs -->
         <dependency>
@@ -42,13 +42,13 @@
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-testing</artifactId>
-            <version>${appengine.version}</version>
+            <version>${gae.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-stubs</artifactId>
-            <version>${appengine.version}</version>
+            <version>${gae.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -154,6 +154,7 @@
                     <stacktrace>true</stacktrace>
                     <defaultScriptExtension>.groovy</defaultScriptExtension>
                     <providerSelection>2.0</providerSelection>
+                    <source/>
                 </configuration>
                 <executions>
                     <execution>
@@ -167,7 +168,7 @@
             <plugin>
                 <groupId>com.google.appengine</groupId>
                 <artifactId>appengine-maven-plugin</artifactId>
-                <version>${appengine.version}</version>
+                <version>${gae.version}</version>
                 <configuration>
                     <enableJarClasses>false</enableJarClasses>
                     <port>4567</port>
