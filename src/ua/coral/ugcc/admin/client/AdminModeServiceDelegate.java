@@ -10,18 +10,22 @@ import java.util.List;
 public class AdminModeServiceDelegate {
 
     private AdminModeServiceAsync async = GWT.create(AdminModeService.class);
-    public MainViewImpl gui;
+    private MainViewImpl gui;
+
+    public void setGui(final MainViewImpl gui) {
+        this.gui = gui;
+    }
 
     public void listNews() {
         async.listNews(new AsyncCallback<List<News>>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.service_eventListContactsFailed(caught);
+                gui.eventListContactsFailed();
             }
 
             @Override
             public void onSuccess(final List<News> result) {
-                gui.service_eventListRetrievedFromService(result);
+                gui.eventListRetrievedFromService(result);
             }
         });
     }
@@ -30,12 +34,12 @@ public class AdminModeServiceDelegate {
         async.addNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.service_eventAddContactFailed(caught);
+                gui.eventAddContactFailed(caught);
             }
 
             @Override
             public void onSuccess(final Void result) {
-                gui.service_eventAddContactSuccessful();
+                gui.eventAddContactSuccessful();
             }
         });
     }
@@ -44,12 +48,12 @@ public class AdminModeServiceDelegate {
         async.removeNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.service_eventRemoveContactFailed(caught);
+                gui.eventRemoveContactFailed();
             }
 
             @Override
             public void onSuccess(final Void result) {
-                gui.service_eventRemoveContactSuccessful();
+                gui.eventRemoveContactSuccessful();
             }
         });
     }
@@ -58,12 +62,12 @@ public class AdminModeServiceDelegate {
         async.updateNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.service_eventUpdateContactFailed(caught);
+                gui.eventUpdateContactFailed();
             }
 
             @Override
             public void onSuccess(final Void result) {
-                gui.service_eventUpdateSuccessful();
+                gui.eventUpdateSuccessful();
             }
         });
     }

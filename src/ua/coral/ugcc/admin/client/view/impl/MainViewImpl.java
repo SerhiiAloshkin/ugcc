@@ -28,7 +28,6 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     private Button button;
 
-    private List<News> listNews;
     private News currentNews;
     private AdminModeServiceDelegate serviceDelegate;
 
@@ -37,7 +36,7 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     public MainViewImpl() {
         super();
-        getServiceDelegate().gui = this;
+        getServiceDelegate().setGui(this);
 
         wireGUIEvents();
     }
@@ -50,23 +49,10 @@ public class MainViewImpl extends AbstractView implements MainView {
     }
 
     private void wireGUIEvents() {
-//        newsGrid.addClickHandler(new ClickHandler() {
-//            public void onClick(ClickEvent event) {
-//                HTMLTable.Cell cellForEvent = gui.newsGrid.getCellForEvent(event);
-//                gui_eventNewsGridClicked(cellForEvent);
-//            }
-//        });
-//        addButton.addClickHandler(new ClickHandler(){
-//            public void onClick(ClickEvent event) {
-//                gui_eventAddButtonClicked();
-//            }});
-//        updateButton.addClickHandler(new ClickHandler(){
-//            public void onClick(ClickEvent event) {
-//                gui_eventUpdateButtonClicked();
-//            }});
         button.addClickHandler(new ClickHandler(){
-            public void onClick(ClickEvent event) {
-                gui_eventAddNewButtonClicked();
+            @Override
+            public void onClick(final ClickEvent event) {
+                eventAddNewButtonClicked();
             }});
     }
 
@@ -176,7 +162,6 @@ public class MainViewImpl extends AbstractView implements MainView {
         hLayout.addMember(removeButton);
 
         final HTMLFlow flow = new HTMLFlow();
-        //flow.setHeight(150);
         flow.setWidth100();
         flow.setContents(news.getContent());
         layout.addMouseOverHandler(new MouseOverHandler() {
@@ -245,43 +230,35 @@ public class MainViewImpl extends AbstractView implements MainView {
         element.setInnerText(content);
     }
 
-    public void service_eventAddContactSuccessful() {
-        //messageBox("Contact was successfully added");
-        //serviceDelegate.listNews();
+    public void eventAddContactSuccessful() {
         newsLayout.addMember(getNews(currentNews));
     }
 
-    public void service_eventUpdateSuccessful() {
-        //messageBox("Contact was successfully updated");
-        //serviceDelegate.listNews();
+    public void eventUpdateSuccessful() {
+
     }
 
-    public void service_eventRemoveContactSuccessful() {
-        //messageBox("Contact was removed");
-        //serviceDelegate.listNews();
+    public void eventRemoveContactSuccessful() {
+
     }
 
-    public void service_eventUpdateContactFailed(Throwable caught) {
+    public void eventUpdateContactFailed() {
         messageBox("Update contact failed");
     }
 
-    public void service_eventAddContactFailed(Throwable caught) {
+    public void eventAddContactFailed(Throwable caught) {
         messageBox(caught.getMessage());
     }
 
-    public void service_eventRemoveContactFailed(Throwable caught) {
+    public void eventRemoveContactFailed() {
         messageBox("Remove contact failed");
     }
 
-    public void service_eventListContactsFailed(Throwable caught) {
+    public void eventListContactsFailed() {
         messageBox("Unable to get contact list");
     }
 
-    public void service_eventListRetrievedFromService(final List<News> listNews) {
-        //messageBox("Retrieved News list");
-
-        this.listNews = listNews;
-
+    public void eventListRetrievedFromService(final List<News> listNews) {
         if (newsLayout == null) {
             newsLayout = new VLayout();
         }
@@ -291,7 +268,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         }
     }
 
-    public void gui_eventAddNewButtonClicked() {
+    public void eventAddNewButtonClicked() {
         final News news = new News();
         news.setId(System.currentTimeMillis());
         news.setContent(richTextEditor.getValue());

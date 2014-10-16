@@ -4,6 +4,7 @@ import com.google.gwt.user.server.rpc.RemoteServiceServlet;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.user.client.UgccService;
 
+import java.util.Collections;
 import java.util.List;
 
 public class UgccServiceImpl extends RemoteServiceServlet implements UgccService {
@@ -26,6 +27,6 @@ public class UgccServiceImpl extends RemoteServiceServlet implements UgccService
 
     @Override
     public List<News> listNews() {
-        return null;
+        return Collections.emptyList();
     }
 }

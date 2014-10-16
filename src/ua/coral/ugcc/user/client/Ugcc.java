@@ -40,20 +40,4 @@ public class Ugcc implements EntryPoint {
         RootPanel.get().add(simplePanel);
         historyHandler.handleCurrentHistory();
     }
-
-//    private static class MyAsyncCallback implements AsyncCallback<String> {
-//        private Label label;
-//
-//        public MyAsyncCallback(Label label) {
-//            this.label = label;
-//        }
-//
-//        public void onSuccess(String result) {
-//            label.getElement().setInnerHTML(result);
-//        }
-//
-//        public void onFailure(Throwable throwable) {
-//            label.setText("Failed to receive answer from server!");
-//        }
-//    }
 }

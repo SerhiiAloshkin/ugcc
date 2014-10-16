@@ -19,10 +19,14 @@ public interface AdminModeService extends RemoteService, Service {
      * Use AdminModeService.App.getInstance() to access static instance of AdminModeServiceAsync
      */
     public static class App {
-        private static final AdminModeServiceAsync ourInstance = (AdminModeServiceAsync) GWT.create(AdminModeService.class);
+        private static final AdminModeServiceAsync OUR_INSTANCE = (AdminModeServiceAsync) GWT.create(AdminModeService.class);
+
+        private App() {
+            super();
+        }
 
         public static AdminModeServiceAsync getInstance() {
-            return ourInstance;
+            return OUR_INSTANCE;
         }
     }
 }

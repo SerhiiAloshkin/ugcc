@@ -16,10 +16,14 @@ public interface UgccService extends RemoteService, Service {
      * Use UgccService.App.getInstance() to access static instance of ugccServiceAsync
      */
     public static class App {
-        private static UgccServiceAsync ourInstance = GWT.create(UgccService.class);
+        private static final UgccServiceAsync INSTANCE = GWT.create(UgccService.class);
+
+        private App() {
+            super();
+        }
 
         public static synchronized UgccServiceAsync getInstance() {
-            return ourInstance;
+            return INSTANCE;
         }
     }
 }

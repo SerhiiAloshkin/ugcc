@@ -1,17 +1,11 @@
 package ua.coral.ugcc.common.place;
 
-import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceTokenizer;
 
-public class NewsPlace extends Place {
-    private String token;
+public class NewsPlace extends AbstractPlace {
 
     public NewsPlace(final String token) {
-        this.token = token;
-    }
-
-    public String getToken() {
-        return token;
+        super(token);
     }
 
     public static class Tokenizer implements PlaceTokenizer<NewsPlace> {
