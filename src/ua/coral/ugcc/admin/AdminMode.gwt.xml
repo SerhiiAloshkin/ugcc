@@ -12,7 +12,15 @@
     <entry-point class='ua.coral.ugcc.admin.client.AdminMode'/>
     <servlet path="/AdminModeService" class="ua.coral.ugcc.admin.server.AdminModeServiceImpl"/>
 
-    <replace-with class="ua.coral.ugcc.admin.client.view.impl.ClientFactoryImpl">
+    <replace-with class="ua.coral.ugcc.common.view.impl.ClientFactoryImpl">
         <when-type-is class="ua.coral.ugcc.common.view.ClientFactory"/>
+    </replace-with>
+
+    <replace-with class="ua.coral.ugcc.admin.client.view.impl.MainViewImpl">
+        <when-type-is class="ua.coral.ugcc.common.view.MainView"/>
+    </replace-with>
+
+    <replace-with class="ua.coral.ugcc.admin.client.view.impl.NewsViewImpl">
+        <when-type-is class="ua.coral.ugcc.common.view.NewsView"/>
     </replace-with>
 </module>

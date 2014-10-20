@@ -22,6 +22,15 @@ import java.util.List;
 
 public class MainViewImpl extends AbstractView implements MainView {
 
+    public static final int MEMBERS_MARGIN = 20;
+    public static final int MENU_WIDTH = 250;
+    public static final int NEWS_TOP_HEIGHT = 23;
+    public static final int ADD_NEWS_HEIGHT = 155;
+    public static final int MESSAGE_BOX_WIDTH = 360;
+    public static final int MESSAGE_BOX_HEIGHT = 115;
+    public static final int CONTENT_WIDTH = 1000;
+    public static final int TOP_PANEL_HEIGHT = 150;
+    public static final int BOTTOM_PANEL_HEIGHT = 75;
     private Element element = DOM.createSpan();
 
     private RichTextEditor richTextEditor;
@@ -61,12 +70,12 @@ public class MainViewImpl extends AbstractView implements MainView {
         mainLayout = new HLayout();
         mainLayout.setWidth100();
         mainLayout.setHeight100();
-        mainLayout.setMembersMargin(20);
+        mainLayout.setMembersMargin(MEMBERS_MARGIN);
 
         final VLayout vLayout = new VLayout();
-        vLayout.setWidth(1000);
+        vLayout.setWidth(CONTENT_WIDTH);
         vLayout.setHeight100();
-        vLayout.setMembersMargin(20);
+        vLayout.setMembersMargin(MEMBERS_MARGIN);
         vLayout.setAlign(Alignment.CENTER);
 
         vLayout.addMember(getTopPanel());
@@ -89,7 +98,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     private Widget getTopPanel() {
         final HLayout layout = new HLayout();
         layout.setShowEdges(true);
-        layout.setHeight(150);
+        layout.setHeight(TOP_PANEL_HEIGHT);
         return layout;
     }
 
@@ -97,10 +106,10 @@ public class MainViewImpl extends AbstractView implements MainView {
         final VLayout vLayout = new VLayout();
         vLayout.setWidth100();
         vLayout.setHeight100();
-        vLayout.setMembersMargin(20);
+        vLayout.setMembersMargin(MEMBERS_MARGIN);
 
         final HLayout hLayout = new HLayout();
-        hLayout.setMembersMargin(20);
+        hLayout.setMembersMargin(MEMBERS_MARGIN);
 
         hLayout.addMember(getMenuPanel());
         hLayout.addMember(getContentPanel());
@@ -113,14 +122,14 @@ public class MainViewImpl extends AbstractView implements MainView {
     private Widget getMenuPanel() {
         final VLayout layout = new VLayout();
         layout.setHeight100();
-        layout.setWidth(250);
+        layout.setWidth(MENU_WIDTH);
         return layout;
     }
 
     private Widget getContentPanel() {
         final VLayout layout = new VLayout();
         layout.setWidth("*");
-        layout.setMembersMargin(20);
+        layout.setMembersMargin(MEMBERS_MARGIN);
 
         layout.addMember(getNewsPanel());
         layout.addMember(getAddNewsPanel());
@@ -134,7 +143,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         }
         newsLayout.setWidth100();
         newsLayout.setHeight100();
-        newsLayout.setMembersMargin(20);
+        newsLayout.setMembersMargin(MEMBERS_MARGIN);
 
         getServiceDelegate().listNews();
 
@@ -148,9 +157,9 @@ public class MainViewImpl extends AbstractView implements MainView {
 
         final HLayout hLayout = new HLayout();
         hLayout.setWidth100();
-        hLayout.setHeight(23);
+        hLayout.setHeight(NEWS_TOP_HEIGHT);
         hLayout.setAlign(Alignment.RIGHT);
-        hLayout.setMembersMargin(10);
+        hLayout.setMembersMargin(MEMBERS_MARGIN);
 
         final Button editButton = new Button("Edit");
         final Button removeButton = new Button("Remove");
@@ -196,12 +205,12 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     private Widget getAddNewsPanel() {
         final VLayout layout = new VLayout();
-        layout.setHeight(155);
+        layout.setHeight(ADD_NEWS_HEIGHT);
         layout.setWidth100();
-        layout.setMembersMargin(20);
+        layout.setMembersMargin(MEMBERS_MARGIN);
 
         richTextEditor = new RichTextEditor();
-        richTextEditor.setHeight(155);
+        richTextEditor.setHeight(ADD_NEWS_HEIGHT);
         richTextEditor.setOverflow(Overflow.HIDDEN);
         richTextEditor.setCanDragResize(true);
         richTextEditor.setShowEdges(true);
@@ -221,7 +230,7 @@ public class MainViewImpl extends AbstractView implements MainView {
     private Widget getBottomPanel() {
         final HLayout layout = new HLayout();
         layout.setBackgroundColor("#808080");
-        layout.setHeight(75);
+        layout.setHeight(BOTTOM_PANEL_HEIGHT);
         return layout;
     }
 
@@ -235,11 +244,11 @@ public class MainViewImpl extends AbstractView implements MainView {
     }
 
     public void eventUpdateSuccessful() {
-
+        messageBox("Update contact successful");
     }
 
     public void eventRemoveContactSuccessful() {
-
+        messageBox("Remove contact successful");
     }
 
     public void eventUpdateContactFailed() {
@@ -279,8 +288,8 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     private void messageBox(final String message) {
         final Window winModal = new Window();
-        winModal.setWidth(360);
-        winModal.setHeight(115);
+        winModal.setWidth(MESSAGE_BOX_WIDTH);
+        winModal.setHeight(MESSAGE_BOX_HEIGHT);
         winModal.setTitle("Modal Window");
         winModal.setShowMinimizeButton(false);
         winModal.setIsModal(true);

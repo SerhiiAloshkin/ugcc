@@ -9,11 +9,6 @@ import com.google.gwt.core.client.GWT;
 @RemoteServiceRelativePath("AdminModeService")
 public interface AdminModeService extends RemoteService, Service {
 
-    // Sample interface method of remote interface
-    String getMessage(String msg);
-
-
-
     /**
      * Utility/Convenience class.
      * Use AdminModeService.App.getInstance() to access static instance of AdminModeServiceAsync

@@ -17,13 +17,16 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public abstract class AbstractView extends Composite implements View {
 
+    public static final int SIZE = 10;
+    public static final String MENU_BUTTON = "menuButton";
+    public static final String MODULE_MENU_BUTTON = "moduleMenuButton";
     private Presenter presenter;
 
     public AbstractView() {
         final DockLayoutPanel dockLayoutPanel = new DockLayoutPanel(Style.Unit.EM);
-        dockLayoutPanel.addNorth(getMenuPanel(), 2);
-        dockLayoutPanel.addNorth(getLogoPanel(), 16);
-        dockLayoutPanel.addNorth(getMainContent(), 10);
+        dockLayoutPanel.addNorth(getMenuPanel(), SIZE);
+        dockLayoutPanel.addNorth(getLogoPanel(), SIZE);
+        dockLayoutPanel.addNorth(getMainContent(), SIZE);
         dockLayoutPanel.setStyleName("mainDockPanel");
 
         initWidget(dockLayoutPanel);
@@ -41,13 +44,13 @@ public abstract class AbstractView extends Composite implements View {
         panel.setStyleName("menu");
 
         final Anchor news = new Anchor("Новости");
-        news.setStyleName("menuButton");
+        news.setStyleName(MENU_BUTTON);
 
         final Anchor press = new Anchor("Пресс-служба");
-        press.setStyleName("menuButton");
+        press.setStyleName(MENU_BUTTON);
 
         final Anchor contacts = new Anchor("Контакты");
-        contacts.setStyleName("menuButton");
+        contacts.setStyleName(MENU_BUTTON);
 
         panel.add(news);
         panel.add(press);
@@ -65,8 +68,8 @@ public abstract class AbstractView extends Composite implements View {
     private DockLayoutPanel getMainContent() {
         final DockLayoutPanel dockLayoutPanel = new DockLayoutPanel(Style.Unit.PCT);
 
-        dockLayoutPanel.addWest(getLeftMenu(), 25);
-        dockLayoutPanel.addEast(getContent(), 75);
+        dockLayoutPanel.addWest(getLeftMenu(), SIZE);
+        dockLayoutPanel.addEast(getContent(), SIZE);
 
         return  dockLayoutPanel;
     }
@@ -75,14 +78,14 @@ public abstract class AbstractView extends Composite implements View {
         final DockLayoutPanel layoutPanel = new DockLayoutPanel(Style.Unit.EM);
         final VerticalPanel panel = new VerticalPanel();
 
-        final Anchor hyperlink = getLink("Головна", "moduleMenuButton");
+        final Anchor hyperlink = getLink("Головна", MODULE_MENU_BUTTON);
         hyperlink.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(final ClickEvent event) {
                 presenter.goTo(new NewsPlace("News"));
             }
         });
-        final Anchor hyperlink2 = getLink("Новини", "moduleMenuButton");
+        final Anchor hyperlink2 = getLink("Новини", MODULE_MENU_BUTTON);
         hyperlink2.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(final ClickEvent event) {
@@ -91,12 +94,12 @@ public abstract class AbstractView extends Composite implements View {
         });
         panel.add(hyperlink);
         panel.add(hyperlink2);
-        panel.add(getLink("Про церкву", "moduleMenuButton"));
-        panel.add(getLink("Екзархат", "moduleMenuButton"));
-        panel.add(getLink("Для преси", "moduleMenuButton"));
-        panel.add(getLink("Запитання і відповіді", "moduleMenuButton"));
-        panel.add(getLink("Контакти", "moduleMenuButton"));
-        layoutPanel.addNorth(panel, 20);
+        panel.add(getLink("Про церкву", MODULE_MENU_BUTTON));
+        panel.add(getLink("Екзархат", MODULE_MENU_BUTTON));
+        panel.add(getLink("Для преси", MODULE_MENU_BUTTON));
+        panel.add(getLink("Запитання і відповіді", MODULE_MENU_BUTTON));
+        panel.add(getLink("Контакти", MODULE_MENU_BUTTON));
+        layoutPanel.addNorth(panel, SIZE);
         layoutPanel.setStyleName("moduleMenu");
 
         return layoutPanel;

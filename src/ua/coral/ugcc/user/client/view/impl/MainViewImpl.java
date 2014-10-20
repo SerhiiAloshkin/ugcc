@@ -12,6 +12,7 @@ import com.google.gwt.user.client.ui.IsWidget;
 
 public class MainViewImpl extends AbstractView implements MainView {
 
+    public static final int HEIGHT = 10;
     private Element element = DOM.createSpan();
 
     public MainViewImpl() {
@@ -24,7 +25,7 @@ public class MainViewImpl extends AbstractView implements MainView {
 
         HelloWorld helloWorld = new HelloWorld();
         helloWorld.setName("World");
-        panel.addNorth(HTMLPanel.wrap(helloWorld.getElement()), 10);
+        panel.addNorth(HTMLPanel.wrap(helloWorld.getElement()), HEIGHT);
 
         panel.setStyleName("bordered");
         return panel;

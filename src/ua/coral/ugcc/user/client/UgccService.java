@@ -8,8 +8,6 @@ import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
 
 @RemoteServiceRelativePath("ugccService")
 public interface UgccService extends RemoteService, Service {
-    // Sample interface method of remote interface
-    String getMessage(String msg);
 
     /**
      * Utility/Convenience class.
