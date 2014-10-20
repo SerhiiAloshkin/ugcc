@@ -1,0 +1,24 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="UGCC:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/UGCC_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="UGCC/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="UGCC" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="file-copy" path="D:/JavaSoft/GWT/2.5.1/gwt-2.5.1/gwt-servlet.jar" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:1.0.0.GA" />
+          <element id="library" level="project" name="Maven: javax.validation:validation-api:sources:1.0.0.GA" />
+          <element id="library" level="project" name="Maven: junit:junit-dep:4.10" />
+          <element id="library" level="project" name="Maven: org.hamcrest:hamcrest-core:1.3" />
+          <element id="library" level="project" name="Maven: org.json:json:20090211" />
+          <element id="library" level="project" name="Maven: org.spockframework:spock-core:0.7-groovy-2.0" />
+        </element>
+      </element>
+      <element id="gwt-compiler-output" facet="UGCC/gwt/GWT" />
+      <element id="file-copy" path="$PROJECT_DIR$/client_secrets.json" />
+    </root>
+  </artifact>
+</component>

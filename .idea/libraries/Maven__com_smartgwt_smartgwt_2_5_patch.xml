@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.smartgwt:smartgwt:2.5-patch">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/smartgwt/smartgwt/2.5-patch/smartgwt-2.5-patch.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/smartgwt/smartgwt/2.5-patch/smartgwt-2.5-patch-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/smartgwt/smartgwt/2.5-patch/smartgwt-2.5-patch-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
