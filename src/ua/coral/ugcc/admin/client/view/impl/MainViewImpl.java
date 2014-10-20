@@ -1,5 +1,6 @@
 package ua.coral.ugcc.admin.client.view.impl;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
 import com.google.gwt.user.client.ui.Label;
@@ -15,6 +16,7 @@ import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.VLayout;
 import ua.coral.ugcc.admin.client.AdminModeServiceDelegate;
+import ua.coral.ugcc.common.client.UGCCConstants;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.common.view.MainView;
 
@@ -42,6 +44,8 @@ public class MainViewImpl extends AbstractView implements MainView {
 
     private VLayout newsLayout;
     private HLayout mainLayout;
+
+    private UGCCConstants constants = GWT.create(UGCCConstants.class);
 
     public MainViewImpl() {
         super();
@@ -161,11 +165,14 @@ public class MainViewImpl extends AbstractView implements MainView {
         hLayout.setAlign(Alignment.RIGHT);
         hLayout.setMembersMargin(MEMBERS_MARGIN);
 
-        final Button editButton = new Button("Edit");
-        final Button removeButton = new Button("Remove");
+        final Button editButton = new Button(constants.edit());
+        final Button removeButton = new Button(constants.remove());
 
         editButton.setVisible(false);
         removeButton.setVisible(false);
+
+        editButton.setIcon("edit-icon.png");
+        removeButton.setIcon("Gnome-Edit-Delete-64.png");
 
         hLayout.addMember(editButton);
         hLayout.addMember(removeButton);
@@ -218,7 +225,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         final HLayout hLayout = new HLayout();
         hLayout.setAlign(Alignment.RIGHT);
 
-        button = new Button("Add News");
+        button = new Button(constants.add());
         hLayout.addMember(button);
 
         layout.addMember(richTextEditor);
