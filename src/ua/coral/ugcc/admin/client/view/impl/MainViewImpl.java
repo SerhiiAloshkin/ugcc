@@ -1,8 +1,15 @@
 package ua.coral.ugcc.admin.client.view.impl;
 
+import ua.coral.ugcc.admin.client.view.MainView;
+import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.dto.impl.News;
+
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.dom.client.Element;
 import com.google.gwt.user.client.DOM;
+import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Alignment;
@@ -11,18 +18,17 @@ import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.HTMLFlow;
 import com.smartgwt.client.widgets.RichTextEditor;
 import com.smartgwt.client.widgets.Window;
-import com.smartgwt.client.widgets.events.*;
+import com.smartgwt.client.widgets.events.ClickEvent;
+import com.smartgwt.client.widgets.events.ClickHandler;
+import com.smartgwt.client.widgets.events.MouseOutEvent;
+import com.smartgwt.client.widgets.events.MouseOutHandler;
+import com.smartgwt.client.widgets.events.MouseOverEvent;
+import com.smartgwt.client.widgets.events.MouseOverHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.VLayout;
-import ua.coral.ugcc.admin.client.AdminModeServiceDelegate;
-import ua.coral.ugcc.common.client.UGCCConstants;
-import ua.coral.ugcc.common.dto.impl.News;
-import ua.coral.ugcc.common.view.MainView;
 
-import java.util.List;
-
-public class MainViewImpl extends AbstractView implements MainView {
+public class MainViewImpl extends Composite implements MainView {
 
     public static final int MEMBERS_MARGIN = 20;
     public static final int MENU_WIDTH = 250;
@@ -40,36 +46,33 @@ public class MainViewImpl extends AbstractView implements MainView {
     private Button button;
 
     private News currentNews;
-    private AdminModeServiceDelegate serviceDelegate;
 
     private VLayout newsLayout;
     private HLayout mainLayout;
 
     private UGCCConstants constants = GWT.create(UGCCConstants.class);
 
+    private Presenter presenter;
+
     public MainViewImpl() {
         super();
-        getServiceDelegate().setGui(this);
-
-        wireGUIEvents();
-    }
-
-    private AdminModeServiceDelegate getServiceDelegate() {
-        if (serviceDelegate == null) {
-            serviceDelegate = new AdminModeServiceDelegate();
-        }
-        return serviceDelegate;
-    }
-
-    private void wireGUIEvents() {
-        button.addClickHandler(new ClickHandler(){
-            @Override
-            public void onClick(final ClickEvent event) {
-                eventAddNewButtonClicked();
-            }});
     }
 
     @Override
+    public void init() {
+        getContent().draw();
+        wireGUIEvents();
+    }
+
+    private void wireGUIEvents() {
+        button.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(final ClickEvent event) {
+                eventAddNewButtonClicked();
+            }
+        });
+    }
+
     protected HLayout getContent() {
         mainLayout = new HLayout();
         mainLayout.setWidth100();
@@ -91,6 +94,11 @@ public class MainViewImpl extends AbstractView implements MainView {
         mainLayout.addMember(getEmptyPanel());
 
         return mainLayout;
+    }
+
+    @Override
+    public void setPresenter(final Presenter presenter) {
+        this.presenter = presenter;
     }
 
     private Widget getEmptyPanel() {
@@ -149,7 +157,7 @@ public class MainViewImpl extends AbstractView implements MainView {
         newsLayout.setHeight100();
         newsLayout.setMembersMargin(MEMBERS_MARGIN);
 
-        getServiceDelegate().listNews();
+        presenter.listNews();
 
         return newsLayout;
     }
@@ -198,7 +206,9 @@ public class MainViewImpl extends AbstractView implements MainView {
         removeButton.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(final ClickEvent event) {
-                getServiceDelegate().removeNews(news);
+                if (presenter != null) {
+                    presenter.removeNews(news);
+                }
                 layout.setVisible(false);
                 layout.clear();
             }
@@ -289,7 +299,9 @@ public class MainViewImpl extends AbstractView implements MainView {
         news.setId(System.currentTimeMillis());
         news.setContent(richTextEditor.getValue());
         currentNews = news;
-        getServiceDelegate().addNews(currentNews);
+        if (presenter != null) {
+            presenter.addNews(currentNews);
+        }
         richTextEditor.setValue("");
     }
 

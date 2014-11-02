@@ -1,13 +1,11 @@
 package ua.coral.ugcc.user.client;
 
-import com.google.gwt.place.shared.Place;
-import ua.coral.ugcc.common.client.AbstractEntryPoint;
-import ua.coral.ugcc.common.place.MainPlace;
+import com.google.gwt.core.client.EntryPoint;
 
-public class Ugcc extends AbstractEntryPoint {
+public class Ugcc implements EntryPoint {
 
     @Override
-    protected Place getPlace() {
-        return new MainPlace("Main");
+    public void onModuleLoad() {
+
     }
 }

@@ -1,8 +1,7 @@
-package ua.coral.ugcc.common.activity;
+package ua.coral.ugcc.admin.client.activity;
 
+import ua.coral.ugcc.admin.client.view.ClientFactory;
 import ua.coral.ugcc.common.place.MainPlace;
-import ua.coral.ugcc.common.place.NewsPlace;
-import ua.coral.ugcc.common.view.ClientFactory;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.activity.shared.ActivityMapper;
@@ -20,9 +19,7 @@ public class AppActivityMapper implements ActivityMapper {
     @Override
     public Activity getActivity(final Place place) {
         if (place instanceof MainPlace) {
-            return new MainActivity((MainPlace) place, clientFactory);
-        } else if (place instanceof NewsPlace) {
-            return new NewsActivity((NewsPlace) place, clientFactory);
+            return new MainActivity(clientFactory);
         }
         return null;
     }

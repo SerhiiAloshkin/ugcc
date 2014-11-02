@@ -2,7 +2,7 @@ package ua.coral.ugcc.admin.client;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import ua.coral.ugcc.admin.client.view.impl.MainViewImpl;
+import ua.coral.ugcc.admin.client.view.MainView;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import java.util.List;
@@ -10,22 +10,22 @@ import java.util.List;
 public class AdminModeServiceDelegate {
 
     private AdminModeServiceAsync async = GWT.create(AdminModeService.class);
-    private MainViewImpl gui;
+    private MainView view;
 
-    public void setGui(final MainViewImpl gui) {
-        this.gui = gui;
+    public void setView(final MainView view) {
+        this.view = view;
     }
 
     public void listNews() {
         async.listNews(new AsyncCallback<List<News>>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.eventListContactsFailed();
+                view.eventListContactsFailed();
             }
 
             @Override
             public void onSuccess(final List<News> result) {
-                gui.eventListRetrievedFromService(result);
+                view.eventListRetrievedFromService(result);
             }
         });
     }
@@ -34,12 +34,12 @@ public class AdminModeServiceDelegate {
         async.addNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.eventAddContactFailed(caught);
+                view.eventAddContactFailed(caught);
             }
 
             @Override
             public void onSuccess(final Void result) {
-                gui.eventAddContactSuccessful();
+                view.eventAddContactSuccessful();
             }
         });
     }
@@ -48,12 +48,12 @@ public class AdminModeServiceDelegate {
         async.removeNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.eventRemoveContactFailed();
+                view.eventRemoveContactFailed();
             }
 
             @Override
             public void onSuccess(final Void result) {
-                gui.eventRemoveContactSuccessful();
+                view.eventRemoveContactSuccessful();
             }
         });
     }
@@ -62,12 +62,12 @@ public class AdminModeServiceDelegate {
         async.updateNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-                gui.eventUpdateContactFailed();
+                view.eventUpdateContactFailed();
             }
 
             @Override
             public void onSuccess(final Void result) {
-                gui.eventUpdateSuccessful();
+                view.eventUpdateSuccessful();
             }
         });
     }

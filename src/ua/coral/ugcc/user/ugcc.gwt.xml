@@ -13,17 +13,4 @@
 
 <!-- Specify the app servlets.                   -->
     <servlet path='/ugccService' class='ua.coral.ugcc.user.server.UgccServiceImpl'/>
-
-    <replace-with class="ua.coral.ugcc.common.view.impl.ClientFactoryImpl">
-        <when-type-is class="ua.coral.ugcc.common.view.ClientFactory"/>
-    </replace-with>
-
-    <replace-with class="ua.coral.ugcc.user.client.view.impl.MainViewImpl">
-        <when-type-is class="ua.coral.ugcc.common.view.MainView"/>
-    </replace-with>
-
-    <replace-with class="ua.coral.ugcc.user.client.view.impl.NewsViewImpl">
-        <when-type-is class="ua.coral.ugcc.common.view.NewsView"/>
-    </replace-with>
-    
 </module>
