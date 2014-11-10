@@ -40,6 +40,11 @@ public class ListNewsActivity extends AbstractActivity implements ListNewsView.P
     }
 
     @Override
+    public void countNews() {
+        serviceDelegate.countNews();
+    }
+
+    @Override
     public void addNews(final News news) {
         serviceDelegate.addNews(news);
     }

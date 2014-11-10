@@ -13,4 +13,6 @@ public interface Service {
     void updateNews(News news);
 
     List<News> listNews();
+
+    int countNews();
 }

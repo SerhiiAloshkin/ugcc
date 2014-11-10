@@ -1,5 +1,6 @@
 package ua.coral.ugcc.admin.client.view.impl;
 
+import ua.coral.ugcc.admin.client.panel.PagingPanel;
 import ua.coral.ugcc.admin.client.panel.RollNewsPanel;
 import ua.coral.ugcc.admin.client.panel.SingleNewsPanel;
 import ua.coral.ugcc.admin.client.view.ListNewsView;
@@ -37,6 +38,8 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
 
     private RollNewsPanel rollNewsPanel;
 
+    private PagingPanel pagingPanel;
+
     private UGCCConstants constants = GWT.create(UGCCConstants.class);
 
     public ListNewsViewImpl() {
@@ -64,8 +67,10 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
         layout.setMembersMargin(MEMBERS_MARGIN);
 
         rollNewsPanel = new RollNewsPanel(getPresenter());
+        pagingPanel = new PagingPanel(getPresenter());
 
         layout.addMember(rollNewsPanel);
+        layout.addMember(pagingPanel);
         layout.addMember(getAddNewsPanel());
 
         return layout;
@@ -137,6 +142,18 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
         }
     }
 
+    @Override
+    public void eventCountNewsFailed() {
+        messageBox("Load count news failed");
+    }
+
+    @Override
+    public void eventCountNewsSuccessful(final int count) {
+        pagingPanel.setItemsCount(count);
+
+        pagingPanel.buildPanel();
+    }
+
     public void eventAddNewButtonClicked() {
         final News news = new News();
         news.setId(System.currentTimeMillis());
@@ -144,6 +161,8 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
         currentNews = news;
         getPresenter().addNews(currentNews);
         richTextEditor.setValue("");
+
+        getPresenter().countNews();
     }
 
     private void messageBox(final String message) {

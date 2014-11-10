@@ -1,6 +1,7 @@
 package ua.coral.ugcc.admin.client;
 
 import ua.coral.ugcc.admin.client.callback.AddNewsCallback;
+import ua.coral.ugcc.admin.client.callback.CountNewsCallback;
 import ua.coral.ugcc.admin.client.callback.ListNewsCallback;
 import ua.coral.ugcc.admin.client.callback.RemoveNewsCallback;
 import ua.coral.ugcc.admin.client.callback.UpdateNewsCallback;
@@ -20,6 +21,10 @@ public class AdminModeServiceDelegate {
 
     public void listNews() {
         async.listNews(new ListNewsCallback(view));
+    }
+
+    public void countNews() {
+        async.countNews(new CountNewsCallback(view));
     }
 
     public void addNews(final News news) {

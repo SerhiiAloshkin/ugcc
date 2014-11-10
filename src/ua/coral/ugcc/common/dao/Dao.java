@@ -9,4 +9,6 @@ public interface Dao {
     void remove(Dto object);
 
     void update(Dto object);
+
+    int count();
 }

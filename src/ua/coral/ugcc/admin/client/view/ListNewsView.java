@@ -25,10 +25,16 @@ public interface ListNewsView extends View<ListNewsView.Presenter> {
 
     void eventUpdateNewsSuccessful();
 
+    void eventCountNewsFailed();
+
+    void eventCountNewsSuccessful(int count);
+
     public interface Presenter {
         void goTo(Place place);
 
         void listNews();
+
+        void countNews();
 
         void addNews(News news);
 

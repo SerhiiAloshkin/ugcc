@@ -1,11 +1,16 @@
 package ua.coral.ugcc.common.dao.impl;
 
-import com.google.appengine.api.datastore.*;
 import ua.coral.ugcc.common.dao.Dao;
 import ua.coral.ugcc.common.dto.Dto;
 import ua.coral.ugcc.common.mapper.Mapper;
 
 import java.util.List;
+
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
+import com.google.appengine.api.datastore.FetchOptions;
+import com.google.appengine.api.datastore.Query;
 
 public abstract class DaoImpl implements Dao {
 
@@ -38,6 +43,12 @@ public abstract class DaoImpl implements Dao {
         final Entity entity = getEntityById(object.getId());
         entity.setPropertiesFrom(Mapper.getEntity(object));
         dsService.put(entity);
+    }
+
+    @Override
+    public int count() {
+        final Query query = new Query(getEntityClass().getSimpleName());
+        return dsService.prepare(query).countEntities(FetchOptions.Builder.withDefaults());
     }
 
     protected abstract <E extends Dto> Class<E> getEntityClass();
