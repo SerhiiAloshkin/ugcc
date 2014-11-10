@@ -9,21 +9,21 @@ import com.google.gwt.place.shared.Place;
 
 public interface ListNewsView extends View<ListNewsView.Presenter> {
 
-    void eventListContactsFailed();
+    void eventListNewsFailed();
 
     void eventListRetrievedFromService(List<News> result);
 
-    void eventAddContactFailed(Throwable caught);
+    void eventAddNewsFailed(Throwable caught);
 
-    void eventAddContactSuccessful();
+    void eventAddNewsSuccessful();
 
-    void eventRemoveContactFailed();
+    void eventRemoveNewsFailed();
 
-    void eventRemoveContactSuccessful();
+    void eventRemoveNewsSuccessful();
 
-    void eventUpdateContactFailed();
+    void eventUpdateNewsFailed();
 
-    void eventUpdateSuccessful();
+    void eventUpdateNewsSuccessful();
 
     public interface Presenter {
         void goTo(Place place);

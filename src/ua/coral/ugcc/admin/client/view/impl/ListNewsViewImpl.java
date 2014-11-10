@@ -96,37 +96,37 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
     }
 
     @Override
-    public void eventAddContactSuccessful() {
+    public void eventAddNewsSuccessful() {
         rollNewsPanel.addMember(new SingleNewsPanel(currentNews, getPresenter()));
     }
 
     @Override
-    public void eventUpdateSuccessful() {
+    public void eventUpdateNewsSuccessful() {
         messageBox("Update contact successful");
     }
 
     @Override
-    public void eventRemoveContactSuccessful() {
+    public void eventRemoveNewsSuccessful() {
         messageBox("Remove contact successful");
     }
 
     @Override
-    public void eventUpdateContactFailed() {
+    public void eventUpdateNewsFailed() {
         messageBox("Update contact failed");
     }
 
     @Override
-    public void eventAddContactFailed(Throwable caught) {
+    public void eventAddNewsFailed(Throwable caught) {
         messageBox(caught.getMessage());
     }
 
     @Override
-    public void eventRemoveContactFailed() {
+    public void eventRemoveNewsFailed() {
         messageBox("Remove contact failed");
     }
 
     @Override
-    public void eventListContactsFailed() {
+    public void eventListNewsFailed() {
         messageBox("Unable to get contact list");
     }
 
