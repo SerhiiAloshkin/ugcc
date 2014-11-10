@@ -2,7 +2,7 @@ package ua.coral.ugcc.admin.client.activity;
 
 import ua.coral.ugcc.admin.client.AdminModeServiceDelegate;
 import ua.coral.ugcc.admin.client.view.ClientFactory;
-import ua.coral.ugcc.admin.client.view.MainView;
+import ua.coral.ugcc.admin.client.view.ListNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import com.google.gwt.activity.shared.AbstractActivity;
@@ -10,19 +10,19 @@ import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 
-public class MainActivity extends AbstractActivity implements MainView.Presenter {
+public class ListNewsActivity extends AbstractActivity implements ListNewsView.Presenter {
 
     private ClientFactory clientFactory;
     private AdminModeServiceDelegate serviceDelegate;
 
-    public MainActivity(final ClientFactory clientFactory) {
+    public ListNewsActivity(final ClientFactory clientFactory) {
         this.clientFactory = clientFactory;
         serviceDelegate = new AdminModeServiceDelegate();
     }
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
-        final MainView view = clientFactory.getMainView();
+        final ListNewsView view = clientFactory.getListNewsView();
         view.setPresenter(this);
         serviceDelegate.setView(view);
         view.init();

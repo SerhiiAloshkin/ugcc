@@ -4,7 +4,7 @@ import ua.coral.ugcc.admin.client.activity.AppActivityMapper;
 import ua.coral.ugcc.admin.client.view.ClientFactory;
 import ua.coral.ugcc.common.client.AbstractEntryPoint;
 import ua.coral.ugcc.common.place.AppPlaceHistoryMapper;
-import ua.coral.ugcc.common.place.MainPlace;
+import ua.coral.ugcc.common.place.ListNewsPlace;
 
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
@@ -103,7 +103,7 @@ public class AdminMode extends AbstractEntryPoint {
 
     @Override
     protected Place getPlace() {
-        return new MainPlace("Main");
+        return new ListNewsPlace("Main");
     }
 
     private class AdminClickHandler implements ClickHandler {

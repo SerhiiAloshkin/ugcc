@@ -1,19 +1,13 @@
 package ua.coral.ugcc.admin.client.view;
 
 import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.view.View;
 
 import java.util.List;
 
 import com.google.gwt.place.shared.Place;
-import com.google.gwt.user.client.ui.IsWidget;
 
-public interface MainView extends IsWidget {
-
-    void init();
-
-    void setPresenter(Presenter presenter);
-
-    void setContent(String content);
+public interface ListNewsView extends View<ListNewsView.Presenter> {
 
     void eventListContactsFailed();
 

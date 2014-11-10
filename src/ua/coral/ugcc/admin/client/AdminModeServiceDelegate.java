@@ -1,18 +1,19 @@
 package ua.coral.ugcc.admin.client;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import ua.coral.ugcc.admin.client.view.MainView;
+import ua.coral.ugcc.admin.client.view.ListNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import java.util.List;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+
 public class AdminModeServiceDelegate {
 
     private AdminModeServiceAsync async = GWT.create(AdminModeService.class);
-    private MainView view;
+    private ListNewsView view;
 
-    public void setView(final MainView view) {
+    public void setView(final ListNewsView view) {
         this.view = view;
     }
 

@@ -7,5 +7,5 @@ public interface ClientFactory {
 
     EventBus getEventBus();
     PlaceController getPlaceController();
-    MainView getMainView();
+    ListNewsView getListNewsView();
 }

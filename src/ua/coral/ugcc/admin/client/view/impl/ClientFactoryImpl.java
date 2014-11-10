@@ -1,7 +1,7 @@
 package ua.coral.ugcc.admin.client.view.impl;
 
 import ua.coral.ugcc.admin.client.view.ClientFactory;
-import ua.coral.ugcc.admin.client.view.MainView;
+import ua.coral.ugcc.admin.client.view.ListNewsView;
 
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.event.shared.SimpleEventBus;
@@ -23,7 +23,7 @@ public class ClientFactoryImpl implements ClientFactory {
     }
 
     @Override
-    public MainView getMainView() {
-        return new MainViewImpl();
+    public ListNewsView getListNewsView() {
+        return new ListNewsViewImpl();
     }
 }
