@@ -18,6 +18,8 @@ public class PagingPanel extends HLayout {
 
     private int page = 0;
 
+    private final Label label = new Label();
+
     public PagingPanel(final ListNewsView.Presenter presenter) {
         super();
         this.presenter = presenter;
@@ -28,6 +30,8 @@ public class PagingPanel extends HLayout {
     private void init() {
         setWidth100();
         setAlign(Alignment.CENTER);
+
+        addMember(label);
 
         presenter.countNews();
     }
@@ -45,8 +49,12 @@ public class PagingPanel extends HLayout {
     }
 
     public void buildPanel() {
-        if (count > size) {
-            addMember(new Label("1 | 2 | 3"));
+        final StringBuilder builder = new StringBuilder("1");
+        float pages = (float) count / (float) size;
+        for (int i = 1; i < pages; ) {
+            builder.append(" | ");
+            builder.append(++i);
         }
+        label.setContents(builder.toString());
     }
 }

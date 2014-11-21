@@ -112,7 +112,8 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
 
     @Override
     public void eventRemoveNewsSuccessful() {
-        messageBox("Remove contact successful");
+//        messageBox("Remove contact successful");
+        getPresenter().countNews();
     }
 
     @Override
@@ -150,7 +151,6 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
     @Override
     public void eventCountNewsSuccessful(final int count) {
         pagingPanel.setItemsCount(count);
-
         pagingPanel.buildPanel();
     }
 
