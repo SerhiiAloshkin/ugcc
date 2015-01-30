@@ -5,6 +5,8 @@ import ua.coral.ugcc.admin.client.view.ClientFactory;
 import ua.coral.ugcc.admin.client.view.ListNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 
+import java.util.Map;
+
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.event.shared.EventBus;
 import com.google.gwt.place.shared.Place;
@@ -15,7 +17,7 @@ public class ListNewsActivity extends AbstractActivity implements ListNewsView.P
     private ClientFactory clientFactory;
     private AdminModeServiceDelegate serviceDelegate;
 
-    public ListNewsActivity(final ClientFactory clientFactory) {
+    public ListNewsActivity(final ClientFactory clientFactory, final Map<String, Object> attributes) {
         this.clientFactory = clientFactory;
         serviceDelegate = new AdminModeServiceDelegate();
     }
