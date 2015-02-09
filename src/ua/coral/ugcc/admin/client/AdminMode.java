@@ -14,6 +14,7 @@ import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.place.shared.PlaceHistoryHandler;
@@ -44,11 +45,16 @@ public class AdminMode extends AbstractEntryPoint {
 
     @Override
     public void onModuleLoad() {
-        loadPage();
+        //loadPage();
         //addGoogleAuth();
 
         // Export the JS method that can be called in pure JS
         //Auth.export();
+
+        final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
+        final HandlerManager eventBus = new HandlerManager(null);
+        final AppController appViewer = new AppController(rpcService, eventBus);
+        appViewer.go(RootPanel.get());
     }
 
     // Adds a button to the page that asks for authentication from Google.

@@ -22,7 +22,7 @@ public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
 
     @Override
     public void init() {
-        getContent().draw();
+        initWidget(getContent());
         postInit();
     }
 
