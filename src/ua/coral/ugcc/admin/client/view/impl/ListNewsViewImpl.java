@@ -4,13 +4,11 @@ import ua.coral.ugcc.admin.client.panel.PagingPanel;
 import ua.coral.ugcc.admin.client.panel.RollNewsPanel;
 import ua.coral.ugcc.admin.client.panel.SingleNewsPanel;
 import ua.coral.ugcc.admin.client.view.ListNewsView;
-import ua.coral.ugcc.common.client.UGCCConstants;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.common.view.impl.AbstractViewImpl;
 
 import java.util.List;
 
-import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Alignment;
@@ -25,12 +23,12 @@ import com.smartgwt.client.widgets.layout.VLayout;
 
 public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> implements ListNewsView {
 
-    private static final int ADD_NEWS_HEIGHT = 155;
+    private static final int ADD_NEWS_HEIGHT = 300;
     private static final int MEMBERS_MARGIN = 20;
     private static final int MESSAGE_BOX_HEIGHT = 115;
     private static final int MESSAGE_BOX_WIDTH = 360;
 
-    private RichTextEditor richTextEditor;
+    private RichTextEditor richTextEditor = new RichTextEditor();
 
     private Button button;
 
@@ -39,8 +37,6 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
     private RollNewsPanel rollNewsPanel;
 
     private PagingPanel pagingPanel;
-
-    private UGCCConstants constants = GWT.create(UGCCConstants.class);
 
     public ListNewsViewImpl() {
         super();
@@ -82,11 +78,11 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
         layout.setWidth100();
         layout.setMembersMargin(MEMBERS_MARGIN);
 
-        richTextEditor = new RichTextEditor();
         richTextEditor.setHeight(ADD_NEWS_HEIGHT);
         richTextEditor.setOverflow(Overflow.HIDDEN);
         richTextEditor.setCanDragResize(true);
         richTextEditor.setShowEdges(true);
+        richTextEditor.setID("richTextEditor");
 
         final HLayout hLayout = new HLayout();
         hLayout.setAlign(Alignment.RIGHT);
@@ -102,7 +98,7 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
 
     @Override
     public void eventAddNewsSuccessful() {
-        rollNewsPanel.addMember(new SingleNewsPanel(currentNews, getPresenter()));
+        rollNewsPanel.addMember(new SingleNewsPanel(currentNews, getPresenter(), richTextEditor));
     }
 
     @Override
@@ -139,7 +135,7 @@ public class ListNewsViewImpl extends AbstractViewImpl<ListNewsView.Presenter> i
     @Override
     public void eventListRetrievedFromService(final List<News> listNews) {
         for (final News news : listNews) {
-            rollNewsPanel.addMember(new SingleNewsPanel(news, getPresenter()));
+            rollNewsPanel.addMember(new SingleNewsPanel(news, getPresenter(), richTextEditor));
         }
     }
 

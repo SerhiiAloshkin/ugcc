@@ -1,7 +1,9 @@
 package ua.coral.ugcc.common.view.impl;
 
+import ua.coral.ugcc.common.client.UGCCConstants;
 import ua.coral.ugcc.common.view.View;
 
+import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Alignment;
@@ -19,6 +21,8 @@ public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
 
     private P presenter;
     private HLayout mainLayout;
+
+    protected UGCCConstants constants = GWT.create(UGCCConstants.class);
 
     @Override
     public void init() {

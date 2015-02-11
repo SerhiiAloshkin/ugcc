@@ -8,14 +8,13 @@ import ua.coral.ugcc.admin.client.callback.UpdateNewsCallback;
 import ua.coral.ugcc.admin.client.view.ListNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 
-import com.google.gwt.core.client.GWT;
-
 public class AdminModeServiceDelegate {
 
-    private AdminModeServiceAsync async = GWT.create(AdminModeService.class);
-    private ListNewsView view;
+    private final AdminModeServiceAsync async;
+    private final ListNewsView view;
 
-    public void setView(final ListNewsView view) {
+    public AdminModeServiceDelegate(final AdminModeServiceAsync async, final ListNewsView view) {
+        this.async = async;
         this.view = view;
     }
 

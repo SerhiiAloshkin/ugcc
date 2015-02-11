@@ -5,9 +5,11 @@ import ua.coral.ugcc.common.client.UGCCConstants;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.user.client.Window;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.HTMLFlow;
+import com.smartgwt.client.widgets.RichTextEditor;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.events.MouseOutEvent;
@@ -29,11 +31,14 @@ public class SingleNewsPanel extends VLayout {
 
     private final Button editButton = new Button(constants.edit());
     private final Button removeButton = new Button(constants.remove());
+    private final HTMLFlow flow = new HTMLFlow();
+    private final RichTextEditor editor;
 
-    public SingleNewsPanel(final News news, final ListNewsView.Presenter presenter) {
+    public SingleNewsPanel(final News news, final ListNewsView.Presenter presenter, final RichTextEditor editor) {
         super();
         this.news = news;
         this.presenter = presenter;
+        this.editor = editor;
 
         init();
     }
@@ -41,6 +46,8 @@ public class SingleNewsPanel extends VLayout {
     private void init() {
         setWidth100();
         setHeight100();
+        setStyleName("seperated");
+        setPadding(15);
 
         final HLayout hLayout = new HLayout();
         hLayout.setWidth100();
@@ -57,12 +64,12 @@ public class SingleNewsPanel extends VLayout {
         hLayout.addMember(editButton);
         hLayout.addMember(removeButton);
 
-        final HTMLFlow flow = new HTMLFlow();
         flow.setWidth100();
         flow.setContents(news.getContent());
         addMouseOverHandler(new NewsMouseOverHandler());
         addMouseOutHandler(new NewsMouseOutHandler());
 
+        editButton.addClickHandler(new NewsEditClickHandler());
         removeButton.addClickHandler(new NewsRemoveClickHandler());
 
         addMember(hLayout);
@@ -78,6 +85,7 @@ public class SingleNewsPanel extends VLayout {
         @Override
         public void onMouseOver(final MouseOverEvent mouseOverEvent) {
             setVisibleButtons(true);
+            flow.setBackgroundColor("#BDE5B7");
         }
     }
 
@@ -85,6 +93,7 @@ public class SingleNewsPanel extends VLayout {
         @Override
         public void onMouseOut(final MouseOutEvent mouseOutEvent) {
             setVisibleButtons(false);
+            flow.setBackgroundColor("#FFFFFF");
         }
     }
 
@@ -94,6 +103,14 @@ public class SingleNewsPanel extends VLayout {
             presenter.removeNews(news);
             setVisible(false);
             clear();
+        }
+    }
+
+    private class NewsEditClickHandler implements ClickHandler {
+        @Override
+        public void onClick(final ClickEvent event) {
+            editor.setValue(news.getContent());
+            Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
         }
     }
 }

@@ -1,3 +1,13 @@
 .textarea {
     resize: none;
 }
+
+.seperated + .seperated:before{
+    content:"";
+    height:1px;
+    background:-moz-linear-gradient(left, #FFFFFF 0%,#000000 50%,#FFFFFF 100%);
+    background:-webkit-linear-gradient(left, #FFFFFF 0%,#000000 50%,#FFFFFF 100%);
+    background:linear-gradient(left, #FFFFFF 0%,#000000 50%,#FFFFFF 100%);
+    width:100%;
+    display:block;
+}

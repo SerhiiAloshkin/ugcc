@@ -41,7 +41,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
     }
 
     private void doListNews() {
-        History.newItem(LIST_NEWS);
+        History.newItem(LIST_NEWS, false);
     }
 
     @Override
@@ -74,7 +74,6 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
                 public void onSuccess() {
                     if (listNewsView == null) {
                         listNewsView = new ListNewsViewImpl();
-                        listNewsView.init();
                     }
 
                     new ListNewsPresenter(rpcService, eventBus, listNewsView).go(container);

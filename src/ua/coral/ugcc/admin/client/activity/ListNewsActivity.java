@@ -15,19 +15,17 @@ import com.google.gwt.user.client.ui.AcceptsOneWidget;
 public class ListNewsActivity extends AbstractActivity implements ListNewsView.Presenter {
 
     private ClientFactory clientFactory;
-    private AdminModeServiceDelegate serviceDelegate;
+    private AdminModeServiceDelegate serviceDelegate = null;
 
     public ListNewsActivity(final ClientFactory clientFactory, final Map<String, Object> attributes) {
         this.clientFactory = clientFactory;
-        serviceDelegate = new AdminModeServiceDelegate();
+//        serviceDelegate = new AdminModeServiceDelegate();
     }
 
     @Override
     public void start(final AcceptsOneWidget panel, final EventBus eventBus) {
         final ListNewsView view = clientFactory.getListNewsView();
         view.setPresenter(this);
-        serviceDelegate.setView(view);
-        view.init();
         panel.setWidget(view.asWidget());
     }
 
