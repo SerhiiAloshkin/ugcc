@@ -7,4 +7,6 @@ public interface View<P> extends IsWidget {
     void init();
 
     void setPresenter(P presenter);
+
+    P getPresenter();
 }

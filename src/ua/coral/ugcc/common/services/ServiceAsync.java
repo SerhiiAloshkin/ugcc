@@ -17,4 +17,6 @@ public interface ServiceAsync {
     void listNews(AsyncCallback<List<News>> callback);
 
     void countNews(AsyncCallback<Integer> callback);
+
+    void getNewsById(Long newsId, AsyncCallback<News> callback);
 }

@@ -32,4 +32,9 @@ public class NewsDaoImpl extends DaoImpl implements NewsDao {
 
         return newsList;
     }
+
+    @Override
+    public News getNewsById(final Long newsId) {
+        return Mapper.getObject(News.class, getEntityById(newsId));
+    }
 }

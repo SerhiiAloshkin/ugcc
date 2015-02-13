@@ -5,11 +5,14 @@ import ua.coral.ugcc.common.client.UGCCConstants;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.user.client.Window;
+import com.google.gwt.i18n.client.DateTimeFormat;
+import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Alignment;
+import com.smartgwt.client.util.BooleanCallback;
+import com.smartgwt.client.util.SC;
 import com.smartgwt.client.widgets.Button;
 import com.smartgwt.client.widgets.HTMLFlow;
-import com.smartgwt.client.widgets.RichTextEditor;
+import com.smartgwt.client.widgets.Label;
 import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.events.MouseOutEvent;
@@ -26,19 +29,16 @@ public class SingleNewsPanel extends VLayout {
 
     private UGCCConstants constants = GWT.create(UGCCConstants.class);
 
-    private News news;
-    private ListNewsView.Presenter presenter;
-
+    private final News news;
+    private final ListNewsView.Presenter presenter;
     private final Button editButton = new Button(constants.edit());
     private final Button removeButton = new Button(constants.remove());
     private final HTMLFlow flow = new HTMLFlow();
-    private final RichTextEditor editor;
 
-    public SingleNewsPanel(final News news, final ListNewsView.Presenter presenter, final RichTextEditor editor) {
+    public SingleNewsPanel(final News news, final ListNewsView parent) {
         super();
         this.news = news;
-        this.presenter = presenter;
-        this.editor = editor;
+        this.presenter = parent.getPresenter();
 
         init();
     }
@@ -74,6 +74,24 @@ public class SingleNewsPanel extends VLayout {
 
         addMember(hLayout);
         addMember(flow);
+        addMember(getBottomPanel());
+    }
+
+    private Widget getBottomPanel() {
+        final HLayout hLayout = new HLayout();
+        hLayout.setWidth100();
+        hLayout.setHeight(NEWS_TOP_HEIGHT);
+        hLayout.setAlign(Alignment.RIGHT);
+        hLayout.setMembersMargin(MEMBERS_MARGIN);
+
+        final DateTimeFormat format = DateTimeFormat.getFormat("dd-MM-yyyy HH:mm");
+        final Label createdDate = new Label("Created: " + format.format(news.getCreateDate()));
+        createdDate.setStyleName("createdDate");
+        createdDate.setWrap(false);
+
+        hLayout.addMember(createdDate);
+
+        return hLayout;
     }
 
     private void setVisibleButtons(final boolean isVisible) {
@@ -100,17 +118,23 @@ public class SingleNewsPanel extends VLayout {
     private class NewsRemoveClickHandler implements ClickHandler {
         @Override
         public void onClick(final ClickEvent clickEvent) {
-            presenter.removeNews(news);
-            setVisible(false);
-            clear();
+            SC.ask("Removing news", "Are you sure??", new BooleanCallback() {
+                @Override
+                public void execute(final Boolean value) {
+                    if (value != null && value) {
+                        presenter.removeNews(news);
+                        setVisible(false);
+                        clear();
+                    }
+                }
+            });
         }
     }
 
     private class NewsEditClickHandler implements ClickHandler {
         @Override
         public void onClick(final ClickEvent event) {
-            editor.setValue(news.getContent());
-            Window.scrollTo(0, Window.getScrollTop() + Window.getClientHeight());
+            presenter.updateNews(news);
         }
     }
 }

@@ -6,7 +6,6 @@
     <inherits name="com.smartgwt.SmartGwt"/>
     <inherits name="com.google.api.gwt.oauth2.OAuth2" />
     <inherits name='com.google.gwt.user.User'/>
-    <inherits name="com.google.gwt.place.Place"/>
     <inherits name="com.google.gwt.activity.Activity"/>
     <inherits name="com.google.gwt.i18n.I18N"/>
 
@@ -15,7 +14,4 @@
     <entry-point class='ua.coral.ugcc.admin.client.AdminMode'/>
     <servlet path="/AdminModeService" class="ua.coral.ugcc.admin.server.AdminModeServiceImpl"/>
 
-    <replace-with class="ua.coral.ugcc.admin.client.view.impl.ClientFactoryImpl">
-        <when-type-is class="ua.coral.ugcc.admin.client.view.ClientFactory"/>
-    </replace-with>
 </module>

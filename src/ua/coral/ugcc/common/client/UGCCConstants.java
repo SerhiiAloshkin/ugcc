@@ -12,4 +12,13 @@ public interface UGCCConstants extends Constants {
 
     @DefaultStringValue("Add news")
     String add();
+
+    @DefaultStringValue("Cancel")
+    String cancel();
+
+    @DefaultStringValue("Removing")
+    String messageRemoveTitle();
+
+    @DefaultStringValue("Are you sure?")
+    String messageRemoveBody();
 }

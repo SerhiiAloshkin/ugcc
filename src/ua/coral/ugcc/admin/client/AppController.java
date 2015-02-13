@@ -1,11 +1,18 @@
 package ua.coral.ugcc.admin.client;
 
+import ua.coral.ugcc.admin.client.event.AddNewsEvent;
 import ua.coral.ugcc.admin.client.event.ListNewsEvent;
+import ua.coral.ugcc.admin.client.event.UpdateNewsEvent;
+import ua.coral.ugcc.admin.client.event.handler.AddNewsEventHandler;
 import ua.coral.ugcc.admin.client.event.handler.ListNewsEventHandler;
+import ua.coral.ugcc.admin.client.event.handler.UpdateNewsEventHandler;
+import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
 import ua.coral.ugcc.admin.client.presenter.ListNewsPresenter;
 import ua.coral.ugcc.admin.client.presenter.Presenter;
-import ua.coral.ugcc.admin.client.view.ListNewsView;
+import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
+import ua.coral.ugcc.admin.client.view.impl.AddNewsViewImpl;
 import ua.coral.ugcc.admin.client.view.impl.ListNewsViewImpl;
+import ua.coral.ugcc.admin.client.view.impl.UpdateNewsViewImpl;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
@@ -17,11 +24,9 @@ import com.google.gwt.user.client.ui.HasWidgets;
 
 public class AppController implements Presenter, ValueChangeHandler<String> {
 
-    private static final String LIST_NEWS = "listNews";
     private final AdminModeServiceAsync rpcService;
     private final HandlerManager eventBus;
     private HasWidgets container;
-    private ListNewsView listNewsView;
 
     public AppController(final AdminModeServiceAsync rpcService, final HandlerManager eventBus) {
         this.rpcService = rpcService;
@@ -38,10 +43,32 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
                 doListNews();
             }
         });
+        eventBus.addHandler(AddNewsEvent.TYPE, new AddNewsEventHandler() {
+            @Override
+            public void onAddNews(final AddNewsEvent event) {
+                doAddNews();
+            }
+        });
+        eventBus.addHandler(UpdateNewsEvent.TYPE, new UpdateNewsEventHandler() {
+            @Override
+            public void onUpdateNews(final UpdateNewsEvent event) {
+                doUpdateNews(event.getNewsId());
+            }
+        });
     }
 
     private void doListNews() {
-        History.newItem(LIST_NEWS, false);
+        History.newItem(HistoryToken.LIST_NEWS.getToken());
+    }
+
+    private void doAddNews() {
+        History.newItem(HistoryToken.ADD_NEWS.getToken());
+    }
+
+    private void doUpdateNews(final Long newsId) {
+        History.newItem(HistoryToken.UPDATE_NEWS.getToken(), false);
+        final Presenter presenter = new UpdateNewsPresenter(rpcService, eventBus, new UpdateNewsViewImpl(), newsId);
+        presenter.go(container);
     }
 
     @Override
@@ -49,7 +76,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
         this.container = container;
 
         if ("".equals(History.getToken())) {
-            History.newItem(LIST_NEWS);
+            History.newItem(HistoryToken.LIST_NEWS.getToken());
         } else {
             History.fireCurrentHistoryState();
         }
@@ -63,7 +90,7 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
             return;
         }
 
-        if (LIST_NEWS.equals(token)) {
+        if (HistoryToken.LIST_NEWS.getToken().equals(token)) {
             GWT.runAsync(new RunAsyncCallback() {
                 @Override
                 public void onFailure(final Throwable reason) {
@@ -72,11 +99,19 @@ public class AppController implements Presenter, ValueChangeHandler<String> {
 
                 @Override
                 public void onSuccess() {
-                    if (listNewsView == null) {
-                        listNewsView = new ListNewsViewImpl();
-                    }
+                    new ListNewsPresenter(rpcService, eventBus, new ListNewsViewImpl()).go(container);
+                }
+            });
+        } else if (HistoryToken.ADD_NEWS.getToken().equals(token)) {
+            GWT.runAsync(new RunAsyncCallback() {
+                @Override
+                public void onFailure(final Throwable reason) {
 
-                    new ListNewsPresenter(rpcService, eventBus, listNewsView).go(container);
+                }
+
+                @Override
+                public void onSuccess() {
+                    new AddNewsPresenter(rpcService, eventBus, new AddNewsViewImpl()).go(container);
                 }
             });
         }

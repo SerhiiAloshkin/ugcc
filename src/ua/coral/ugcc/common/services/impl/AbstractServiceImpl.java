@@ -39,4 +39,9 @@ public abstract class AbstractServiceImpl extends RemoteServiceServlet implement
     public int countNews() {
         return dao.count();
     }
+
+    @Override
+    public News getNewsById(final Long newsId) {
+        return dao.getNewsById(newsId);
+    }
 }

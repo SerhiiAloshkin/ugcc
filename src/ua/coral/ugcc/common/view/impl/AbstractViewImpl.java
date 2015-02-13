@@ -35,6 +35,7 @@ public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
         this.presenter = presenter;
     }
 
+    @Override
     public P getPresenter() {
         return presenter;
     }
@@ -74,8 +75,8 @@ public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
 
     private Widget getTopPanel() {
         final HLayout layout = new HLayout();
-        layout.setShowEdges(true);
         layout.setHeight(TOP_PANEL_HEIGHT);
+        layout.setStyleName("topPanel");
         return layout;
     }
 

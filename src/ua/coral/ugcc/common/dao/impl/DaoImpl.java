@@ -23,7 +23,8 @@ public abstract class DaoImpl implements Dao {
     }
 
     public List<Entity> getEntities() {
-        final Query query = new Query(getEntityClass().getSimpleName());
+        final Query query = new Query(getEntityClass().getSimpleName()).addSort(getId(), Query.SortDirection
+                .DESCENDING);
         return dsService.prepare(query).asList(FetchOptions.Builder.withDefaults());
     }
 

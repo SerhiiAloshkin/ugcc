@@ -11,3 +11,17 @@
     width:100%;
     display:block;
 }
+
+.createdDate {
+    color: #9197a3;
+    font-size: small;
+}
+
+.topPanel {
+    position: fixed;
+    background-color: #adb7c3;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 1030;
+}

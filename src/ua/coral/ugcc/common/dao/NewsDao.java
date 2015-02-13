@@ -8,4 +8,6 @@ import java.util.List;
 public interface NewsDao extends Dao, Serializable {
 
     List<News> listNews();
+
+    News getNewsById(Long newsId);
 }
