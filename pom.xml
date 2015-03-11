@@ -13,6 +13,7 @@
         <gwt.version>2.6.1</gwt.version>
         <smartgwt.version>2.5-patch</smartgwt.version>
         <groovy.version>2.4.0</groovy.version>
+        <gwtbootstrap3.version>0.9</gwtbootstrap3.version>
     </properties>
 
     <dependencies>
@@ -31,6 +32,16 @@
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-1.0-sdk</artifactId>
             <version>${gae.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.gwtbootstrap3</groupId>
+            <artifactId>gwtbootstrap3</artifactId>
+            <version>${gwtbootstrap3.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.gwtbootstrap3</groupId>
+            <artifactId>gwtbootstrap3-extras</artifactId>
+            <version>${gwtbootstrap3.version}</version>
         </dependency>
         <!-- Provided libs -->
         <dependency>
@@ -197,4 +208,17 @@
             </plugin-->
         </plugins>
     </build>
+
+    <repositories>
+        <repository>
+            <id>sonatype-nexus-snapshots</id>
+            <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+        </repository>
+    </repositories>
 </project>

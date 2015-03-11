@@ -1,0 +1,30 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <g:HTMLPanel styleName="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active">
+                        <a href="#main">Головна</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#news">Парафія</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#contacts">Контакти</a>
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Українська Греко-Католицька Церква</h3>
+        </div>
+
+        <g:HTMLPanel ui:field="content"/>
+
+        <footer class="footer">
+            <p>
+                <span ui:field="copyright"/>
+            </p>
+        </footer>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

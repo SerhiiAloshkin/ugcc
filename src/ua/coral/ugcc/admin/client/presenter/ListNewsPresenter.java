@@ -1,37 +1,38 @@
 package ua.coral.ugcc.admin.client.presenter;
 
-import ua.coral.ugcc.admin.client.AdminModeServiceAsync;
-import ua.coral.ugcc.admin.client.event.AddNewsEvent;
-import ua.coral.ugcc.admin.client.event.UpdateNewsEvent;
-import ua.coral.ugcc.admin.client.view.ListNewsView;
-import ua.coral.ugcc.common.dto.impl.News;
-
-import java.util.List;
-
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
+import ua.coral.ugcc.admin.client.AdminModeServiceAsync;
+import ua.coral.ugcc.admin.client.event.AddNewsEvent;
+import ua.coral.ugcc.admin.client.event.UpdateNewsEvent;
+import ua.coral.ugcc.admin.client.uibinder.NewsBinder;
+import ua.coral.ugcc.admin.client.view.ListNewsView;
+import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.presenter.Presenter;
+import ua.coral.ugcc.common.presenter.impl.DefaultPresenterImpl;
+import ua.coral.ugcc.common.uibinder.DefaultBinder;
 
-public class ListNewsPresenter implements Presenter, ListNewsView.Presenter {
+import java.util.List;
+
+public class ListNewsPresenter extends DefaultPresenterImpl implements Presenter, ListNewsView.Presenter {
 
     private final AdminModeServiceAsync rpcService;
     private final HandlerManager eventBus;
-    private final ListNewsView view;
+    private final DefaultBinder view = new DefaultBinder();
 
-    public ListNewsPresenter(final AdminModeServiceAsync rpcService, final HandlerManager eventBus,
-                             final ListNewsView view) {
+    public ListNewsPresenter(final AdminModeServiceAsync rpcService, final HandlerManager eventBus) {
+        super(eventBus);
         this.rpcService = rpcService;
         this.eventBus = eventBus;
-        this.view = view;
 
-        view.setPresenter(this);
-        view.init();
+        listNews();
     }
 
     @Override
     public void go(final HasWidgets container) {
         container.clear();
-        container.add(view.asWidget());
+        container.add(view);
     }
 
     @Override
@@ -60,8 +61,8 @@ public class ListNewsPresenter implements Presenter, ListNewsView.Presenter {
     }
 
     @Override
-    public void updateNews(final News news) {
-        eventBus.fireEvent(new UpdateNewsEvent(news.getId()));
+    public void updateNews(final Long newsId) {
+        eventBus.fireEvent(new UpdateNewsEvent(newsId));
     }
 
     @Override
@@ -74,8 +75,12 @@ public class ListNewsPresenter implements Presenter, ListNewsView.Presenter {
 
             @Override
             public void onSuccess(final List<News> newsList) {
-                view.loadNews(newsList);
+                onNews(newsList);
             }
         });
+    }
+
+    private void onNews(final List<News> newsList) {
+        view.setChild(new NewsBinder(newsList, this));
     }
 }

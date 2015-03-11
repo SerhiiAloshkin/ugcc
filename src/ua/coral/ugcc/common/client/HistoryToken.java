@@ -1,10 +1,16 @@
-package ua.coral.ugcc.admin.client;
+package ua.coral.ugcc.common.client;
 
 public enum HistoryToken {
 
-    LIST_NEWS("list_news"),
     ADD_NEWS("add_news"),
-    UPDATE_NEWS("update_news");
+    UPDATE_NEWS("update_news"),
+
+    TO_MAIN("main"),
+    TO_NEWS("news"),
+    TO_PARISH("parish"),
+    TO_SCHEDULE("schedule"),
+    TO_CONTACTS("contacts"),
+    TO_MAP("map");
 
     private String token;
 

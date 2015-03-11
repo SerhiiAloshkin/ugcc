@@ -1,0 +1,19 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+    <ui:style>
+        .edit-button {
+            float: right;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                <g:Button ui:field="editBtn" addStyleNames="{style.edit-button} btn btn-xs btn-info">Редагувати
+                </g:Button>
+                <h3 style="folat:left" class="panel-title">Panel title</h3>
+            </div>
+            <div ui:field="newsBody" class="panel-body"/>
+        </div>
+    </g:HTMLPanel>
+</ui:UiBinder>

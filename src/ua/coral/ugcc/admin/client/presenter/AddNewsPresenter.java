@@ -1,15 +1,16 @@
 package ua.coral.ugcc.admin.client.presenter;
 
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.rpc.AsyncCallback;
+import com.google.gwt.user.client.ui.HasWidgets;
 import ua.coral.ugcc.admin.client.AdminModeServiceAsync;
 import ua.coral.ugcc.admin.client.event.ListNewsEvent;
 import ua.coral.ugcc.admin.client.view.AddNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.presenter.Presenter;
+import ua.coral.ugcc.common.presenter.impl.DefaultPresenterImpl;
 
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.rpc.AsyncCallback;
-import com.google.gwt.user.client.ui.HasWidgets;
-
-public class AddNewsPresenter implements Presenter, AddNewsView.Presenter {
+public class AddNewsPresenter extends DefaultPresenterImpl implements Presenter, AddNewsView.Presenter {
 
     private final AdminModeServiceAsync rpcService;
     private final HandlerManager eventBus;
@@ -17,6 +18,7 @@ public class AddNewsPresenter implements Presenter, AddNewsView.Presenter {
 
     public AddNewsPresenter(final AdminModeServiceAsync rpcService, final HandlerManager eventBus,
                             final AddNewsView view) {
+        super(eventBus);
         this.rpcService = rpcService;
         this.eventBus = eventBus;
         this.view = view;

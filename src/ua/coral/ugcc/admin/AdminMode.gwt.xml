@@ -8,8 +8,17 @@
     <inherits name='com.google.gwt.user.User'/>
     <inherits name="com.google.gwt.activity.Activity"/>
     <inherits name="com.google.gwt.i18n.I18N"/>
+    <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+    <inherits name="org.gwtbootstrap3.extras.summernote.Summernote"/>
+    <inherits name="org.gwtbootstrap3.extras.summernote.client.SummernoteResources"/>
+    <inherits name="org.gwtbootstrap3.extras.respond.Respond"/>
 
     <extend-property name="locale" values="ua"/>
+
+    <public path='resource'>
+        <include name='css/*.css'/>
+        <include name='js/*.js'/>
+    </public>
 
     <entry-point class='ua.coral.ugcc.admin.client.AdminMode'/>
     <servlet path="/AdminModeService" class="ua.coral.ugcc.admin.server.AdminModeServiceImpl"/>

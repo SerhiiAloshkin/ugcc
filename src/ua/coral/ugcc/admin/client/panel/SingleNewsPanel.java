@@ -1,9 +1,5 @@
 package ua.coral.ugcc.admin.client.panel;
 
-import ua.coral.ugcc.admin.client.view.ListNewsView;
-import ua.coral.ugcc.common.client.UGCCConstants;
-import ua.coral.ugcc.common.dto.impl.News;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.Widget;
@@ -21,6 +17,9 @@ import com.smartgwt.client.widgets.events.MouseOverEvent;
 import com.smartgwt.client.widgets.events.MouseOverHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import ua.coral.ugcc.admin.client.view.ListNewsView;
+import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.dto.impl.News;
 
 public class SingleNewsPanel extends VLayout {
 
@@ -134,7 +133,7 @@ public class SingleNewsPanel extends VLayout {
     private class NewsEditClickHandler implements ClickHandler {
         @Override
         public void onClick(final ClickEvent event) {
-            presenter.updateNews(news);
+            presenter.updateNews(news.getId());
         }
     }
 }

@@ -1,7 +1,5 @@
 package ua.coral.ugcc.admin.client;
 
-import ua.coral.ugcc.common.client.AbstractEntryPoint;
-
 import com.google.api.gwt.oauth2.client.Auth;
 import com.google.api.gwt.oauth2.client.AuthRequest;
 import com.google.gwt.core.client.Callback;
@@ -13,6 +11,7 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import ua.coral.ugcc.common.client.AbstractEntryPoint;
 
 public class AdminMode extends AbstractEntryPoint {
 

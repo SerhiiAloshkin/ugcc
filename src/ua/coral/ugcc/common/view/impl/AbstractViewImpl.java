@@ -1,8 +1,5 @@
 package ua.coral.ugcc.common.view.impl;
 
-import ua.coral.ugcc.common.client.UGCCConstants;
-import ua.coral.ugcc.common.view.View;
-
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
@@ -10,8 +7,11 @@ import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.Layout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.presenter.DefaultPresenter;
+import ua.coral.ugcc.common.view.View;
 
-public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
+public abstract class AbstractViewImpl<P extends DefaultPresenter> extends Composite implements View<P> {
 
     private static final int BOTTOM_PANEL_HEIGHT = 75;
     private static final int CONTENT_WIDTH = 1000;
@@ -26,7 +26,9 @@ public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
 
     @Override
     public void init() {
-        initWidget(getContent());
+
+        initWidget(getContentPanel());
+//        initWidget(getContent());
         postInit();
     }
 
@@ -76,7 +78,7 @@ public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
     private Widget getTopPanel() {
         final HLayout layout = new HLayout();
         layout.setHeight(TOP_PANEL_HEIGHT);
-        layout.setStyleName("topPanel");
+//        layout.setStyleName("topPanel");
         return layout;
     }
 
@@ -90,7 +92,7 @@ public abstract class AbstractViewImpl<P> extends Composite implements View<P> {
         hLayout.setMembersMargin(MEMBERS_MARGIN);
 
         hLayout.addMember(getMenuPanel());
-        hLayout.addMember(getContentPanel());
+//        hLayout.addMember(getContentPanel());
 
         vLayout.addMember(hLayout);
 

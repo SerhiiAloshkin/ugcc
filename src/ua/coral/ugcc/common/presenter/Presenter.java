@@ -1,4 +1,4 @@
-package ua.coral.ugcc.admin.client.presenter;
+package ua.coral.ugcc.common.presenter;
 
 import com.google.gwt.user.client.ui.HasWidgets;
 

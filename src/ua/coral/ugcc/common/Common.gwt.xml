@@ -14,6 +14,9 @@
     <source path="client"/>
     <source path="view"/>
     <source path="annotation"/>
+    <source path="uibinder"/>
+    <source path="event"/>
+    <source path="presenter"/>
 
     <stylesheet src="/adminmode.css"/>
 </module>
