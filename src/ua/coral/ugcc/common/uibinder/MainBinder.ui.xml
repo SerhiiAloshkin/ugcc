@@ -1,0 +1,45 @@
+<ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+
+    <ui:style>
+        .anchor:hover {
+            cursor: pointer;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+
+        <div class="jumbotron">
+            <!--h1 style="color: white;">Українська Греко-Католицька Церква</h1-->
+            <div style="height: 220px;"/>
+            <h2 style="background-color: #333; color: #fff;">Одеський Екзархат м. Миколаїв</h2>
+            <!--p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p-->
+        </div>
+
+        <div class="col-sm-12">
+            <div class="list-group">
+                <a class="{style.anchor} list-group-item" href="#news">
+                    <h4 class="list-group-item-heading">Новини</h4>
+                    <p class="list-group-item-text">Головні події та новини Української Греко-Католицької Церкви</p>
+                </a>
+                <a class="{style.anchor} list-group-item" href="#parish">
+                    <h4 class="list-group-item-heading">Парафія</h4>
+                    <p class="list-group-item-text">Загальна інформація про Миколаївську парафію</p>
+                </a>
+                <a class="{style.anchor} list-group-item" href="#schedule">
+                    <h4 class="list-group-item-heading">Розклад богослужінь</h4>
+                    <p class="list-group-item-text">Розклад щонедільних богослужінь та свят</p>
+                </a>
+                <a class="{style.anchor} list-group-item" href="#contacts">
+                    <h4 class="list-group-item-heading">Контакти</h4>
+                    <p class="list-group-item-text">Контактна інформація та зворотня адреса</p>
+                </a>
+                <a class="{style.anchor} list-group-item" href="#map">
+                    <h4 class="list-group-item-heading">Карта проїзду</h4>
+                    <p class="list-group-item-text"></p>
+                </a>
+            </div>
+        </div>
+
+    </g:HTMLPanel>
+</ui:UiBinder>
