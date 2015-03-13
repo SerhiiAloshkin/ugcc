@@ -6,6 +6,11 @@
     <inherits name="com.google.gwt.place.Place"/>
     <inherits name="com.google.gwt.activity.Activity"/>
     <inherits name="com.smartgwt.SmartGwt"/>
+    <inherits name="com.google.maps.gwt.GoogleMaps"/>
+    <inherits name="org.gwtbootstrap3.GwtBootstrap3"/>
+    <inherits name="org.gwtbootstrap3.extras.respond.Respond"/>
+    <inherits name="org.gwtbootstrap3.extras.cachemanifest.Offline"/>
+    <inherits name="org.gwtbootstrap3.extras.toggleswitch.client.ToggleSwitchResources"/>
 
     <entry-point class='ua.coral.ugcc.common.client.Common'/>
 

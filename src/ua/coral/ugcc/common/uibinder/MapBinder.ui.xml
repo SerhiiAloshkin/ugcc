@@ -1,0 +1,25 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+    <g:HTMLPanel>
+        <b:Panel>
+            <b:PanelHeader>
+                <b:Heading size="H3" text="Target"/>
+            </b:PanelHeader>
+            <b:PanelBody>
+                <b:NavTabs>
+                    <b:TabListItem active="true" dataTarget="#tab-map" text="Місце знахождення"/>
+                    <b:TabListItem dataTarget="#tab-direction" text="Шлях до цілі*"/>
+                </b:NavTabs>
+                <b:TabContent>
+                    <b:TabPane active="true" b:id="tab-map">
+                        <g:HTMLPanel ui:field="mapPanel"/>
+                    </b:TabPane>
+                    <b:TabPane b:id="tab-direction">
+                        <g:HTMLPanel ui:field="directionPanel"/>
+                    </b:TabPane>
+                </b:TabContent>
+            </b:PanelBody>
+        </b:Panel>
+    </g:HTMLPanel>
+</ui:UiBinder>

@@ -43,6 +43,11 @@
             <artifactId>gwtbootstrap3-extras</artifactId>
             <version>${gwtbootstrap3.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.github.rwl</groupId>
+            <artifactId>gwt-maps</artifactId>
+            <version>3.8.0-pre1</version>
+        </dependency>
         <!-- Provided libs -->
         <dependency>
             <groupId>com.google.gwt</groupId>

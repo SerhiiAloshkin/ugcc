@@ -1,12 +1,5 @@
 package ua.coral.ugcc.common.client;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.HasWidgets;
 import ua.coral.ugcc.common.event.GoToContactsEvent;
 import ua.coral.ugcc.common.event.GoToMainEvent;
 import ua.coral.ugcc.common.event.GoToMapEvent;
@@ -21,7 +14,16 @@ import ua.coral.ugcc.common.event.handler.impl.GoToParishEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToScheduleEventHandlerImpl;
 import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.common.presenter.impl.MainPresenter;
+import ua.coral.ugcc.common.presenter.impl.MapPresenter;
 import ua.coral.ugcc.common.uibinder.DefaultBinder;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.HasWidgets;
 
 public class DefaultAppController implements Presenter, ValueChangeHandler<String> {
 
@@ -41,7 +43,7 @@ public class DefaultAppController implements Presenter, ValueChangeHandler<Strin
         eventBus.addHandler(GoToParishEvent.TYPE, new GoToParishEventHandlerImpl());
         eventBus.addHandler(GoToScheduleEvent.TYPE, new GoToScheduleEventHandlerImpl());
         eventBus.addHandler(GoToContactsEvent.TYPE, new GoToContactsEventHandlerImpl());
-        eventBus.addHandler(GoToMapEvent.TYPE, new GoToMapEventHandlerImpl());
+        eventBus.addHandler(GoToMapEvent.TYPE, new GoToMapEventHandlerImpl(eventBus, container));
     }
 
     @Override
@@ -77,6 +79,18 @@ public class DefaultAppController implements Presenter, ValueChangeHandler<Strin
                 @Override
                 public void onSuccess() {
                     new MainPresenter(eventBus, new DefaultBinder()).go(getContainer());
+                }
+            });
+        } else if (HistoryToken.TO_MAP.getToken().equals(token)) {
+            GWT.runAsync(new RunAsyncCallback() {
+                @Override
+                public void onFailure(final Throwable reason) {
+
+                }
+
+                @Override
+                public void onSuccess() {
+                    new MapPresenter(eventBus, new DefaultBinder()).go(getContainer());
                 }
             });
         }
