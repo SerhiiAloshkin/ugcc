@@ -4,21 +4,11 @@
     <g:HTMLPanel>
         <b:Panel>
             <b:PanelHeader>
-                <b:Heading size="H3" text="Target"/>
+                <b:Button ui:field="toDirection" size="EXTRA_SMALL" addStyleNames="pull-right" text="Як проїхати"/>
+                <b:Heading size="H3" text="м. Миколаїв, вул. Декабристів 32"/>
             </b:PanelHeader>
             <b:PanelBody>
-                <b:NavTabs>
-                    <b:TabListItem active="true" dataTarget="#tab-map" text="Місце знахождення"/>
-                    <b:TabListItem dataTarget="#tab-direction" text="Шлях до цілі*"/>
-                </b:NavTabs>
-                <b:TabContent>
-                    <b:TabPane active="true" b:id="tab-map">
-                        <g:HTMLPanel ui:field="mapPanel"/>
-                    </b:TabPane>
-                    <b:TabPane b:id="tab-direction">
-                        <g:HTMLPanel ui:field="directionPanel"/>
-                    </b:TabPane>
-                </b:TabContent>
+                <g:HTMLPanel ui:field="mapPanel"/>
             </b:PanelBody>
         </b:Panel>
     </g:HTMLPanel>

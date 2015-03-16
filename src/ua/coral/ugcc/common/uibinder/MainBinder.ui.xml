@@ -1,5 +1,6 @@
 <ui:UiBinder xmlns:ui="urn:ui:com.google.gwt.uibinder"
-             xmlns:g='urn:import:com.google.gwt.user.client.ui'>
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
     <ui:style>
         .anchor:hover {
@@ -7,14 +8,20 @@
         }
     </ui:style>
 
+    <ui:with field="res" type="ua.coral.ugcc.common.client.Resources"/>
+
     <g:HTMLPanel>
 
-        <div class="jumbotron">
-            <!--h1 style="color: white;">Українська Греко-Католицька Церква</h1-->
-            <div style="height: 220px;"/>
-            <h2 style="background-color: #333; color: #fff;">Одеський Екзархат м. Миколаїв</h2>
-            <!--p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p-->
-        </div>
+        <b:Jumbotron height="220px">
+            <g:Image resource="{res.background}"/>
+        </b:Jumbotron>
+
+        <!--<div class="jumbotron">-->
+        <!--&lt;!&ndash;h1 style="color: white;">Українська Греко-Католицька Церква</h1&ndash;&gt;-->
+        <!--<div style="height: 220px;"/>-->
+        <!--<h2 style="background-color: #333; color: #fff;">Одеський Екзархат м. Миколаїв</h2>-->
+        <!--&lt;!&ndash;p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p&ndash;&gt;-->
+        <!--</div>-->
 
         <div class="col-sm-12">
             <div class="list-group">

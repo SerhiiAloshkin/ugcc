@@ -2,22 +2,22 @@ package ua.coral.ugcc.common.presenter.impl;
 
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.HasWidgets;
-import ua.coral.ugcc.common.event.GoToDirectionEvent;
+import ua.coral.ugcc.common.event.GoToMapEvent;
 import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.common.uibinder.DefaultBinder;
-import ua.coral.ugcc.common.uibinder.MapBinder;
+import ua.coral.ugcc.common.uibinder.DirectionBinder;
 
-public class MapPresenter extends DefaultPresenterImpl implements Presenter {
+public class DirectionPresenter extends DefaultPresenterImpl implements Presenter {
 
     private final DefaultBinder view;
     private final HandlerManager eventBus;
 
-    public MapPresenter(final HandlerManager eventBus, final DefaultBinder view) {
+    public DirectionPresenter(final HandlerManager eventBus, final DefaultBinder view) {
         super(eventBus);
         this.eventBus = eventBus;
         this.view = view;
 
-        view.setChild(new MapBinder(this));
+        view.setChild(new DirectionBinder(this));
     }
 
     @Override
@@ -26,7 +26,7 @@ public class MapPresenter extends DefaultPresenterImpl implements Presenter {
         container.add(view.asWidget());
     }
 
-    public void goToDirection() {
-        eventBus.fireEvent(new GoToDirectionEvent());
+    public void goToMap() {
+        eventBus.fireEvent(new GoToMapEvent());
     }
 }

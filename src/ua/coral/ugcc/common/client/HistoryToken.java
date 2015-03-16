@@ -10,7 +10,8 @@ public enum HistoryToken {
     TO_PARISH("parish"),
     TO_SCHEDULE("schedule"),
     TO_CONTACTS("contacts"),
-    TO_MAP("map");
+    TO_MAP("map"),
+    TO_DIRECTION("direction");
 
     private String token;
 

@@ -42,22 +42,26 @@ public class UpdateNewsPresenter extends DefaultPresenterImpl implements Present
 
             @Override
             public void onSuccess(final News news) {
-                view.setChild(new EditNewsBinder(news));
+                loadEditView(news);
             }
         });
     }
 
+    private void loadEditView(final News news) {
+        view.setChild(new EditNewsBinder(news, this));
+    }
+
     @Override
-    public void updateNews(final News news) {
+    public void updateNews(final News news, final EditNewsBinder editView) {
         rpcService.updateNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-
+                editView.saveFailure(caught);
             }
 
             @Override
             public void onSuccess(final Void result) {
-                eventBus.fireEvent(new ListNewsEvent());
+                editView.saveSuccessful();
             }
         });
     }

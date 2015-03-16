@@ -1,14 +1,15 @@
 package ua.coral.ugcc.admin.client.uibinder;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.DivElement;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
-import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import org.gwtbootstrap3.client.ui.Button;
+import org.gwtbootstrap3.client.ui.Heading;
 import ua.coral.ugcc.admin.client.view.ListNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 
@@ -19,7 +20,9 @@ public class SingleNewsBinder extends Composite {
     private static SingleNewsBinderUiBinder ourUiBinder = GWT.create(SingleNewsBinderUiBinder.class);
 
     @UiField
-    DivElement newsBody;
+    Heading title;
+    @UiField
+    HTML content;
     @UiField
     Button editBtn;
 
@@ -31,7 +34,8 @@ public class SingleNewsBinder extends Composite {
         this.presenter = presenter;
 
         initWidget(ourUiBinder.createAndBindUi(this));
-        this.newsBody.setInnerHTML(news.getContent());
+        title.setText(news.getTitle());
+        content.setHTML(news.getContent());
     }
 
     @UiHandler("editBtn")

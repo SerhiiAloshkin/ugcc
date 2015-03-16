@@ -1,9 +1,5 @@
 package ua.coral.ugcc.admin.client.view.impl;
 
-import ua.coral.ugcc.admin.client.view.UpdateNewsView;
-import ua.coral.ugcc.common.dto.impl.News;
-import ua.coral.ugcc.common.view.impl.AbstractViewImpl;
-
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.Overflow;
@@ -13,6 +9,9 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import ua.coral.ugcc.admin.client.view.UpdateNewsView;
+import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.view.impl.AbstractViewImpl;
 
 public class UpdateNewsViewImpl extends AbstractViewImpl<UpdateNewsView.Presenter> implements UpdateNewsView {
 
@@ -68,7 +67,6 @@ public class UpdateNewsViewImpl extends AbstractViewImpl<UpdateNewsView.Presente
 
     private void doUpdateNews() {
         news.setContent(richTextEditor.getValue());
-        getPresenter().updateNews(this.news);
     }
 
     private void doCancelUpdate() {

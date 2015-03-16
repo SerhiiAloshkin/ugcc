@@ -1,8 +1,37 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:b="urn:import:org.gwtbootstrap3.extras.summernote.client.ui">
+             xmlns:e="urn:import:org.gwtbootstrap3.extras.summernote.client.ui"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
     <g:HTMLPanel>
-        <b:Summernote ui:field="summernote"/>
+        <b:Panel ui:field="editPanel">
+            <b:PanelHeader>
+                <b:Container fluid="false">
+                    <b:Row>
+                        <b:Column size="MD_7">
+                            <b:TextBox placeholder="Заголовок" ui:field="editTitle"/>
+                        </b:Column>
+                        <b:Column size="MD_2">
+                            <b:Button ui:field="preview" size="SMALL" text="Переглянути"/>
+                        </b:Column>
+                        <b:Column size="MD_2">
+                            <b:Button ui:field="save" size="SMALL" text="Зберегти"/>
+                        </b:Column>
+                    </b:Row>
+                </b:Container>
+            </b:PanelHeader>
+            <b:PanelBody>
+                <e:Summernote ui:field="summernote"/>
+            </b:PanelBody>
+        </b:Panel>
+        <b:Panel ui:field="panel">
+            <b:PanelHeader>
+                <b:Button ui:field="edit" size="SMALL" addStyleNames="pull-right" text="Редагувати"/>
+                <b:Heading size="H3" ui:field="title"/>
+            </b:PanelHeader>
+            <b:PanelBody>
+                <g:HTML ui:field="body"/>
+            </b:PanelBody>
+        </b:Panel>
     </g:HTMLPanel>
 </ui:UiBinder>
