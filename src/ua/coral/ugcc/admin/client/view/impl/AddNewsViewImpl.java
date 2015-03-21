@@ -1,11 +1,5 @@
 package ua.coral.ugcc.admin.client.view.impl;
 
-import ua.coral.ugcc.admin.client.view.AddNewsView;
-import ua.coral.ugcc.common.dto.impl.News;
-import ua.coral.ugcc.common.view.impl.AbstractViewImpl;
-
-import java.util.Date;
-
 import com.google.gwt.user.client.ui.Widget;
 import com.smartgwt.client.types.Alignment;
 import com.smartgwt.client.types.Overflow;
@@ -15,6 +9,11 @@ import com.smartgwt.client.widgets.events.ClickEvent;
 import com.smartgwt.client.widgets.events.ClickHandler;
 import com.smartgwt.client.widgets.layout.HLayout;
 import com.smartgwt.client.widgets.layout.VLayout;
+import ua.coral.ugcc.admin.client.view.AddNewsView;
+import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.view.impl.AbstractViewImpl;
+
+import java.util.Date;
 
 public class AddNewsViewImpl extends AbstractViewImpl<AddNewsView.Presenter> implements AddNewsView {
 
@@ -65,8 +64,6 @@ public class AddNewsViewImpl extends AbstractViewImpl<AddNewsView.Presenter> imp
         news.setId(System.currentTimeMillis());
         news.setContent(richTextEditor.getValue());
         news.setCreateDate(new Date());
-
-        getPresenter().addNews(news);
     }
 
     private void doCancelAdd() {

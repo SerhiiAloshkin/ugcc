@@ -1,7 +1,19 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
-             xmlns:roll="urn:import:ua.coral.ugcc.admin.client.uibinder">
+             xmlns:roll="urn:import:ua.coral.ugcc.admin.client.uibinder"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <ui:style>
+        .add-button {
+            padding: 10px 15px;
+            text-align: right;
+        }
+    </ui:style>
+
     <g:HTMLPanel>
+        <b:Row addStyleNames="{style.add-button}">
+            <b:Button ui:field="addBtn" type="SUCCESS" size="SMALL" text="Додати новину" icon="PLUS"/>
+        </b:Row>
         <roll:RollNewsBinder ui:field="roll"/>
     </g:HTMLPanel>
 </ui:UiBinder>
