@@ -7,6 +7,7 @@ import ua.coral.ugcc.admin.client.AdminModeServiceAsync;
 import ua.coral.ugcc.admin.client.event.AddNewsEvent;
 import ua.coral.ugcc.admin.client.event.UpdateNewsEvent;
 import ua.coral.ugcc.admin.client.uibinder.NewsBinder;
+import ua.coral.ugcc.admin.client.uibinder.SingleNewsBinder;
 import ua.coral.ugcc.admin.client.view.ListNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.common.presenter.Presenter;
@@ -46,16 +47,17 @@ public class ListNewsPresenter extends DefaultPresenterImpl implements Presenter
     }
 
     @Override
-    public void removeNews(final News news) {
+    public void removeNews(final News news, final SingleNewsBinder view) {
         rpcService.removeNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-
+                view.removeFailure(caught);
             }
 
             @Override
             public void onSuccess(final Void result) {
-
+                view.removeSuccessful();
+                view.removeFromParent();
             }
         });
     }

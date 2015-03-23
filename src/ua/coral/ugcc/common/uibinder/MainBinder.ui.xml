@@ -15,8 +15,6 @@
         }
     </ui:style>
 
-    <ui:with field="res" type="ua.coral.ugcc.common.client.Resources"/>
-
     <g:HTMLPanel>
 
         <b:Jumbotron addStyleNames="{style.back-image}">

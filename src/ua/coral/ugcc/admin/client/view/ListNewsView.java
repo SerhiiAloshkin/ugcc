@@ -1,5 +1,6 @@
 package ua.coral.ugcc.admin.client.view;
 
+import ua.coral.ugcc.admin.client.uibinder.SingleNewsBinder;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.common.presenter.DefaultPresenter;
 import ua.coral.ugcc.common.view.View;
@@ -15,7 +16,8 @@ public interface ListNewsView extends View<ListNewsView.Presenter> {
         void countNews();
 
         void addNews();
-        void removeNews(News news);
+
+        void removeNews(News news, SingleNewsBinder view);
 
         void updateNews(Long newsId);
     }

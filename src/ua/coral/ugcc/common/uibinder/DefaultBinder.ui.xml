@@ -2,24 +2,36 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-    <g:HTMLPanel addStyleNames="container">
-        <b:Navbar>
-            <b:NavPills addStyleNames="pull-right">
-                <b:AnchorListItem active="true" href="#main" text="Головна"/>
-                <b:AnchorListItem href="#news" text="Парафія"/>
-                <b:AnchorListItem href="#contacts" text="Контакти"/>
-            </b:NavPills>
-            <b:NavbarHeader>
-                <b:NavbarBrand>Українська Греко-Католицька Церква</b:NavbarBrand>
-            </b:NavbarHeader>
-        </b:Navbar>
+    <ui:style>
+        .background {
+            /*background-image: url("/img/kostel-sv-iosifa-nikolaev.jpg");*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: auto 100%;*/
+            width: 100%;
+            height: 100%;
+        }
+    </ui:style>
 
-        <g:HTMLPanel ui:field="content"/>
+    <g:HTMLPanel addStyleNames="{style.background}">
+        <g:HTMLPanel addStyleNames="container">
+            <b:Navbar>
+                <b:NavPills addStyleNames="pull-right">
+                    <b:AnchorListItem active="true" href="#main" text="Головна"/>
+                    <b:AnchorListItem href="#news" text="Парафія"/>
+                    <b:AnchorListItem href="#contacts" text="Контакти"/>
+                </b:NavPills>
+                <b:NavbarHeader>
+                    <b:NavbarBrand>Українська Греко-Католицька Церква</b:NavbarBrand>
+                </b:NavbarHeader>
+            </b:Navbar>
 
-        <footer class="footer">
-            <p>
-                <span ui:field="copyright"/>
-            </p>
-        </footer>
+            <g:HTMLPanel ui:field="content"/>
+
+            <footer class="footer">
+                <p>
+                    <span ui:field="copyright"/>
+                </p>
+            </footer>
+        </g:HTMLPanel>
     </g:HTMLPanel>
 </ui:UiBinder>

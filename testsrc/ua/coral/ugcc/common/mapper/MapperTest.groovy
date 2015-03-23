@@ -1,12 +1,12 @@
 package ua.coral.ugcc.common.mapper
 
-import com.google.appengine.api.datastore.Text
-import spock.lang.Specification
-import ua.coral.ugcc.common.dto.impl.News
-
 import com.google.appengine.api.datastore.Entity
+import com.google.appengine.api.datastore.ShortBlob
+import com.google.appengine.api.datastore.Text
 import com.google.appengine.tools.development.testing.LocalDatastoreServiceTestConfig
 import com.google.appengine.tools.development.testing.LocalServiceTestHelper
+import spock.lang.Specification
+import ua.coral.ugcc.common.dto.impl.News
 
 class MapperTest extends Specification {
 
@@ -26,7 +26,7 @@ class MapperTest extends Specification {
         then:
         entity != null
         entity.getProperty("id") == news.getId()
-        entity.getProperty("title") == news.getTitle()
+        entity.getProperty("title") == new ShortBlob(news.getTitle().getBytes("UTF-8"))
         entity.getProperty("content") == new Text(news.getContent())
 
         helper.tearDown()
@@ -36,7 +36,7 @@ class MapperTest extends Specification {
         setup:
         Entity entity = new Entity("News", 123l)
         entity.setProperty("id", 123l)
-        entity.setProperty("title", "testTitle")
+        entity.setProperty("title", new ShortBlob("testTitle".getBytes("UTF-8")))
         entity.setProperty("content", new Text("testContent"))
 
         when:
