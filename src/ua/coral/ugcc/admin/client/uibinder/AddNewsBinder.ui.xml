@@ -21,11 +21,11 @@
 
     <g:HTMLPanel>
         <b:Row addStyleNames="{style.button-panel}">
-            <b:Button ui:field="preview" size="SMALL" type="INFO" addStyleNames="{style.preview-button}"
-                      text="Переглянути"/>
-            <b:Button ui:field="edit" size="SMALL" type="INFO" addStyleNames="{style.preview-button}"
+            <b:Button ui:field="edit" size="SMALL" type="INFO" addStyleNames="{style.preview-button}" icon="EDIT"
                       text="Редагувати"/>
-            <b:Button ui:field="save" size="SMALL" type="SUCCESS" text="Зберегти"/>
+            <b:Button ui:field="preview" size="SMALL" type="INFO" addStyleNames="{style.preview-button}" icon="MAGIC"
+                      text="Переглянути"/>
+            <b:Button ui:field="save" size="SMALL" type="SUCCESS" icon="SAVE" text="Зберегти"/>
         </b:Row>
         <b:Panel ui:field="editPanel">
             <b:PanelHeader>

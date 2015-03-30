@@ -3,27 +3,35 @@
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
     <ui:style>
-        .page-width {
-            width: 1000px;
-            left: auto;
-            right: auto;
+        .background {
+            /*background-image: url("/img/kostel-sv-iosifa-nikolaev.jpg");*/
+            /*background-repeat: no-repeat;*/
+            /*background-size: auto 100%;*/
+            width: 100%;
+            height: 100%;
         }
     </ui:style>
 
-    <g:HTMLPanel addStyleNames="{style.page-width}">
-        <b:Navbar>
-            <b:NavbarHeader>
-                <b:NavbarBrand>SiteName</b:NavbarBrand>
-            </b:NavbarHeader>
-            <b:NavPills addStyleNames="pull-right">
-                <b:AnchorListItem active="true" href="#main" text="Main"/>
-                <b:AnchorListItem href="#news" text="About"/>
-                <b:AnchorListItem href="#contacts" text="Contacts"/>
-            </b:NavPills>
-        </b:Navbar>
+    <g:HTMLPanel addStyleNames="{style.background}">
+        <g:HTMLPanel addStyleNames="container">
+            <b:Navbar>
+                <b:NavPills addStyleNames="pull-right">
+                    <b:AnchorListItem active="true" href="#main" text="Головна"/>
+                    <b:AnchorListItem href="#news" text="Парафія"/>
+                    <b:AnchorListItem href="#contacts" text="Контакти"/>
+                </b:NavPills>
+                <b:NavbarHeader>
+                    <b:NavbarBrand>Українська Греко-Католицька Церква</b:NavbarBrand>
+                </b:NavbarHeader>
+            </b:Navbar>
 
-        <g:HTMLPanel ui:field="content"/>
+            <g:HTMLPanel ui:field="content"/>
 
-        <b:PanelFooter ui:field="copyright"/>
+            <footer class="footer">
+                <p>
+                    <span ui:field="copyright"/>
+                </p>
+            </footer>
+        </g:HTMLPanel>
     </g:HTMLPanel>
 </ui:UiBinder>

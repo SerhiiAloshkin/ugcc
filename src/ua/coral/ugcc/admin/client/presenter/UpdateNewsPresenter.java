@@ -62,6 +62,7 @@ public class UpdateNewsPresenter extends DefaultPresenterImpl implements Present
             @Override
             public void onSuccess(final Void result) {
                 editView.saveSuccessful();
+                eventBus.fireEvent(new ListNewsEvent());
             }
         });
     }

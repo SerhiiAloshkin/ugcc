@@ -1,21 +1,40 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <ui:style>
+        .button-panel {
+            width: 100%;
+            text-align: right;
+        }
+
+        .edit-button {
+            margin-right: 10px;
+        }
+
+        .title {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    </ui:style>
+
     <g:HTMLPanel>
         <b:Panel>
             <b:PanelHeader>
-                <b:Row>
-                    <b:Column size="MD_9">
-                        <b:Heading size="H4" ui:field="title"/>
-                    </b:Column>
-                    <b:Column size="MD_1">
-                        <b:Button ui:field="editBtn" size="SMALL" text="Редагувати"/>
-                    </b:Column>
+                <b:Row addStyleNames="{style.title}">
+                    <b:Heading size="H4" ui:field="title"/>
                 </b:Row>
             </b:PanelHeader>
             <b:PanelBody>
                 <g:HTML ui:field="content"/>
             </b:PanelBody>
+            <b:PanelFooter>
+                <b:Row addStyleNames="{style.button-panel}">
+                    <b:Button ui:field="editBtn" type="INFO" size="SMALL" addStyleNames="{style.edit-button}"
+                              text="Редагувати" icon="EDIT"/>
+                    <b:Button ui:field="removeBtn" type="DANGER" size="SMALL" text="Видалити" icon="REMOVE"/>
+                </b:Row>
+            </b:PanelFooter>
         </b:Panel>
     </g:HTMLPanel>
 </ui:UiBinder>

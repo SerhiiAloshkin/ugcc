@@ -18,14 +18,17 @@ import org.gwtbootstrap3.extras.growl.client.ui.GrowlOptions;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlPosition;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlType;
 import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
-import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
+import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
 import ua.coral.ugcc.common.dto.impl.News;
 
-public class EditNewsBinder extends Composite {
-    interface EditNewsBinderUiBinder extends UiBinder<HTMLPanel, EditNewsBinder> {
+/**
+ * Created by Noname on 21.03.2015.
+ */
+public class AddNewsBinder extends Composite {
+    interface AddNewsBinderUiBinder extends UiBinder<HTMLPanel, AddNewsBinder> {
     }
 
-    private static EditNewsBinderUiBinder ourUiBinder = GWT.create(EditNewsBinderUiBinder.class);
+    private static AddNewsBinderUiBinder ourUiBinder = GWT.create(AddNewsBinderUiBinder.class);
 
     @UiField
     Summernote summernote;
@@ -46,17 +49,13 @@ public class EditNewsBinder extends Composite {
     @UiField
     Heading title;
 
-    private final News news;
-    private final UpdateNewsPresenter presenter;
+    private final AddNewsPresenter presenter;
 
-    public EditNewsBinder(final News news, final UpdateNewsPresenter presenter) {
-        this.news = news;
+    public AddNewsBinder(final AddNewsPresenter presenter) {
         this.presenter = presenter;
 
         initWidget(ourUiBinder.createAndBindUi(this));
 
-        editTitle.setText(news.getTitle());
-        summernote.setCode(news.getContent());
         summernote.setHeight(500);
 
         panel.setVisible(false);
@@ -91,10 +90,11 @@ public class EditNewsBinder extends Composite {
     }
 
     private void savedPanel() {
+        final News news = new News();
         news.setTitle(editTitle.getText());
         news.setContent(summernote.getCode());
 
-        presenter.updateNews(news, this);
+        presenter.addNews(news, this);
     }
 
     private void previewPanel() {

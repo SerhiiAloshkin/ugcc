@@ -5,26 +5,25 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import ua.coral.ugcc.admin.client.AdminModeServiceAsync;
 import ua.coral.ugcc.admin.client.event.ListNewsEvent;
+import ua.coral.ugcc.admin.client.uibinder.AddNewsBinder;
 import ua.coral.ugcc.admin.client.view.AddNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.common.presenter.impl.DefaultPresenterImpl;
+import ua.coral.ugcc.common.uibinder.DefaultBinder;
 
 public class AddNewsPresenter extends DefaultPresenterImpl implements Presenter, AddNewsView.Presenter {
 
     private final AdminModeServiceAsync rpcService;
     private final HandlerManager eventBus;
-    private final AddNewsView view;
+    private final DefaultBinder view = new DefaultBinder();
 
-    public AddNewsPresenter(final AdminModeServiceAsync rpcService, final HandlerManager eventBus,
-                            final AddNewsView view) {
+    public AddNewsPresenter(final AdminModeServiceAsync rpcService, final HandlerManager eventBus) {
         super(eventBus);
         this.rpcService = rpcService;
         this.eventBus = eventBus;
-        this.view = view;
 
-        view.setPresenter(this);
-        view.init();
+        view.setChild(new AddNewsBinder(this));
     }
 
     @Override
@@ -34,15 +33,16 @@ public class AddNewsPresenter extends DefaultPresenterImpl implements Presenter,
     }
 
     @Override
-    public void addNews(final News news) {
+    public void addNews(final News news, final AddNewsBinder addView) {
         rpcService.addNews(news, new AsyncCallback<Void>() {
             @Override
             public void onFailure(final Throwable caught) {
-
+                addView.saveFailure(caught);
             }
 
             @Override
             public void onSuccess(final Void result) {
+                addView.saveSuccessful();
                 eventBus.fireEvent(new ListNewsEvent());
             }
         });

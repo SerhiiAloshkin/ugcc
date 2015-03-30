@@ -14,7 +14,6 @@ import ua.coral.ugcc.admin.client.event.handler.UpdateNewsEventHandler;
 import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
 import ua.coral.ugcc.admin.client.presenter.ListNewsPresenter;
 import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
-import ua.coral.ugcc.admin.client.view.impl.AddNewsViewImpl;
 import ua.coral.ugcc.common.client.DefaultAppController;
 import ua.coral.ugcc.common.client.HistoryToken;
 import ua.coral.ugcc.common.presenter.Presenter;
@@ -99,7 +98,7 @@ public class AppController extends DefaultAppController {
 
                 @Override
                 public void onSuccess() {
-                    new AddNewsPresenter(rpcService, eventBus, new AddNewsViewImpl()).go(getContainer());
+                    new AddNewsPresenter(rpcService, eventBus).go(getContainer());
                 }
             });
         }

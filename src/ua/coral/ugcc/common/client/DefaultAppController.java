@@ -22,6 +22,7 @@ import ua.coral.ugcc.common.event.handler.impl.GoToNewsEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToParishEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToScheduleEventHandlerImpl;
 import ua.coral.ugcc.common.presenter.Presenter;
+import ua.coral.ugcc.common.presenter.impl.ContactsPresenter;
 import ua.coral.ugcc.common.presenter.impl.DirectionPresenter;
 import ua.coral.ugcc.common.presenter.impl.MainPresenter;
 import ua.coral.ugcc.common.presenter.impl.MapPresenter;
@@ -107,6 +108,18 @@ public class DefaultAppController implements Presenter, ValueChangeHandler<Strin
                 @Override
                 public void onSuccess() {
                     new DirectionPresenter(eventBus, new DefaultBinder()).go(getContainer());
+                }
+            });
+        } else if (HistoryToken.TO_CONTACTS.getToken().equals(token)) {
+            GWT.runAsync(new RunAsyncCallback() {
+                @Override
+                public void onFailure(final Throwable reason) {
+
+                }
+
+                @Override
+                public void onSuccess() {
+                    new ContactsPresenter(eventBus, new DefaultBinder()).go(getContainer());
                 }
             });
         }
