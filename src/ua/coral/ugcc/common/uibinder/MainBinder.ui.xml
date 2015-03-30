@@ -26,23 +26,23 @@
         <div class="col-sm-12">
             <div class="list-group">
                 <a class="{style.anchor} list-group-item" href="#news">
-                    <h4 class="list-group-item-heading">Новини</h4>
-                    <p class="list-group-item-text">Головні події та новини Української Греко-Католицької Церкви</p>
+                    <h4 class="list-group-item-heading">News</h4>
+                    <p class="list-group-item-text">Main news</p>
                 </a>
                 <a class="{style.anchor} list-group-item" href="#parish">
-                    <h4 class="list-group-item-heading">Парафія</h4>
-                    <p class="list-group-item-text">Загальна інформація про Миколаївську парафію</p>
+                    <h4 class="list-group-item-heading">About</h4>
+                    <p class="list-group-item-text">About</p>
                 </a>
                 <a class="{style.anchor} list-group-item" href="#schedule">
-                    <h4 class="list-group-item-heading">Розклад богослужінь</h4>
-                    <p class="list-group-item-text">Розклад щонедільних богослужінь та свят</p>
+                    <h4 class="list-group-item-heading">Schedule</h4>
+                    <p class="list-group-item-text">Schedule</p>
                 </a>
                 <a class="{style.anchor} list-group-item" href="#contacts">
-                    <h4 class="list-group-item-heading">Контакти</h4>
-                    <p class="list-group-item-text">Контактна інформація та зворотня адреса</p>
+                    <h4 class="list-group-item-heading">Contacts</h4>
+                    <p class="list-group-item-text">Contacts</p>
                 </a>
                 <a class="{style.anchor} list-group-item" href="#map">
-                    <h4 class="list-group-item-heading">Карта проїзду</h4>
+                    <h4 class="list-group-item-heading">Map</h4>
                     <p class="list-group-item-text"></p>
                 </a>
             </div>

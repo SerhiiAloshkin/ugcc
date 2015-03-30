@@ -1,16 +1,25 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
-    <g:HTMLPanel>
+
+    <ui:style>
+        .page-width {
+            width: 1000px;
+            left: auto;
+            right: auto;
+        }
+    </ui:style>
+
+    <g:HTMLPanel addStyleNames="{style.page-width}">
         <b:Navbar>
-            <b:NavPills addStyleNames="pull-right">
-                <b:AnchorListItem active="true" href="#main" text="Головна"/>
-                <b:AnchorListItem href="#news" text="Парафія"/>
-                <b:AnchorListItem href="#contacts" text="Контакти"/>
-            </b:NavPills>
             <b:NavbarHeader>
-                <b:NavbarBrand>Українська Греко-Католицька Церква</b:NavbarBrand>
+                <b:NavbarBrand>SiteName</b:NavbarBrand>
             </b:NavbarHeader>
+            <b:NavPills addStyleNames="pull-right">
+                <b:AnchorListItem active="true" href="#main" text="Main"/>
+                <b:AnchorListItem href="#news" text="About"/>
+                <b:AnchorListItem href="#contacts" text="Contacts"/>
+            </b:NavPills>
         </b:Navbar>
 
         <g:HTMLPanel ui:field="content"/>

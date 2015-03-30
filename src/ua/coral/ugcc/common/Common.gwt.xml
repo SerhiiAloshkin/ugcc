@@ -11,7 +11,6 @@
     <inherits name="org.gwtbootstrap3.extras.respond.Respond"/>
     <inherits name="org.gwtbootstrap3.extras.cachemanifest.Offline"/>
     <inherits name="org.gwtbootstrap3.extras.toggleswitch.client.ToggleSwitchResources"/>
-    <inherits name="org.gwtbootstrap3.GwtBootstrap3Base"/>
 
     <entry-point class='ua.coral.ugcc.common.client.Common'/>
 

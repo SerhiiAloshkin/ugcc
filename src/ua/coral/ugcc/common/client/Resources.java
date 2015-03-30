@@ -5,6 +5,6 @@ import com.google.gwt.resources.client.ImageResource;
 
 public interface Resources extends ClientBundle {
 
-    @Source("../../../../../../web/img/kostel-sv-iosifa-nikolaev.jpg")
+    @Source("kostel-sv-iosifa-nikolaev.jpg")
     ImageResource background();
 }
