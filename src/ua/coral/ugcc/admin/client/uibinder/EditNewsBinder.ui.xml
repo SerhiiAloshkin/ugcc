@@ -29,9 +29,9 @@
         </b:Row>
         <b:Panel ui:field="editPanel">
             <b:PanelHeader>
-                <b:Container fluid="false">
+                <b:Container fluid="true">
                     <b:Row addStyleNames="{style.title}">
-                        <b:TextBox placeholder="Заголовок" ui:field="editTitle" width="80%"/>
+                        <b:TextBox placeholder="Заголовок" ui:field="editTitle"/>
                     </b:Row>
                 </b:Container>
             </b:PanelHeader>

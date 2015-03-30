@@ -14,6 +14,8 @@ public interface Service {
 
     List<News> listNews();
 
+    List<News> listNews(Integer limit);
+
     int countNews();
 
     News getNewsById(Long newsId);

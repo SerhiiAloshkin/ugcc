@@ -43,7 +43,10 @@ public class News implements Dto, Serializable {
     }
 
     public Date getCreateDate() {
-        return (Date) createDate.clone();
+        if (createDate != null) {
+            return (Date) createDate.clone();
+        }
+        return null;
     }
 
     public void setCreateDate(final Date createDate) {

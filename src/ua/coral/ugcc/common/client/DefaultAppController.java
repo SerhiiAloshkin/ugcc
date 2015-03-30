@@ -83,7 +83,7 @@ public class DefaultAppController implements Presenter, ValueChangeHandler<Strin
 
                 @Override
                 public void onSuccess() {
-                    new MainPresenter(eventBus, new DefaultBinder()).go(getContainer());
+                    new MainPresenter(eventBus).go(getContainer());
                 }
             });
         } else if (HistoryToken.TO_MAP.getToken().equals(token)) {

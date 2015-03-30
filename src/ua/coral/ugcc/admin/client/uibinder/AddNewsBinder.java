@@ -21,6 +21,8 @@ import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
 import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
 import ua.coral.ugcc.common.dto.impl.News;
 
+import java.util.Date;
+
 /**
  * Created by Noname on 21.03.2015.
  */
@@ -93,6 +95,7 @@ public class AddNewsBinder extends Composite {
         final News news = new News();
         news.setTitle(editTitle.getText());
         news.setContent(summernote.getCode());
+        news.setCreateDate(new Date());
 
         presenter.addNews(news, this);
     }

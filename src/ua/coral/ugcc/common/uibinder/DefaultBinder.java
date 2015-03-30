@@ -1,13 +1,14 @@
 package ua.coral.ugcc.common.uibinder;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.dom.client.SpanElement;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Widget;
+import org.gwtbootstrap3.client.ui.Container;
+import org.gwtbootstrap3.client.ui.Label;
 
 import java.util.Date;
 
@@ -18,14 +19,14 @@ public class DefaultBinder extends Composite {
     private static DefaultBinderUiBinder ourUiBinder = GWT.create(DefaultBinderUiBinder.class);
 
     @UiField
-    SpanElement copyright;
+    Label copyright;
 
     @UiField
-    HTMLPanel content;
+    Container content;
 
     public DefaultBinder() {
         initWidget(ourUiBinder.createAndBindUi(this));
-        copyright.setInnerHTML("&copy; 2014-" + DateTimeFormat.getFormat("yyyy").format(new Date()));
+        copyright.setHTML("&copy; 2014-" + DateTimeFormat.getFormat("yyyy").format(new Date()));
     }
 
     public void setChild(final Widget child) {
