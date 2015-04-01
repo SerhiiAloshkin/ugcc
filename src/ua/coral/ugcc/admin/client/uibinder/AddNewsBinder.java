@@ -17,6 +17,8 @@ import org.gwtbootstrap3.extras.growl.client.ui.Growl;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlOptions;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlPosition;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlType;
+import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadEvent;
+import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadHandler;
 import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
 import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
 import ua.coral.ugcc.common.dto.impl.News;
@@ -59,6 +61,13 @@ public class AddNewsBinder extends Composite {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         summernote.setHeight(500);
+
+        summernote.addImageUploadHandler(new SummernoteOnImageUploadHandler() {
+            @Override
+            public void onImageUpload(final SummernoteOnImageUploadEvent event) {
+                event.getSource();
+            }
+        });
 
         panel.setVisible(false);
         edit.setVisible(false);
