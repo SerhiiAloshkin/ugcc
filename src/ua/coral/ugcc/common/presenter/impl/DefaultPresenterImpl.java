@@ -2,7 +2,6 @@ package ua.coral.ugcc.common.presenter.impl;
 
 import com.google.gwt.event.shared.HandlerManager;
 import ua.coral.ugcc.common.event.GoToContactsEvent;
-import ua.coral.ugcc.common.event.GoToMainEvent;
 import ua.coral.ugcc.common.event.GoToMapEvent;
 import ua.coral.ugcc.common.event.GoToNewsEvent;
 import ua.coral.ugcc.common.event.GoToParishEvent;
@@ -15,11 +14,6 @@ public class DefaultPresenterImpl implements DefaultPresenter {
 
     public DefaultPresenterImpl(final HandlerManager eventBus) {
         this.eventBus = eventBus;
-    }
-
-    @Override
-    public void goToMain() {
-        eventBus.fireEvent(new GoToMainEvent());
     }
 
     @Override

@@ -1,0 +1,25 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <ui:style>
+        .button-text {
+            word-wrap: break-word;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <b:Column size="MD_4">
+            <b:Container fluid="true">
+                <b:Row>
+                    <b:Column size="MD_6">
+                        <b:Label ui:field="dateNews"/>
+                    </b:Column>
+                    <b:Column size="MD_6">
+                        <b:Button size="SMALL" type="LINK" ui:field="linkNews" addStyleNames="{style.button-text}"/>
+                    </b:Column>
+                </b:Row>
+            </b:Container>
+        </b:Column>
+    </g:HTMLPanel>
+</ui:UiBinder>

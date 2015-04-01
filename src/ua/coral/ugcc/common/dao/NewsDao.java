@@ -9,5 +9,7 @@ public interface NewsDao extends Dao, Serializable {
 
     List<News> listNews();
 
+    List<News> listNews(int limit);
+
     News getNewsById(Long newsId);
 }
