@@ -21,4 +21,28 @@ public interface UGCCConstants extends Constants {
 
     @DefaultStringValue("Are you sure?")
     String messageRemoveBody();
+
+    @DefaultStringValue("Home")
+    @Key("page.default.home")
+    String pageDefaultHome();
+
+    @DefaultStringValue("Parish")
+    @Key("page.default.parish")
+    String pageDefaultParish();
+
+    @DefaultStringValue("Contacts")
+    @Key("page.default.contacts")
+    String pageDefaultContacts();
+
+    @DefaultStringValue("News")
+    @Key("page.default.news")
+    String pageDefaultNews();
+
+    @DefaultStringValue("Schedule")
+    @Key("page.default.schedule")
+    String pageDefaultSchedule();
+
+    @DefaultStringValue("Map")
+    @Key("page.default.map")
+    String pageDefaultMap();
 }

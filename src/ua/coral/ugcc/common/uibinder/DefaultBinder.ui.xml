@@ -2,6 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
+    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+
     <ui:style>
         .background {
             width: 100%;
@@ -26,9 +28,9 @@
     <g:HTMLPanel addStyleNames="{style.background}">
         <b:Navbar position="FIXED_TOP">
             <b:NavPills addStyleNames="pull-right">
-                <b:AnchorListItem active="true" href="#main" text="Головна"/>
-                <b:AnchorListItem href="#news" text="Парафія"/>
-                <b:AnchorListItem href="#contacts" text="Контакти"/>
+                <b:AnchorListItem active="true" href="#main" text="{res.pageDefaultHome}"/>
+                <b:AnchorListItem href="#news" text="{res.pageDefaultParish}"/>
+                <b:AnchorListItem href="#contacts" text="{res.pageDefaultContacts}"/>
             </b:NavPills>
             <b:NavbarHeader>
                 <b:NavbarBrand href="#main">Українська Греко-Католицька Церква</b:NavbarBrand>
@@ -38,15 +40,14 @@
             <b:Row>
                 <b:Column size="MD_3">
                     <b:NavPills stacked="true">
-                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#news">Новини
-                        </b:AnchorListItem>
-                        <b:AnchorListItem addStyleNames="{style.separator-bottom}">Парафія</b:AnchorListItem>
-                        <b:AnchorListItem addStyleNames="{style.separator-bottom}">Розклад богослужінь
-                        </b:AnchorListItem>
-                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#contacts">Контакти
-                        </b:AnchorListItem>
-                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#map">Карта проїзду
-                        </b:AnchorListItem>
+                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#news"
+                                          text="{res.pageDefaultNews}"/>
+                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" text="{res.pageDefaultParish}"/>
+                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" text="{res.pageDefaultSchedule}"/>
+                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#contacts"
+                                          text="{res.pageDefaultContacts}"/>
+                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#map"
+                                          text="{res.pageDefaultMap}"/>
                     </b:NavPills>
                 </b:Column>
                 <b:Column size="MD_9">
