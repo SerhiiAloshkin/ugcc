@@ -5,21 +5,27 @@ import com.google.gwt.i18n.client.Constants;
 public interface UGCCConstants extends Constants {
 
     @DefaultStringValue("Edit")
+    @Key("btn.edit")
     String edit();
 
     @DefaultStringValue("Remove")
+    @Key("btn.remove")
     String remove();
 
     @DefaultStringValue("Add news")
+    @Key("btn.add")
     String add();
 
     @DefaultStringValue("Cancel")
+    @Key("btn.cancel")
     String cancel();
 
     @DefaultStringValue("Removing")
+    @Key("messageRemoveTitle")
     String messageRemoveTitle();
 
     @DefaultStringValue("Are you sure?")
+    @Key("messageRemoveBody")
     String messageRemoveBody();
 
     @DefaultStringValue("Home")
@@ -45,4 +51,8 @@ public interface UGCCConstants extends Constants {
     @DefaultStringValue("Map")
     @Key("page.default.map")
     String pageDefaultMap();
+
+    @DefaultStringValue("Title")
+    @Key("page.default.title")
+    String pageDefaultTitle();
 }

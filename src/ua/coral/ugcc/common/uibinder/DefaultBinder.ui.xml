@@ -33,7 +33,7 @@
                 <b:AnchorListItem href="#contacts" text="{res.pageDefaultContacts}"/>
             </b:NavPills>
             <b:NavbarHeader>
-                <b:NavbarBrand href="#main">Українська Греко-Католицька Церква</b:NavbarBrand>
+                <b:NavbarBrand href="#main" text="{res.pageDefaultTitle}"/>
             </b:NavbarHeader>
         </b:Navbar>
         <b:Container>
