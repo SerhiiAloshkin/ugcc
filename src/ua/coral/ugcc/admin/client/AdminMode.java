@@ -34,11 +34,10 @@ public class AdminMode extends AbstractEntryPoint {
 
     @Override
     public void onModuleLoad() {
-        //loadPage();
-        //addGoogleAuth();
-
-        // Export the JS method that can be called in pure JS
-        //Auth.export();
+//        addGoogleAuth();
+//
+//        // Export the JS method that can be called in pure JS
+//        Auth.export();
 
         final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
         final HandlerManager eventBus = new HandlerManager(null);
@@ -66,7 +65,12 @@ public class AdminMode extends AbstractEntryPoint {
         AUTH.login(req, new Callback<String, Throwable>() {
             @Override
             public void onSuccess(String token) {
-//                loadPage();
+
+                final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
+                final HandlerManager eventBus = new HandlerManager(null);
+                final AppController appViewer = new AppController(rpcService, eventBus);
+                appViewer.go(RootPanel.get());
+
                 button.setVisible(false);
                 Window.alert("Got an OAuth token:\n" + token + "\n"
                         + "Token expires in " + AUTH.expiresIn(req) + " ms\n");

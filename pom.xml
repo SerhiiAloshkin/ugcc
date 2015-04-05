@@ -49,9 +49,14 @@
             <version>3.8.0-pre1</version>
         </dependency>
         <dependency>
-            <groupId>com.google.api.client</groupId>
-            <artifactId>google-api-data-picasa-v2</artifactId>
-            <version>1.0.10-alpha</version>
+            <groupId>com.google.gdata</groupId>
+            <artifactId>core</artifactId>
+            <version>1.47.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.gwtupload</groupId>
+            <artifactId>gwtupload</artifactId>
+            <version>1.0.3</version>
         </dependency>
         <!-- Provided libs -->
         <dependency>
@@ -70,12 +75,6 @@
             <groupId>com.google.appengine</groupId>
             <artifactId>appengine-api-stubs</artifactId>
             <version>${gae.version}</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.smartgwt</groupId>
-            <artifactId>smartgwt</artifactId>
-            <version>${smartgwt.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- Test`s libs -->

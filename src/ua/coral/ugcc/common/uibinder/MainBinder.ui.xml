@@ -79,37 +79,53 @@
                                 <b:Row>
                                     <b:Column size="MD_4">
                                         <b:Anchor href="#news" addStyleNames="{style.separator-bottom}">
-                                            <h2>{res.pageDefaultNews}</h2>
-                                            <h4 style="line-height: 1.5;">Головні події та новини Української
-                                                Греко-Католицької Церкви
+                                            <h2>
+                                                <ui:text from="{res.pageDefaultNews}"/>
+                                            </h2>
+                                            <h4 style="line-height: 1.5;">
+                                                <ui:text from="{res.pageDefaultNewsDescription}"/>
                                             </h4>
                                         </b:Anchor>
                                     </b:Column>
                                     <b:Column size="MD_4">
                                         <b:Anchor addStyleNames="{style.separator-bottom}">
-                                            <h2>Парафія</h2>
-                                            <h4 style="line-height: 1.5;">Загальна інформація про Миколаївську парафію
+                                            <h2>
+                                                <ui:text from="{res.pageDefaultParish}"/>
+                                            </h2>
+                                            <h4 style="line-height: 1.5;">
+                                                <ui:text from="{res.pageDefaultParishDescription}"/>
                                             </h4>
                                         </b:Anchor>
                                     </b:Column>
                                     <b:Column size="MD_4">
                                         <b:Anchor addStyleNames="{style.separator-bottom}">
-                                            <h2>Розклад богослужінь</h2>
-                                            <h4 style="line-height: 1.5;">Розклад щонедільних богослужінь та свят</h4>
+                                            <h2>
+                                                <ui:text from="{res.pageDefaultSchedule}"/>
+                                            </h2>
+                                            <h4 style="line-height: 1.5;">
+                                                <ui:text from="{res.pageDefaultScheduleDescription}"/>
+                                            </h4>
                                         </b:Anchor>
                                     </b:Column>
                                 </b:Row>
                                 <b:Row>
                                     <b:Column size="MD_4">
                                         <b:Anchor href="#contacts" addStyleNames="{style.separator-bottom}">
-                                            <h2>Контакти</h2>
-                                            <h4 style="line-height: 1.5;">Контактна інформація та зворотня адреса</h4>
+                                            <h2>
+                                                <ui:text from="{res.pageDefaultContacts}"/>
+                                            </h2>
+                                            <h4 style="line-height: 1.5;">
+                                                <ui:text from="{res.pageDefaultContactsDescription}"/>
+                                            </h4>
                                         </b:Anchor>
                                     </b:Column>
                                     <b:Column size="MD_4">
                                         <b:Anchor href="#map" addStyleNames="{style.separator-bottom}">
-                                            <h2>Карта проїзду</h2>
-                                            <h4 style="line-height: 1.5;">Карта проїзду та місцерозташування парафії
+                                            <h2>
+                                                <ui:text from="{res.pageDefaultMap}"/>
+                                            </h2>
+                                            <h4 style="line-height: 1.5;">
+                                                <ui:text from="{res.pageDefaultMapDescription}"/>
                                             </h4>
                                         </b:Anchor>
                                     </b:Column>
@@ -125,5 +141,6 @@
                 </b:PanelFooter>
             </b:Row>
         </b:Container>
+
     </g:HTMLPanel>
 </ui:UiBinder>

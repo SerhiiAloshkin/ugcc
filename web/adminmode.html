@@ -50,22 +50,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <script>
-        $(document).ready(function () {
-            $('#summernote').summernote({
-                height: 200,
-                onImageUpload: function (files, editor, welEditable) {
-                    sendFile(files[0], editor, welEditable);
-                }
-            });
-            function sendFile(file, editor, welEditable) {
-                alert(file);
-            }
-        });
-
-
-    </script>
-
 </head>
 <body>
 

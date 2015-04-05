@@ -55,4 +55,24 @@ public interface UGCCConstants extends Constants {
     @DefaultStringValue("Title")
     @Key("page.default.title")
     String pageDefaultTitle();
+
+    @DefaultStringValue("Description")
+    @Key("page.default.news.description")
+    String pageDefaultNewsDescription();
+
+    @DefaultStringValue("Description")
+    @Key("page.default.parish.description")
+    String pageDefaultParishDescription();
+
+    @DefaultStringValue("Description")
+    @Key("page.default.schedule.description")
+    String pageDefaultScheduleDescription();
+
+    @DefaultStringValue("Description")
+    @Key("page.default.contacts.description")
+    String pageDefaultContactsDescription();
+
+    @DefaultStringValue("Description")
+    @Key("page.default.map.description")
+    String pageDefaultMapDescription();
 }

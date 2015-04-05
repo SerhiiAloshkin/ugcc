@@ -5,6 +5,50 @@
 		  http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0">
 
+    <context-param>
+        <!-- max size of the upload request -->
+        <param-name>maxSize</param-name>
+        <param-value>3145728</param-value>
+    </context-param>
+    <context-param>
+        <!-- max size of any uploaded file -->
+        <param-name>maxFileSize</param-name>
+        <param-value>1024000</param-value>
+    </context-param>
+    <context-param>
+        <!-- Useful in development mode to slow down the uploads in fast networks.
+             Put the number of milliseconds to sleep in each block received in the server.
+             false or 0, means don't use slow uploads  -->
+        <param-name>slowUploads</param-name>
+        <param-value>0</param-value>
+    </context-param>
+
+    <servlet>
+        <servlet-name>appEngine</servlet-name>
+        <servlet-class>ua.coral.ugcc.admin.server.AppEngineUploadAction</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>appEngine</servlet-name>
+        <url-pattern>*.appengine</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>appEngine</servlet-name>
+        <url-pattern>*.gupld</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet>-->
+    <!--<servlet-name>fileStore</servlet-name>-->
+    <!--<servlet-class>ua.coral.ugcc.admin.server.FilesApiUploadAction</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>fileStore</servlet-name>-->
+    <!--<url-pattern>*.filestore</url-pattern>-->
+    <!--</servlet-mapping>-->
+    <!--<servlet-mapping>-->
+    <!--<servlet-name>fileStore</servlet-name>-->
+    <!--<url-pattern>*.gupld</url-pattern>-->
+    <!--</servlet-mapping>-->
+
     <servlet>
         <servlet-name>ua.coral.ugcc.ugcc ugccService</servlet-name>
         <servlet-class>ua.coral.ugcc.user.server.UgccServiceImpl</servlet-class>

@@ -6,8 +6,14 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
+import com.google.gwt.user.client.ui.FlowPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
+import com.google.gwt.user.client.ui.Label;
+import gwtupload.client.IUploadStatus;
+import gwtupload.client.IUploader;
+import gwtupload.client.MultiUploader;
+import gwtupload.client.PreloadedImage;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Panel;
@@ -52,6 +58,12 @@ public class AddNewsBinder extends Composite {
     TextBox editTitle;
     @UiField
     Heading title;
+    @UiField
+    MultiUploader defaultUploader;
+    @UiField
+    FlowPanel panelImages;
+    @UiField
+    Label lUrl;
 
     private final AddNewsPresenter presenter;
 
@@ -90,7 +102,41 @@ public class AddNewsBinder extends Composite {
                 previewPanel();
             }
         });
+
+        defaultUploader.addOnFinishUploadHandler(onFinishUploaderHandler);
     }
+
+    // Load the image in the document and in the case of success attach it to the viewer
+    private IUploader.OnFinishUploaderHandler onFinishUploaderHandler = new IUploader.OnFinishUploaderHandler() {
+        public void onFinish(IUploader uploader) {
+            if (uploader.getStatus() == IUploadStatus.Status.SUCCESS) {
+
+                final String url = uploader.getServletPath() + "?blob-key=" + uploader.getServerInfo().message;
+                lUrl.setText(url);
+
+//                new PreloadedImage(uploader.fileUrl(), showImage);
+//
+//
+//
+//                // The server sends useful information to the client by default
+//                IUploader.UploadedInfo info = uploader.getServerInfo();
+//                System.out.println("File name " + info.name);
+//                System.out.println("File content-type " + info.ctype);
+//                System.out.println("File size " + info.size);
+//
+//                // You can send any customized message and parse it
+//                System.out.println("Server message " + info.message);
+            }
+        }
+    };
+
+    // Attach an image to the pictures viewer
+    private PreloadedImage.OnLoadPreloadedImageHandler showImage = new PreloadedImage.OnLoadPreloadedImageHandler() {
+        public void onLoad(PreloadedImage image) {
+            image.setWidth("75px");
+            panelImages.add(image);
+        }
+    };
 
     private void editedPanel() {
         panel.setVisible(false);
