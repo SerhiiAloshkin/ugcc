@@ -6,14 +6,11 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.FlowPanel;
+import com.google.gwt.user.client.ui.FileUpload;
+import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 import com.google.gwt.user.client.ui.Label;
-import gwtupload.client.IUploadStatus;
-import gwtupload.client.IUploader;
-import gwtupload.client.MultiUploader;
-import gwtupload.client.PreloadedImage;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Panel;
@@ -31,9 +28,6 @@ import ua.coral.ugcc.common.dto.impl.News;
 
 import java.util.Date;
 
-/**
- * Created by Noname on 21.03.2015.
- */
 public class AddNewsBinder extends Composite {
     interface AddNewsBinderUiBinder extends UiBinder<HTMLPanel, AddNewsBinder> {
     }
@@ -59,13 +53,17 @@ public class AddNewsBinder extends Composite {
     @UiField
     Heading title;
     @UiField
-    MultiUploader defaultUploader;
+    FileUpload fileUploader;
     @UiField
-    FlowPanel panelImages;
+    Button upload;
     @UiField
-    Label lUrl;
+    Label link;
+    @UiField
+    FormPanel form;
 
     private final AddNewsPresenter presenter;
+
+    private String filePath;
 
     public AddNewsBinder(final AddNewsPresenter presenter) {
         this.presenter = presenter;
@@ -102,41 +100,26 @@ public class AddNewsBinder extends Composite {
                 previewPanel();
             }
         });
+        upload.addClickHandler(new ClickHandler() {
+            @Override
+            public void onClick(final ClickEvent event) {
+                uploadFile();
+            }
+        });
 
-        defaultUploader.addOnFinishUploadHandler(onFinishUploaderHandler);
+        form.setAction(GWT.getModuleBaseURL() + "fileupload");
+        form.setMethod(FormPanel.METHOD_POST);
+        form.setEncoding(FormPanel.ENCODING_MULTIPART);
     }
 
-    // Load the image in the document and in the case of success attach it to the viewer
-    private IUploader.OnFinishUploaderHandler onFinishUploaderHandler = new IUploader.OnFinishUploaderHandler() {
-        public void onFinish(IUploader uploader) {
-            if (uploader.getStatus() == IUploadStatus.Status.SUCCESS) {
+    private void uploadFile() {
 
-                final String url = uploader.getServletPath() + "?blob-key=" + uploader.getServerInfo().message;
-                lUrl.setText(url);
+        form.submit();
+    }
 
-//                new PreloadedImage(uploader.fileUrl(), showImage);
-//
-//
-//
-//                // The server sends useful information to the client by default
-//                IUploader.UploadedInfo info = uploader.getServerInfo();
-//                System.out.println("File name " + info.name);
-//                System.out.println("File content-type " + info.ctype);
-//                System.out.println("File size " + info.size);
-//
-//                // You can send any customized message and parse it
-//                System.out.println("Server message " + info.message);
-            }
-        }
-    };
-
-    // Attach an image to the pictures viewer
-    private PreloadedImage.OnLoadPreloadedImageHandler showImage = new PreloadedImage.OnLoadPreloadedImageHandler() {
-        public void onLoad(PreloadedImage image) {
-            image.setWidth("75px");
-            panelImages.add(image);
-        }
-    };
+    public void uploaded(final String result) {
+        link.setText(result);
+    }
 
     private void editedPanel() {
         panel.setVisible(false);

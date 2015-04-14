@@ -20,4 +20,8 @@ public interface ServiceAsync {
     void countNews(AsyncCallback<Integer> callback);
 
     void getNewsById(Long newsId, AsyncCallback<News> callback);
+
+    void sendFile(String fileName, AsyncCallback<String> callback);
+
+    void setAuthToken(String token, AsyncCallback<Void> callback);
 }

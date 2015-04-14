@@ -14,6 +14,9 @@
         <smartgwt.version>2.5-patch</smartgwt.version>
         <groovy.version>2.4.0</groovy.version>
         <gwtbootstrap3.version>0.9</gwtbootstrap3.version>
+        <gwt-maps.version>3.8.0-pre1</gwt-maps.version>
+        <gdata.version>1.47.1</gdata.version>
+        <gwtupload.version>0.6</gwtupload.version>
     </properties>
 
     <dependencies>
@@ -46,17 +49,22 @@
         <dependency>
             <groupId>com.github.rwl</groupId>
             <artifactId>gwt-maps</artifactId>
-            <version>3.8.0-pre1</version>
+            <version>${gwt-maps.version}</version>
         </dependency>
         <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>core</artifactId>
-            <version>1.47.1</version>
+            <version>${gdata.version}</version>
         </dependency>
         <dependency>
             <groupId>com.googlecode.gwtupload</groupId>
             <artifactId>gwtupload</artifactId>
-            <version>1.0.3</version>
+            <version>${gwtupload.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.googlecode.gwtupload</groupId>
+            <artifactId>gwtupload-gae</artifactId>
+            <version>${gwtupload.version}</version>
         </dependency>
         <!-- Provided libs -->
         <dependency>

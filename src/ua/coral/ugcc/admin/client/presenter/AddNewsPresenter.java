@@ -48,6 +48,20 @@ public class AddNewsPresenter extends DefaultPresenterImpl implements Presenter,
         });
     }
 
+    public void sendFile(final String fileName, final AddNewsBinder addView) {
+        rpcService.sendFile(fileName, new AsyncCallback<String>() {
+            @Override
+            public void onFailure(final Throwable caught) {
+
+            }
+
+            @Override
+            public void onSuccess(final String result) {
+                addView.uploaded(result);
+            }
+        });
+    }
+
     @Override
     public void listNews() {
         eventBus.fireEvent(new ListNewsEvent());

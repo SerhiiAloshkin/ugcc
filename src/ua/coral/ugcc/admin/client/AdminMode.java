@@ -8,6 +8,7 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -34,15 +35,15 @@ public class AdminMode extends AbstractEntryPoint {
 
     @Override
     public void onModuleLoad() {
-//        addGoogleAuth();
-//
-//        // Export the JS method that can be called in pure JS
-//        Auth.export();
+        addGoogleAuth();
 
-        final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
-        final HandlerManager eventBus = new HandlerManager(null);
-        final AppController appViewer = new AppController(rpcService, eventBus);
-        appViewer.go(RootPanel.get());
+        // Export the JS method that can be called in pure JS
+        Auth.export();
+
+//        final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
+//        final HandlerManager eventBus = new HandlerManager(null);
+//        final AppController appViewer = new AppController(rpcService, eventBus);
+//        appViewer.go(RootPanel.get());
     }
 
     // Adds a button to the page that asks for authentication from Google.
@@ -67,6 +68,17 @@ public class AdminMode extends AbstractEntryPoint {
             public void onSuccess(String token) {
 
                 final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
+                rpcService.setAuthToken(token, new AsyncCallback<Void>() {
+                    @Override
+                    public void onFailure(final Throwable caught) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(final Void result) {
+
+                    }
+                });
                 final HandlerManager eventBus = new HandlerManager(null);
                 final AppController appViewer = new AppController(rpcService, eventBus);
                 appViewer.go(RootPanel.get());

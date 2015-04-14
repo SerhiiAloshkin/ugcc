@@ -23,4 +23,8 @@ public interface AdminModeService extends RemoteService, Service {
             return OUR_INSTANCE;
         }
     }
+
+    String sendFile(String fileName);
+
+    void setAuthToken(String token);
 }

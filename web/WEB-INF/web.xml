@@ -23,31 +23,24 @@
         <param-value>0</param-value>
     </context-param>
 
-    <servlet>
-        <servlet-name>appEngine</servlet-name>
-        <servlet-class>ua.coral.ugcc.admin.server.AppEngineUploadAction</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>appEngine</servlet-name>
-        <url-pattern>*.appengine</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>appEngine</servlet-name>
-        <url-pattern>*.gupld</url-pattern>
-    </servlet-mapping>
-
     <!--<servlet>-->
-    <!--<servlet-name>fileStore</servlet-name>-->
-    <!--<servlet-class>ua.coral.ugcc.admin.server.FilesApiUploadAction</servlet-class>-->
+    <!--<servlet-name>uploadServlet</servlet-name>-->
+    <!--&lt;!&ndash; This is the default servlet, it puts files in session &ndash;&gt;-->
+    <!--<servlet-class>gwtupload.server.gae.AppEngineUploadAction</servlet-class>-->
     <!--</servlet>-->
     <!--<servlet-mapping>-->
-    <!--<servlet-name>fileStore</servlet-name>-->
-    <!--<url-pattern>*.filestore</url-pattern>-->
-    <!--</servlet-mapping>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>fileStore</servlet-name>-->
+    <!--<servlet-name>uploadServlet</servlet-name>-->
     <!--<url-pattern>*.gupld</url-pattern>-->
     <!--</servlet-mapping>-->
+
+    <servlet>
+        <servlet-name>fileUploaderServlet</servlet-name>
+        <servlet-class>ua.coral.ugcc.admin.server.FileUpload</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>fileUploaderServlet</servlet-name>
+        <url-pattern>/adminmode/fileupload</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>ua.coral.ugcc.ugcc ugccService</servlet-name>
