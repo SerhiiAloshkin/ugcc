@@ -22,6 +22,7 @@
     <source path="uibinder"/>
     <source path="event"/>
     <source path="presenter"/>
+    <source path="component"/>
 
     <stylesheet src="/adminmode.css"/>
 </module>

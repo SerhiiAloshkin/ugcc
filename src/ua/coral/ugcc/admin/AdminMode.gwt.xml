@@ -21,4 +21,6 @@
     <entry-point class='ua.coral.ugcc.admin.client.AdminMode'/>
     <servlet path="/AdminModeService" class="ua.coral.ugcc.admin.server.AdminModeServiceImpl"/>
 
+    <add-linker name="xsiframe"/>
+
 </module>

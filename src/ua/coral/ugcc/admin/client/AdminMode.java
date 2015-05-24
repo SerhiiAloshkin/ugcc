@@ -84,8 +84,8 @@ public class AdminMode extends AbstractEntryPoint {
                 appViewer.go(RootPanel.get());
 
                 button.setVisible(false);
-                Window.alert("Got an OAuth token:\n" + token + "\n"
-                        + "Token expires in " + AUTH.expiresIn(req) + " ms\n");
+                //Window.alert("Got an OAuth token:\n" + token + "\n"
+                //        + "Token expires in " + AUTH.expiresIn(req) + " ms\n");
             }
 
             @Override

@@ -8,7 +8,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <gae.version>1.9.17a</gae.version>
+        <gae.version>1.9.21</gae.version>
         <java.version>1.7</java.version>
         <gwt.version>2.6.1</gwt.version>
         <smartgwt.version>2.5-patch</smartgwt.version>

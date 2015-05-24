@@ -17,6 +17,9 @@ import java.io.InputStream;
 import java.net.URL;
 
 public class FileUpload extends HttpServlet {
+
+    public static final String REL = "http://schemas.google.com/photos/2007#canonical";
+
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ServletFileUpload upload = new ServletFileUpload();
 
@@ -29,7 +32,6 @@ public class FileUpload extends HttpServlet {
                 String name = item.getFieldName();
                 InputStream stream = item.openStream();
 
-
                 // Process the input stream
                 ByteArrayOutputStream out = new ByteArrayOutputStream();
                 int len;
@@ -40,9 +42,19 @@ public class FileUpload extends HttpServlet {
 
                 final PicasawebService service = new PicasawebService("ugcc-site-1");
                 service.setUserCredentials("sem.aleshkin@gmail.com", "hpocvqxahlyslceu");
+                service.setConnectTimeout(0);
+                service.setReadTimeout(0);
                 final MediaByteArraySource fileSource = new MediaByteArraySource(out.toByteArray(), "image/jpeg");
                 final URL url = new URL("https://picasaweb.google.com/data/feed/api/user/106984661305245773041/albumid/6136237850628250209");
                 PhotoEntry returnedPhoto = service.insert(url, PhotoEntry.class, fileSource);
+                String href = returnedPhoto.getHtmlLink().getHref();
+
+                if (returnedPhoto.getMediaContents().size() > 0) {
+                    href = returnedPhoto.getMediaContents().get(0).getUrl();
+                }
+                response.setContentType("text/plain");
+                response.getWriter().print(href);
+
             }
         } catch (Exception e) {
             throw new RuntimeException(e);

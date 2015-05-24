@@ -20,6 +20,14 @@ public interface UGCCConstants extends Constants {
     @Key("btn.cancel")
     String cancel();
 
+    @DefaultStringValue("Review")
+    @Key("btn.review")
+    String review();
+
+    @DefaultStringValue("Save")
+    @Key("btn.save")
+    String save();
+
     @DefaultStringValue("Removing")
     @Key("messageRemoveTitle")
     String messageRemoveTitle();
@@ -75,4 +83,12 @@ public interface UGCCConstants extends Constants {
     @DefaultStringValue("Description")
     @Key("page.default.map.description")
     String pageDefaultMapDescription();
+
+    @DefaultStringValue("Title")
+    @Key("page.news.title")
+    String pageNewsTitle();
+
+    @DefaultStringValue("Upload Image")
+    @Key("upload.image.title")
+    String uploadImageTitle();
 }

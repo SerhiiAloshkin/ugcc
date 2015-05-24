@@ -1,6 +1,8 @@
 package ua.coral.ugcc.admin.client.uibinder;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.event.dom.client.ChangeEvent;
+import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.uibinder.client.UiBinder;
@@ -10,20 +12,18 @@ import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import com.google.gwt.user.client.ui.Label;
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Panel;
+import org.gwtbootstrap3.client.ui.SubmitButton;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.IconType;
-import org.gwtbootstrap3.extras.growl.client.ui.Growl;
-import org.gwtbootstrap3.extras.growl.client.ui.GrowlOptions;
-import org.gwtbootstrap3.extras.growl.client.ui.GrowlPosition;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlType;
 import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadEvent;
 import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadHandler;
 import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
 import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
+import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.News;
 
 import java.util.Date;
@@ -55,15 +55,11 @@ public class AddNewsBinder extends Composite {
     @UiField
     FileUpload fileUploader;
     @UiField
-    Button upload;
-    @UiField
-    Label link;
+    SubmitButton upload;
     @UiField
     FormPanel form;
 
     private final AddNewsPresenter presenter;
-
-    private String filePath;
 
     public AddNewsBinder(final AddNewsPresenter presenter) {
         this.presenter = presenter;
@@ -71,7 +67,6 @@ public class AddNewsBinder extends Composite {
         initWidget(ourUiBinder.createAndBindUi(this));
 
         summernote.setHeight(500);
-
         summernote.addImageUploadHandler(new SummernoteOnImageUploadHandler() {
             @Override
             public void onImageUpload(final SummernoteOnImageUploadEvent event) {
@@ -81,6 +76,8 @@ public class AddNewsBinder extends Composite {
 
         panel.setVisible(false);
         edit.setVisible(false);
+        upload.setEnabled(false);
+
         edit.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(final ClickEvent event) {
@@ -110,15 +107,45 @@ public class AddNewsBinder extends Composite {
         form.setAction(GWT.getModuleBaseURL() + "fileupload");
         form.setMethod(FormPanel.METHOD_POST);
         form.setEncoding(FormPanel.ENCODING_MULTIPART);
+
+        fileUploader.addChangeHandler(new ChangeHandler() {
+            @Override
+            public void onChange(final ChangeEvent event) {
+                upload.setEnabled(true);
+            }
+        });
+
+        form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
+            @Override
+            public void onSubmitComplete(final FormPanel.SubmitCompleteEvent event) {
+                uploaded(event.getResults());
+                fileUploader.getElement().setPropertyString("value", "");
+                upload.setEnabled(false);
+            }
+        });
     }
 
     private void uploadFile() {
-
         form.submit();
+        GrowlUtils.showMessage("Завантаження зображення", "Початок завантаження зображення на сервері",
+                GrowlType.SUCCESS, IconType.SMILE_O);
     }
 
     public void uploaded(final String result) {
-        link.setText(result);
+        int b = result.indexOf(">") + 1;
+        int e = result.lastIndexOf("</");
+        final String url = result.substring(b, e);
+
+        if (url.contains("http")) {
+            final String imageBlock = "<p><br></p><img src=\"" + url + "\"><p><br></p>";
+            final String code = summernote.getCode() + imageBlock;
+            summernote.setText(code);
+            GrowlUtils.showMessage("Завантаження зображення", "Зображення успішно завантажено на сервері",
+                    GrowlType.SUCCESS, IconType.SMILE_O);
+        } else {
+            GrowlUtils.showMessage("Завантаження зображення", "Помилка під час збереження зображення на сервері",
+                    GrowlType.DANGER, IconType.FLASH);
+        }
     }
 
     private void editedPanel() {
@@ -152,38 +179,12 @@ public class AddNewsBinder extends Composite {
     }
 
     public void saveSuccessful() {
-        GrowlOptions go = new GrowlOptions();
-        go.setType(GrowlType.SUCCESS);
-        go.setTemplate("<div data-growl=\"container\" class=\"alert\" role=\"alert\">" +
-                "<button type=\"button\" class=\"close\" data-growl=\"dismiss\">" +
-                "<span aria-hidden=\"true\">×</span>" +
-                "<span class=\"sr-only\">Close</span>" +
-                "</button>" +
-                "<b><span data-growl=\"title\"></span></b><br/>" +
-                "<span data-growl=\"icon\"></span>" +
-                "<span data-growl=\"message\"></span>" +
-                "<a href=\"#\" data-growl=\"url\"></a>" +
-                "</div>");
-        go.makeDefault();
-        go.setPosition(GrowlPosition.TOP_CENTER);
-        Growl.growl("\tЗбереження запису\t", "\tНовина була успішно збережена\t", IconType.SMILE_O, go);
+        GrowlUtils.showMessage("Збереження запису", "Новина була успішно збережена", GrowlType.SUCCESS,
+                IconType.SMILE_O);
     }
 
     public void saveFailure(final Throwable caught) {
-        GrowlOptions go = new GrowlOptions();
-        go.setType(GrowlType.DANGER);
-        go.setTemplate("<div data-growl=\"container\" class=\"alert\" role=\"alert\">" +
-                "<button type=\"button\" class=\"close\" data-growl=\"dismiss\">" +
-                "<span aria-hidden=\"true\">×</span>" +
-                "<span class=\"sr-only\">Close</span>" +
-                "</button>" +
-                "<b><span data-growl=\"title\"></span></b><br/>" +
-                "<span data-growl=\"icon\"></span>" +
-                "<span data-growl=\"message\"></span>" +
-                "<a href=\"#\" data-growl=\"url\"></a>" +
-                "</div>");
-        go.makeDefault();
-        go.setPosition(GrowlPosition.TOP_CENTER);
-        Growl.growl("\tПомилка при збереженні запису\t", "\t" + caught.getMessage() + "\t", IconType.FLASH, go);
+        GrowlUtils.showMessage("Помилка при збереженні запису", caught.getMessage(), GrowlType.DANGER,
+                IconType.FLASH);
     }
 }
