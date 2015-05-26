@@ -13,12 +13,11 @@ import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Panel;
 import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.IconType;
-import org.gwtbootstrap3.extras.growl.client.ui.Growl;
-import org.gwtbootstrap3.extras.growl.client.ui.GrowlOptions;
-import org.gwtbootstrap3.extras.growl.client.ui.GrowlPosition;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlType;
 import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
 import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
+import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.News;
 
 public class EditNewsBinder extends Composite {
@@ -48,6 +47,7 @@ public class EditNewsBinder extends Composite {
 
     private final News news;
     private final UpdateNewsPresenter presenter;
+    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
 
     public EditNewsBinder(final News news, final UpdateNewsPresenter presenter) {
         this.news = news;
@@ -111,38 +111,12 @@ public class EditNewsBinder extends Composite {
     }
 
     public void saveSuccessful() {
-        GrowlOptions go = new GrowlOptions();
-        go.setType(GrowlType.SUCCESS);
-        go.setTemplate("<div data-growl=\"container\" class=\"alert\" role=\"alert\">" +
-                "<button type=\"button\" class=\"close\" data-growl=\"dismiss\">" +
-                "<span aria-hidden=\"true\">×</span>" +
-                "<span class=\"sr-only\">Close</span>" +
-                "</button>" +
-                "<b><span data-growl=\"title\"></span></b><br/>" +
-                "<span data-growl=\"icon\"></span>" +
-                "<span data-growl=\"message\"></span>" +
-                "<a href=\"#\" data-growl=\"url\"></a>" +
-                "</div>");
-        go.makeDefault();
-        go.setPosition(GrowlPosition.TOP_CENTER);
-        Growl.growl("\tЗбереження запису\t", "\tНовина була успішно збережена\t", IconType.SMILE_O, go);
+        GrowlUtils.showMessage(constants.newsRecordSaving(), constants.newsRecordSavingSuccessful(), GrowlType.SUCCESS,
+                IconType.SMILE_O);
     }
 
     public void saveFailure(final Throwable caught) {
-        GrowlOptions go = new GrowlOptions();
-        go.setType(GrowlType.DANGER);
-        go.setTemplate("<div data-growl=\"container\" class=\"alert\" role=\"alert\">" +
-                "<button type=\"button\" class=\"close\" data-growl=\"dismiss\">" +
-                "<span aria-hidden=\"true\">×</span>" +
-                "<span class=\"sr-only\">Close</span>" +
-                "</button>" +
-                "<b><span data-growl=\"title\"></span></b><br/>" +
-                "<span data-growl=\"icon\"></span>" +
-                "<span data-growl=\"message\"></span>" +
-                "<a href=\"#\" data-growl=\"url\"></a>" +
-                "</div>");
-        go.makeDefault();
-        go.setPosition(GrowlPosition.TOP_CENTER);
-        Growl.growl("\tПомилка при збереженні запису\t", "\t" + caught.getMessage() + "\t", IconType.FLASH, go);
+        GrowlUtils.showMessage(constants.newsRecordSavingFailed(), caught.getMessage(), GrowlType.DANGER,
+                IconType.FLASH);
     }
 }

@@ -3,6 +3,8 @@
              xmlns:e="urn:import:org.gwtbootstrap3.extras.summernote.client.ui"
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
+    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+
     <ui:style>
         .button-panel {
             padding: 10px 15px;
@@ -22,16 +24,16 @@
     <g:HTMLPanel>
         <b:Row addStyleNames="{style.button-panel}">
             <b:Button ui:field="preview" size="SMALL" type="INFO" addStyleNames="{style.preview-button}"
-                      icon="MAGIC" text="Переглянути"/>
+                      icon="MAGIC" text="{res.review}"/>
             <b:Button ui:field="edit" size="SMALL" type="INFO" addStyleNames="{style.preview-button}"
-                      icon="EDIT" text="Редагувати"/>
-            <b:Button ui:field="save" size="SMALL" type="SUCCESS" icon="SAVE" text="Зберегти"/>
+                      icon="EDIT" text="{res.edit}"/>
+            <b:Button ui:field="save" size="SMALL" type="SUCCESS" icon="SAVE" text="{res.save}"/>
         </b:Row>
         <b:Panel ui:field="editPanel">
             <b:PanelHeader>
                 <b:Container fluid="true">
                     <b:Row addStyleNames="{style.title}">
-                        <b:TextBox placeholder="Заголовок" ui:field="editTitle"/>
+                        <b:TextBox placeholder="{res.pageNewsTitle}" ui:field="editTitle"/>
                     </b:Row>
                 </b:Container>
             </b:PanelHeader>

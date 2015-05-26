@@ -2,6 +2,8 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
+    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+
     <ui:style>
         .button-panel {
             width: 100%;
@@ -31,8 +33,8 @@
             <b:PanelFooter>
                 <b:Row addStyleNames="{style.button-panel}">
                     <b:Button ui:field="editBtn" type="INFO" size="SMALL" addStyleNames="{style.edit-button}"
-                              text="Редагувати" icon="EDIT"/>
-                    <b:Button ui:field="removeBtn" type="DANGER" size="SMALL" text="Видалити" icon="REMOVE"/>
+                              text="{res.edit}" icon="EDIT"/>
+                    <b:Button ui:field="removeBtn" type="DANGER" size="SMALL" text="{res.remove}" icon="REMOVE"/>
                 </b:Row>
             </b:PanelFooter>
         </b:Panel>

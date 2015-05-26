@@ -28,6 +28,10 @@ public interface UGCCConstants extends Constants {
     @Key("btn.save")
     String save();
 
+    @DefaultStringValue("Upload")
+    @Key("btn.upload")
+    String upload();
+
     @DefaultStringValue("Removing")
     @Key("messageRemoveTitle")
     String messageRemoveTitle();
@@ -91,4 +95,60 @@ public interface UGCCConstants extends Constants {
     @DefaultStringValue("Upload Image")
     @Key("upload.image.title")
     String uploadImageTitle();
+
+    @DefaultStringValue("*Upload maximum 6mb")
+    @Key("upload.image.maxsize")
+    String uploadImageMaxSize();
+
+    @DefaultStringValue("Upload is started")
+    @Key("upload.image.begin")
+    String uploadImageBegin();
+
+    @DefaultStringValue("Upload is successful")
+    @Key("upload.image.successful")
+    String uploadImageSuccessful();
+
+    @DefaultStringValue("Upload failed")
+    @Key("upload.image.failed")
+    String uploadImageFailed();
+
+    @DefaultStringValue("Saving news")
+    @Key("news.record.saving")
+    String newsRecordSaving();
+
+    @DefaultStringValue("Saving news failed")
+    @Key("news.record.saving.failed")
+    String newsRecordSavingFailed();
+
+    @DefaultStringValue("News saved successful")
+    @Key("news.record.saving.successful")
+    String newsRecordSavingSuccessful();
+
+    @DefaultStringValue("Removing news")
+    @Key("news.record.removing")
+    String newsRecordRemoving();
+
+    @DefaultStringValue("Removing news failed")
+    @Key("news.record.removing.failed")
+    String newsRecordRemovingFailed();
+
+    @DefaultStringValue("News removed successful")
+    @Key("news.record.removing.successful")
+    String newsRecordRemovingSuccessful();
+
+    @DefaultStringValue("Are you sure to remove news?")
+    @Key("news.record.removing.message")
+    String newsRecordRemovingMessage();
+
+    @DefaultStringValue("Target")
+    @Key("map.direction.target")
+    String mapDirectionTarget();
+
+    @DefaultStringValue("Path to target")
+    @Key("map.direction.path")
+    String mapDirectionPath();
+
+    @DefaultStringValue("How to find")
+    @Key("map.direction.hint")
+    String mapDirectionHint();
 }

@@ -23,6 +23,7 @@ import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadE
 import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadHandler;
 import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
 import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
+import ua.coral.ugcc.common.client.UGCCConstants;
 import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.News;
 
@@ -60,6 +61,7 @@ public class AddNewsBinder extends Composite {
     FormPanel form;
 
     private final AddNewsPresenter presenter;
+    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
 
     public AddNewsBinder(final AddNewsPresenter presenter) {
         this.presenter = presenter;
@@ -127,7 +129,7 @@ public class AddNewsBinder extends Composite {
 
     private void uploadFile() {
         form.submit();
-        GrowlUtils.showMessage("Завантаження зображення", "Початок завантаження зображення на сервері",
+        GrowlUtils.showMessage(constants.uploadImageTitle(), constants.uploadImageBegin(),
                 GrowlType.SUCCESS, IconType.SMILE_O);
     }
 
@@ -140,10 +142,10 @@ public class AddNewsBinder extends Composite {
             final String imageBlock = "<p><br></p><img src=\"" + url + "\"><p><br></p>";
             final String code = summernote.getCode() + imageBlock;
             summernote.setText(code);
-            GrowlUtils.showMessage("Завантаження зображення", "Зображення успішно завантажено на сервері",
+            GrowlUtils.showMessage(constants.uploadImageTitle(), constants.uploadImageSuccessful(),
                     GrowlType.SUCCESS, IconType.SMILE_O);
         } else {
-            GrowlUtils.showMessage("Завантаження зображення", "Помилка під час збереження зображення на сервері",
+            GrowlUtils.showMessage(constants.uploadImageTitle(), constants.uploadImageFailed(),
                     GrowlType.DANGER, IconType.FLASH);
         }
     }
@@ -179,12 +181,12 @@ public class AddNewsBinder extends Composite {
     }
 
     public void saveSuccessful() {
-        GrowlUtils.showMessage("Збереження запису", "Новина була успішно збережена", GrowlType.SUCCESS,
+        GrowlUtils.showMessage(constants.newsRecordSaving(), constants.newsRecordSavingSuccessful(), GrowlType.SUCCESS,
                 IconType.SMILE_O);
     }
 
     public void saveFailure(final Throwable caught) {
-        GrowlUtils.showMessage("Помилка при збереженні запису", caught.getMessage(), GrowlType.DANGER,
+        GrowlUtils.showMessage(constants.newsRecordSavingFailed(), caught.getMessage(), GrowlType.DANGER,
                 IconType.FLASH);
     }
 }

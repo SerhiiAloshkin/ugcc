@@ -1,11 +1,15 @@
 <ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+
     <g:HTMLPanel>
         <b:Panel>
             <b:PanelHeader>
-                <b:Button ui:field="toMap" size="EXTRA_SMALL" addStyleNames="pull-right" text="Місце призначення"/>
-                <b:Heading size="H3" text="Шлях від вашого місцеперебування"/>
+                <b:Button ui:field="toMap" size="EXTRA_SMALL" addStyleNames="pull-right"
+                          text="{res.mapDirectionTarget}"/>
+                <b:Heading size="H3" text="{res.mapDirectionPath}"/>
             </b:PanelHeader>
             <b:PanelBody>
                 <g:HTMLPanel ui:field="directionPanel"/>

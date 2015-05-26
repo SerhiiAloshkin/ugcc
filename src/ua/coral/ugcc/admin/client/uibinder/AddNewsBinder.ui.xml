@@ -62,8 +62,8 @@
                 <g:FormPanel ui:field="form">
                     <g:VerticalPanel>
                         <g:FileUpload ui:field="fileUploader" name="fileUploader" addStyleNames="{style.upload-space}"/>
-                        <b:Heading size="H5" text="*Максимальний розмір зображення 6Мб"/>
-                        <b:SubmitButton type="SUCCESS" text="Завантажити" ui:field="upload" icon="UPLOAD"/>
+                        <b:Heading size="H5" text="{res.uploadImageMaxSize}"/>
+                        <b:SubmitButton type="SUCCESS" text="{res.upload}" ui:field="upload" icon="UPLOAD"/>
                     </g:VerticalPanel>
                 </g:FormPanel>
             </b:PanelBody>

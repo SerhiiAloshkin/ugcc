@@ -13,11 +13,10 @@ import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.bootbox.client.callback.ConfirmCallback;
-import org.gwtbootstrap3.extras.growl.client.ui.Growl;
-import org.gwtbootstrap3.extras.growl.client.ui.GrowlOptions;
-import org.gwtbootstrap3.extras.growl.client.ui.GrowlPosition;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlType;
 import ua.coral.ugcc.admin.client.view.ListNewsView;
+import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.News;
 
 public class SingleNewsBinder extends Composite {
@@ -37,6 +36,7 @@ public class SingleNewsBinder extends Composite {
 
     private final News news;
     private final ListNewsView.Presenter presenter;
+    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
 
     public SingleNewsBinder(final News news, final ListNewsView.Presenter presenter) {
         this.news = news;
@@ -54,7 +54,7 @@ public class SingleNewsBinder extends Composite {
 
     @UiHandler("removeBtn")
     public void onRemoveNews(final ClickEvent event) {
-        final String msg = "Ви дійсно бажаєте видалити новину? Після видалення, запис повернути буде неможливо.";
+        final String msg = constants.newsRecordRemovingMessage();
         Bootbox.confirm(msg, new ConfirmCallback() {
             @Override
             public void callback(final boolean result) {
@@ -70,38 +70,12 @@ public class SingleNewsBinder extends Composite {
     }
 
     public void removeSuccessful() {
-        GrowlOptions go = new GrowlOptions();
-        go.setType(GrowlType.SUCCESS);
-        go.setTemplate("<div data-growl=\"container\" class=\"alert\" role=\"alert\">" +
-                "<button type=\"button\" class=\"close\" data-growl=\"dismiss\">" +
-                "<span aria-hidden=\"true\">×</span>" +
-                "<span class=\"sr-only\">Close</span>" +
-                "</button>" +
-                "<b><span data-growl=\"title\"></span></b><br/>" +
-                "<span data-growl=\"icon\"></span>" +
-                "<span data-growl=\"message\"></span>" +
-                "<a href=\"#\" data-growl=\"url\"></a>" +
-                "</div>");
-        go.makeDefault();
-        go.setPosition(GrowlPosition.TOP_CENTER);
-        Growl.growl("\tВидалення запису\t", "\tНовина була успішно видалена\t", IconType.SMILE_O, go);
+        GrowlUtils.showMessage(constants.newsRecordRemoving(), constants.newsRecordRemovingSuccessful(),
+                GrowlType.SUCCESS, IconType.SMILE_O);
     }
 
     public void removeFailure(final Throwable caught) {
-        GrowlOptions go = new GrowlOptions();
-        go.setType(GrowlType.DANGER);
-        go.setTemplate("<div data-growl=\"container\" class=\"alert\" role=\"alert\">" +
-                "<button type=\"button\" class=\"close\" data-growl=\"dismiss\">" +
-                "<span aria-hidden=\"true\">×</span>" +
-                "<span class=\"sr-only\">Close</span>" +
-                "</button>" +
-                "<b><span data-growl=\"title\"></span></b><br/>" +
-                "<span data-growl=\"icon\"></span>" +
-                "<span data-growl=\"message\"></span>" +
-                "<a href=\"#\" data-growl=\"url\"></a>" +
-                "</div>");
-        go.makeDefault();
-        go.setPosition(GrowlPosition.TOP_CENTER);
-        Growl.growl("\tПомилка при видаленні запису\t", "\t" + caught.getMessage() + "\t", IconType.FLASH, go);
+        GrowlUtils.showMessage(constants.newsRecordRemovingFailed(), caught.getMessage(), GrowlType.DANGER,
+                IconType.FLASH);
     }
 }
