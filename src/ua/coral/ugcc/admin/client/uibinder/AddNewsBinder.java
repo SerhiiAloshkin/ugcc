@@ -116,6 +116,8 @@ public class AddNewsBinder extends Composite {
                 upload.setEnabled(true);
             }
         });
+        fileUploader.setTitle("Test");
+        fileUploader.setName("Test2");
 
         form.addSubmitCompleteHandler(new FormPanel.SubmitCompleteHandler() {
             @Override
@@ -138,7 +140,7 @@ public class AddNewsBinder extends Composite {
         int e = result.lastIndexOf("</");
         final String url = result.substring(b, e);
 
-        if (url.contains("http")) {
+        if (url.contains("http") && !url.contains("Exception")) {
             final String imageBlock = "<p><br></p><img src=\"" + url + "\"><p><br></p>";
             final String code = summernote.getCode() + imageBlock;
             summernote.setText(code);

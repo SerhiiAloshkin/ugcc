@@ -66,6 +66,16 @@
             <artifactId>gwtupload-gae</artifactId>
             <version>${gwtupload.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.google.apis</groupId>
+            <artifactId>google-api-services-plus</artifactId>
+            <version>v1-rev137-1.19.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.http-client</groupId>
+            <artifactId>google-http-client-appengine</artifactId>
+            <version>1.20.0</version>
+        </dependency>
         <!-- Provided libs -->
         <dependency>
             <groupId>com.google.gwt</groupId>
@@ -102,6 +112,11 @@
 
     <build>
         <sourceDirectory>src</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>resources</directory>
+            </resource>
+        </resources>
         <testSourceDirectory>testsrc</testSourceDirectory>
         <outputDirectory>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/classes</outputDirectory>
 

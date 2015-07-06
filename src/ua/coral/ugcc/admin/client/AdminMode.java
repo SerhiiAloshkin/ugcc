@@ -8,7 +8,6 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -37,8 +36,15 @@ public class AdminMode extends AbstractEntryPoint {
     public void onModuleLoad() {
         addGoogleAuth();
 
+//        String requestUrl = AuthSubUtil.getRequestUrl("http://www.example.com/RetrieveToken",
+//                "https://picasaweb.google.com/data/", false, true);
+//
+//        String sessionToken = AuthSubUtil.exchangeForSessionToken(onetimeUseToken, null);
+//
+//        PicasawebService.setAuthSubToken(sessionToken, null);
+
         // Export the JS method that can be called in pure JS
-        Auth.export();
+//        Auth.export();
 
 //        final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
 //        final HandlerManager eventBus = new HandlerManager(null);
@@ -65,27 +71,27 @@ public class AdminMode extends AbstractEntryPoint {
         // immediately result in the callback being given the token to use.
         AUTH.login(req, new Callback<String, Throwable>() {
             @Override
-            public void onSuccess(String token) {
+            public void onSuccess(final String token) {
 
                 final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
-                rpcService.setAuthToken(token, new AsyncCallback<Void>() {
-                    @Override
-                    public void onFailure(final Throwable caught) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(final Void result) {
-
-                    }
-                });
+//                rpcService.setFileUploader(uploader, new AsyncCallback<Void>() {
+//                    @Override
+//                    public void onFailure(final Throwable caught) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(final Void result) {
+//                        uploader.setAuthToken(token);
+//                    }
+//                });
                 final HandlerManager eventBus = new HandlerManager(null);
                 final AppController appViewer = new AppController(rpcService, eventBus);
                 appViewer.go(RootPanel.get());
 
                 button.setVisible(false);
-                //Window.alert("Got an OAuth token:\n" + token + "\n"
-                //        + "Token expires in " + AUTH.expiresIn(req) + " ms\n");
+                Window.alert("Got an OAuth token:\n" + token + "\n"
+                        + "Token expires in " + AUTH.expiresIn(req) + " ms\n");
             }
 
             @Override
