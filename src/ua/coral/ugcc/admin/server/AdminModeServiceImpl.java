@@ -5,9 +5,4 @@ import ua.coral.ugcc.common.services.impl.AbstractServiceImpl;
 
 public class AdminModeServiceImpl extends AbstractServiceImpl implements AdminModeService {
 
-    @Override
-    public String sendFile(final String fileName) {
-
-        return null;
-    }
 }

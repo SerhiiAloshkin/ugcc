@@ -8,10 +8,11 @@ import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.Window;
+import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.RootPanel;
-import com.google.gwt.user.client.ui.SimplePanel;
 import ua.coral.ugcc.common.client.AbstractEntryPoint;
+import ua.coral.ugcc.common.dto.impl.Token;
 
 public class AdminMode extends AbstractEntryPoint {
 
@@ -30,26 +31,9 @@ public class AdminMode extends AbstractEntryPoint {
 
     private final HTML button = new HTML("<button id='login'/>");
 
-    private final SimplePanel simplePanel = new SimplePanel();
-
     @Override
     public void onModuleLoad() {
         addGoogleAuth();
-
-//        String requestUrl = AuthSubUtil.getRequestUrl("http://www.example.com/RetrieveToken",
-//                "https://picasaweb.google.com/data/", false, true);
-//
-//        String sessionToken = AuthSubUtil.exchangeForSessionToken(onetimeUseToken, null);
-//
-//        PicasawebService.setAuthSubToken(sessionToken, null);
-
-        // Export the JS method that can be called in pure JS
-//        Auth.export();
-
-//        final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
-//        final HandlerManager eventBus = new HandlerManager(null);
-//        final AppController appViewer = new AppController(rpcService, eventBus);
-//        appViewer.go(RootPanel.get());
     }
 
     // Adds a button to the page that asks for authentication from Google.
@@ -63,7 +47,7 @@ public class AdminMode extends AbstractEntryPoint {
 
     private void onClick() {
         final AuthRequest req = new AuthRequest(GOOGLE_AUTH_URL, GOOGLE_CLIENT_ID)
-                .withScopes(PLUS_ME_SCOPE);
+                .withScopes(PLUS_ME_SCOPE, "https://picasaweb.google.com/data/");
 
         // Calling login() will display a popup to the user the first time it is
         // called. Once the user has granted access to the application,
@@ -71,26 +55,28 @@ public class AdminMode extends AbstractEntryPoint {
         // immediately result in the callback being given the token to use.
         AUTH.login(req, new Callback<String, Throwable>() {
             @Override
-            public void onSuccess(final String token) {
+            public void onSuccess(final String accessToken) {
 
                 final AdminModeServiceAsync rpcService = GWT.create(AdminModeService.class);
-//                rpcService.setFileUploader(uploader, new AsyncCallback<Void>() {
-//                    @Override
-//                    public void onFailure(final Throwable caught) {
-//
-//                    }
-//
-//                    @Override
-//                    public void onSuccess(final Void result) {
-//                        uploader.setAuthToken(token);
-//                    }
-//                });
+                final Token token = new Token();
+                token.setAccessToken(accessToken);
+                rpcService.addToken(token, new AsyncCallback<Void>() {
+                    @Override
+                    public void onFailure(final Throwable caught) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(final Void result) {
+
+                    }
+                });
                 final HandlerManager eventBus = new HandlerManager(null);
-                final AppController appViewer = new AppController(rpcService, eventBus);
+                final AdminModeController appViewer = new AdminModeController(rpcService, eventBus);
                 appViewer.go(RootPanel.get());
 
                 button.setVisible(false);
-                Window.alert("Got an OAuth token:\n" + token + "\n"
+                Window.alert("Got an OAuth token:\n" + accessToken + "\n"
                         + "Token expires in " + AUTH.expiresIn(req) + " ms\n");
             }
 

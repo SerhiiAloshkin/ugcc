@@ -9,7 +9,7 @@ public interface UpdateNewsView extends View<UpdateNewsView.Presenter> {
 
     void setNews(News news);
 
-    public interface Presenter extends DefaultPresenter {
+    interface Presenter extends DefaultPresenter {
         void updateNews(News news, EditNewsBinder editView);
 
         void listNews();

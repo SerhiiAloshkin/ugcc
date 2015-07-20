@@ -24,5 +24,4 @@ public interface AdminModeService extends RemoteService, Service {
         }
     }
 
-    String sendFile(String fileName);
 }

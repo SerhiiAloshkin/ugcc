@@ -2,6 +2,7 @@ package ua.coral.ugcc.common.services;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
 import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.dto.impl.Token;
 
 import java.util.List;
 
@@ -21,5 +22,7 @@ public interface ServiceAsync {
 
     void getNewsById(Long newsId, AsyncCallback<News> callback);
 
-    void sendFile(String fileName, AsyncCallback<String> callback);
+    void addToken(Token token, AsyncCallback<Void> callback);
+
+    void getToken(AsyncCallback<Token> callback);
 }

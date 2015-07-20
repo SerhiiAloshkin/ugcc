@@ -1,6 +1,7 @@
 package ua.coral.ugcc.common.services;
 
 import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.dto.impl.Token;
 
 import java.util.List;
 
@@ -19,4 +20,8 @@ public interface Service {
     int countNews();
 
     News getNewsById(Long newsId);
+
+    void addToken(Token token);
+
+    Token getToken();
 }
