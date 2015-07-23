@@ -10,5 +10,7 @@ public interface ListNewsView extends View<ListNewsView.Presenter> {
         void listNews();
 
         void countNews();
+
+        void openNews(Long newsId);
     }
 }

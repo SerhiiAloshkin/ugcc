@@ -8,6 +8,7 @@ import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.common.presenter.impl.DefaultPresenterImpl;
 import ua.coral.ugcc.common.uibinder.DefaultBinder;
 import ua.coral.ugcc.user.client.UgccServiceAsync;
+import ua.coral.ugcc.user.client.uibinder.OpenedNewsBinder;
 import ua.coral.ugcc.user.client.view.OpenedNewsView;
 
 public class OpenedNewsPresenter extends DefaultPresenterImpl implements Presenter, OpenedNewsView.Presenter {
@@ -40,12 +41,12 @@ public class OpenedNewsPresenter extends DefaultPresenterImpl implements Present
 
             @Override
             public void onSuccess(final News news) {
-                onNews(news);
+                onOpenedNews(news);
             }
         });
     }
 
-    private void onNews(final News news) {
-        //view.setChild(new NewsBinder(newsList, this));
+    private void onOpenedNews(final News news) {
+        view.setChild(new OpenedNewsBinder(news));
     }
 }

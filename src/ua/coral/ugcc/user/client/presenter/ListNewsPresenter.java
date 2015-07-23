@@ -8,6 +8,7 @@ import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.common.presenter.impl.DefaultPresenterImpl;
 import ua.coral.ugcc.common.uibinder.DefaultBinder;
 import ua.coral.ugcc.user.client.UgccServiceAsync;
+import ua.coral.ugcc.user.client.event.OpenedNewsEvent;
 import ua.coral.ugcc.user.client.uibinder.NewsBinder;
 import ua.coral.ugcc.user.client.view.ListNewsView;
 
@@ -51,6 +52,11 @@ public class ListNewsPresenter extends DefaultPresenterImpl implements Presenter
                 onNews(newsList);
             }
         });
+    }
+
+    @Override
+    public void openNews(final Long newsId) {
+        eventBus.fireEvent(new OpenedNewsEvent(newsId));
     }
 
     private void onNews(final List<News> newsList) {

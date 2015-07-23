@@ -5,8 +5,11 @@ import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
+
+import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
 import ua.coral.ugcc.common.client.DefaultAppController;
 import ua.coral.ugcc.common.client.HistoryToken;
+import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.user.client.event.ListNewsEvent;
 import ua.coral.ugcc.user.client.event.OpenedNewsEvent;
 import ua.coral.ugcc.user.client.event.handler.ListNewsEventHandler;
@@ -38,7 +41,7 @@ public class UgccController extends DefaultAppController {
         eventBus.addHandler(OpenedNewsEvent.TYPE, new OpenedNewsEventHandler() {
             @Override
             public void onOpenedNews(final OpenedNewsEvent event) {
-                doOpenedNews();
+                doOpenedNews(event.getNewsId());
             }
         });
     }
@@ -47,8 +50,10 @@ public class UgccController extends DefaultAppController {
         History.newItem(HistoryToken.TO_NEWS.getToken());
     }
 
-    private void doOpenedNews() {
+    private void doOpenedNews(final Long newsId) {
         History.newItem(HistoryToken.TO_OPENED_NEWS.getToken());
+        final Presenter presenter = new OpenedNewsPresenter(rpcService, eventBus, newsId);
+        presenter.go(getContainer());
     }
 
     @Override
@@ -71,18 +76,6 @@ public class UgccController extends DefaultAppController {
                 @Override
                 public void onSuccess() {
                     new ListNewsPresenter(rpcService, eventBus).go(getContainer());
-                }
-            });
-        } else if (HistoryToken.TO_OPENED_NEWS.getToken().equals(token)) {
-            GWT.runAsync(new RunAsyncCallback() {
-                @Override
-                public void onFailure(final Throwable reason) {
-
-                }
-
-                @Override
-                public void onSuccess() {
-                    new OpenedNewsPresenter(rpcService, eventBus, -1l).go(getContainer());
                 }
             });
         }
