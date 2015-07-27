@@ -32,7 +32,7 @@ public class SingleNewsBinder extends Composite {
 
         initWidget(ourUiBinder.createAndBindUi(this));
         linkedTitle.setText(news.getTitle());
-        content.setHTML(news.getContent());
+        content.setHTML(news.getShortContent());
     }
 
     @UiHandler("linkedTitle")
