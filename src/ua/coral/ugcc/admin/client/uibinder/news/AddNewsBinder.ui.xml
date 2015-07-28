@@ -1,0 +1,73 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:e="urn:import:org.gwtbootstrap3.extras.summernote.client.ui"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+
+    <ui:style>
+        .button-panel {
+            padding: 10px 15px;
+            text-align: right;
+        }
+
+        .title {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .preview-button {
+            margin-right: 10px;
+        }
+
+        .upload-space {
+            margin-bottom: 10px;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <b:Row addStyleNames="{style.button-panel}">
+            <b:Button ui:field="edit" size="SMALL" type="INFO" addStyleNames="{style.preview-button}" icon="EDIT"
+                      text="{res.edit}"/>
+            <b:Button ui:field="preview" size="SMALL" type="INFO" addStyleNames="{style.preview-button}" icon="MAGIC"
+                      text="{res.review}"/>
+            <b:Button ui:field="save" size="SMALL" type="SUCCESS" icon="SAVE" text="{res.save}"/>
+        </b:Row>
+        <b:Panel ui:field="editPanel">
+            <b:PanelHeader>
+                <b:Container fluid="true">
+                    <b:Row addStyleNames="{style.title}">
+                        <b:TextBox placeholder="{res.pageNewsTitle}" ui:field="editTitle"/>
+                    </b:Row>
+                </b:Container>
+            </b:PanelHeader>
+            <b:PanelBody>
+                <e:Summernote ui:field="summernote"/>
+            </b:PanelBody>
+        </b:Panel>
+        <b:Panel ui:field="panel">
+            <b:PanelHeader>
+                <b:Heading size="H3" ui:field="title"/>
+            </b:PanelHeader>
+            <b:PanelBody>
+                <g:HTML ui:field="body"/>
+            </b:PanelBody>
+        </b:Panel>
+
+        <b:Panel>
+            <b:PanelHeader>
+                <b:Heading size="H3" text="{res.uploadImageTitle}"/>
+            </b:PanelHeader>
+            <b:PanelBody>
+                <g:FormPanel ui:field="form">
+                    <g:VerticalPanel>
+                        <g:FileUpload ui:field="fileUploader" name="fileUploader" addStyleNames="{style.upload-space}"/>
+                        <b:Heading size="H5" text="{res.uploadImageMaxSize}"/>
+                        <b:SubmitButton type="SUCCESS" text="{res.upload}" ui:field="upload" icon="UPLOAD"/>
+                    </g:VerticalPanel>
+                </g:FormPanel>
+            </b:PanelBody>
+        </b:Panel>
+
+    </g:HTMLPanel>
+</ui:UiBinder>

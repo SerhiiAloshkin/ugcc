@@ -1,0 +1,21 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:roll="urn:import:ua.coral.ugcc.admin.client.uibinder.news"
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+
+    <ui:style>
+        .add-button {
+            padding: 10px 15px;
+            text-align: right;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <b:Row addStyleNames="{style.add-button}">
+            <b:Button ui:field="addBtn" type="SUCCESS" size="SMALL" text="{res.add}" icon="PLUS"/>
+        </b:Row>
+        <roll:RollNewsBinder ui:field="roll"/>
+    </g:HTMLPanel>
+</ui:UiBinder>

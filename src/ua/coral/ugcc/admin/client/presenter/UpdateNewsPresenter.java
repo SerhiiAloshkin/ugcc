@@ -5,7 +5,7 @@ import com.google.gwt.user.client.rpc.AsyncCallback;
 import com.google.gwt.user.client.ui.HasWidgets;
 import ua.coral.ugcc.admin.client.AdminModeServiceAsync;
 import ua.coral.ugcc.admin.client.event.ListNewsEvent;
-import ua.coral.ugcc.admin.client.uibinder.EditNewsBinder;
+import ua.coral.ugcc.admin.client.uibinder.news.EditNewsBinder;
 import ua.coral.ugcc.admin.client.view.UpdateNewsView;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.common.presenter.Presenter;

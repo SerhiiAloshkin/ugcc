@@ -1,10 +1,12 @@
-package ua.coral.ugcc.common.presenter.impl;
+package ua.coral.ugcc.user.client.presenter;
+
+import ua.coral.ugcc.common.presenter.Presenter;
+import ua.coral.ugcc.common.presenter.impl.DefaultPresenterImpl;
+import ua.coral.ugcc.user.client.uibinder.ContactsBinder;
+import ua.coral.ugcc.common.uibinder.DefaultBinder;
 
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.ui.HasWidgets;
-import ua.coral.ugcc.common.presenter.Presenter;
-import ua.coral.ugcc.common.uibinder.ContactsBinder;
-import ua.coral.ugcc.common.uibinder.DefaultBinder;
 
 public class ContactsPresenter extends DefaultPresenterImpl implements Presenter {
 

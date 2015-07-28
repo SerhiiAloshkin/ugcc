@@ -1,21 +1,22 @@
 package ua.coral.ugcc.user.client;
 
+import ua.coral.ugcc.common.client.DefaultAppController;
+import ua.coral.ugcc.common.client.HistoryToken;
+import ua.coral.ugcc.common.presenter.Presenter;
+import ua.coral.ugcc.common.uibinder.DefaultBinder;
+import ua.coral.ugcc.user.client.event.ListNewsEvent;
+import ua.coral.ugcc.user.client.event.OpenedNewsEvent;
+import ua.coral.ugcc.user.client.event.handler.ListNewsEventHandler;
+import ua.coral.ugcc.user.client.event.handler.OpenedNewsEventHandler;
+import ua.coral.ugcc.user.client.presenter.ContactsPresenter;
+import ua.coral.ugcc.user.client.presenter.ListNewsPresenter;
+import ua.coral.ugcc.user.client.presenter.OpenedNewsPresenter;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.shared.HandlerManager;
 import com.google.gwt.user.client.History;
-
-import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
-import ua.coral.ugcc.common.client.DefaultAppController;
-import ua.coral.ugcc.common.client.HistoryToken;
-import ua.coral.ugcc.common.presenter.Presenter;
-import ua.coral.ugcc.user.client.event.ListNewsEvent;
-import ua.coral.ugcc.user.client.event.OpenedNewsEvent;
-import ua.coral.ugcc.user.client.event.handler.ListNewsEventHandler;
-import ua.coral.ugcc.user.client.event.handler.OpenedNewsEventHandler;
-import ua.coral.ugcc.user.client.presenter.ListNewsPresenter;
-import ua.coral.ugcc.user.client.presenter.OpenedNewsPresenter;
 
 public class UgccController extends DefaultAppController {
 
@@ -79,5 +80,10 @@ public class UgccController extends DefaultAppController {
                 }
             });
         }
+    }
+
+    @Override
+    protected void loadContactsPresenter() {
+        new ContactsPresenter(eventBus, new DefaultBinder()).go(getContainer());
     }
 }

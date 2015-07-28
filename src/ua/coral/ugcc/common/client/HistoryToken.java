@@ -4,6 +4,8 @@ public enum HistoryToken {
 
     ADD_NEWS("add_news"),
     UPDATE_NEWS("update_news"),
+    ADD_CONTACT("add_contact"),
+    UPDATE_CONTACT("update_contact"),
 
     TO_MAIN("main"),
     TO_NEWS("news"),

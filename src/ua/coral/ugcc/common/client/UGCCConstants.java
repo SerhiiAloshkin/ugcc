@@ -12,7 +12,7 @@ public interface UGCCConstants extends Constants {
     @Key("btn.remove")
     String remove();
 
-    @DefaultStringValue("Add news")
+    @DefaultStringValue("Add")
     @Key("btn.add")
     String add();
 
@@ -151,4 +151,8 @@ public interface UGCCConstants extends Constants {
     @DefaultStringValue("How to find")
     @Key("map.direction.hint")
     String mapDirectionHint();
+
+    @DefaultStringValue("Create contact")
+    @Key("contact.create.title")
+    String contactCreateTitle();
 }

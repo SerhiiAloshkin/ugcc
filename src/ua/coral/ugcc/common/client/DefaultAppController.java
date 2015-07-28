@@ -22,13 +22,13 @@ import ua.coral.ugcc.common.event.handler.impl.GoToNewsEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToParishEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToScheduleEventHandlerImpl;
 import ua.coral.ugcc.common.presenter.Presenter;
-import ua.coral.ugcc.common.presenter.impl.ContactsPresenter;
+import ua.coral.ugcc.admin.client.presenter.ContactsPresenter;
 import ua.coral.ugcc.common.presenter.impl.DirectionPresenter;
 import ua.coral.ugcc.common.presenter.impl.MainPresenter;
 import ua.coral.ugcc.common.presenter.impl.MapPresenter;
 import ua.coral.ugcc.common.uibinder.DefaultBinder;
 
-public class DefaultAppController implements Presenter, ValueChangeHandler<String> {
+public abstract class DefaultAppController implements Presenter, ValueChangeHandler<String> {
 
     private final HandlerManager eventBus;
     private HasWidgets container;
@@ -119,9 +119,11 @@ public class DefaultAppController implements Presenter, ValueChangeHandler<Strin
 
                 @Override
                 public void onSuccess() {
-                    new ContactsPresenter(eventBus, new DefaultBinder()).go(getContainer());
+                    loadContactsPresenter();
                 }
             });
         }
     }
+
+    protected abstract void loadContactsPresenter();
 }

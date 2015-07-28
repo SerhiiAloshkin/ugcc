@@ -1,6 +1,8 @@
 package ua.coral.ugcc.common.services;
 
 import com.google.gwt.user.client.rpc.AsyncCallback;
+
+import ua.coral.ugcc.common.dto.impl.Contact;
 import ua.coral.ugcc.common.dto.impl.News;
 import ua.coral.ugcc.common.dto.impl.Token;
 
@@ -25,4 +27,14 @@ public interface ServiceAsync {
     void addToken(Token token, AsyncCallback<Void> callback);
 
     void getToken(AsyncCallback<Token> callback);
+
+    void addContact(Contact contacts, AsyncCallback<Void> callback);
+
+    void removeContact(Contact contacts, AsyncCallback<Void> callback);
+
+    void updateContact(Contact contacts, AsyncCallback<Void> callback);
+
+    void listContacts(AsyncCallback<List<Contact>> callback);
+
+    void getContactById(Long contactId, AsyncCallback<Contact> callback);
 }

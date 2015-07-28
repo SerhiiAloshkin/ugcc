@@ -23,6 +23,7 @@
     <source path="event"/>
     <source path="presenter"/>
     <source path="component"/>
+    <source path="utils"/>
 
     <stylesheet src="/adminmode.css"/>
 </module>

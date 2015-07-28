@@ -1,4 +1,4 @@
-package ua.coral.ugcc.admin.client.uibinder;
+package ua.coral.ugcc.admin.client.uibinder.news;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -18,6 +18,7 @@ import ua.coral.ugcc.admin.client.view.ListNewsView;
 import ua.coral.ugcc.common.client.UGCCConstants;
 import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.News;
+import ua.coral.ugcc.common.utils.StringUtils;
 
 public class SingleNewsBinder extends Composite {
     interface SingleNewsBinderUiBinder extends UiBinder<HTMLPanel, SingleNewsBinder> {
@@ -44,7 +45,7 @@ public class SingleNewsBinder extends Composite {
 
         initWidget(ourUiBinder.createAndBindUi(this));
         title.setText(news.getTitle());
-        content.setHTML(news.getContent());
+        content.setHTML(getShortContent());
     }
 
     @UiHandler("editBtn")
@@ -77,5 +78,9 @@ public class SingleNewsBinder extends Composite {
     public void removeFailure(final Throwable caught) {
         GrowlUtils.showMessage(constants.newsRecordRemovingFailed(), caught.getMessage(), GrowlType.DANGER,
                 IconType.FLASH);
+    }
+
+    private String getShortContent() {
+        return StringUtils.abbreviate(new HTML(news.getContent()).getText(), 100);
     }
 }
