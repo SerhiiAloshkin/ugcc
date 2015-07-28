@@ -32,11 +32,40 @@ public class SingleNewsBinder extends Composite {
 
         initWidget(ourUiBinder.createAndBindUi(this));
         linkedTitle.setText(news.getTitle());
-        content.setHTML(news.getShortContent());
+        content.setHTML(getShortContent());
+
     }
 
     @UiHandler("linkedTitle")
     public void onSelectedNews(final ClickEvent event) {
         presenter.openNews(news.getId());
+    }
+
+    private String getShortContent() {
+        return abbreviate(new HTML(news.getContent()).getText(), 100);
+    }
+
+    private String abbreviate(final String str, final int maxWidth) {
+        if (str == null) {
+            return null;
+        }
+        return abbreviate(str, 0, maxWidth, 0);
+    }
+
+    private String abbreviate(final String str, final int index, final int maxWidth, int counter) {
+        int foundIndex = getFoundIndex(str, index);
+        counter++;
+        if (counter < maxWidth) {
+            return abbreviate(str, foundIndex, maxWidth, counter);
+        }
+        return str.substring(0, foundIndex);
+    }
+
+    private int getFoundIndex(final String str, final int index) {
+        int foundIndex = str.indexOf(" ", index);
+        if (str.charAt(foundIndex + 1) == ' ') {
+            return getFoundIndex(str, foundIndex + 1);
+        }
+        return foundIndex + 1;
     }
 }
