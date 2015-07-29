@@ -1,0 +1,74 @@
+<ui:UiBinder xmlns:ui='urn:ui:com.google.gwt.uibinder'
+             xmlns:g='urn:import:com.google.gwt.user.client.ui'
+             xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
+
+    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+
+    <ui:style>
+        .button-panel {
+            width: 100%;
+            text-align: right;
+        }
+
+        .edit-button {
+            margin-right: 10px;
+        }
+
+        .title {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    </ui:style>
+
+    <g:HTMLPanel>
+        <b:Panel>
+            <b:Form type="HORIZONTAL">
+                <b:FormGroup>
+                    <b:FormLabel for="address" addStyleNames="col-lg-2">Address</b:FormLabel>
+                    <g:FlowPanel addStyleNames="col-lg-9">
+                        <b:FormControlStatic b:id="address" ui:field="addressField" />
+                    </g:FlowPanel>
+                </b:FormGroup>
+
+                <b:FormGroup>
+                    <b:FormLabel for="index" addStyleNames="col-lg-2">Postal Code</b:FormLabel>
+                    <g:FlowPanel addStyleNames="col-lg-9">
+                        <b:FormControlStatic b:id="index" ui:field="indexField" />
+                    </g:FlowPanel>
+                </b:FormGroup>
+
+                <b:FormGroup>
+                    <b:FormLabel for="phone" addStyleNames="col-lg-2">Phone Number</b:FormLabel>
+                    <g:FlowPanel addStyleNames="col-lg-9">
+                        <b:FormControlStatic b:id="phone" ui:field="phoneField" />
+                    </g:FlowPanel>
+                </b:FormGroup>
+
+                <b:FormGroup>
+                    <b:FormLabel for="email" addStyleNames="col-lg-2">Email</b:FormLabel>
+                    <g:FlowPanel addStyleNames="col-lg-9">
+                        <b:FormControlStatic b:id="email" ui:field="emailField" />
+                    </g:FlowPanel>
+                </b:FormGroup>
+
+                <b:FormGroup>
+                    <b:FormLabel for="description" addStyleNames="col-lg-2">Description</b:FormLabel>
+                    <g:FlowPanel addStyleNames="col-lg-9">
+                        <b:FormControlStatic b:id="description" ui:field="descriptionField" />
+                    </g:FlowPanel>
+                </b:FormGroup>
+
+                <b:FormGroup>
+                    <g:FlowPanel addStyleNames="col-lg-offset-2 col-lg-9 ">
+                        <b:Row addStyleNames="{style.button-panel}">
+                            <b:Button ui:field="editBtn" type="INFO" size="SMALL" addStyleNames="{style.edit-button}"
+                                      text="{res.edit}" icon="EDIT"/>
+                            <b:Button ui:field="removeBtn" type="DANGER" size="SMALL" text="{res.remove}" icon="REMOVE"/>
+                        </b:Row>
+                    </g:FlowPanel>
+                </b:FormGroup>
+
+            </b:Form>
+        </b:Panel>
+    </g:HTMLPanel>
+</ui:UiBinder>
