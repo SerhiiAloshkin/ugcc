@@ -1,7 +1,8 @@
 package ua.coral.ugcc.common.event;
 
-import com.google.gwt.event.shared.GwtEvent;
 import ua.coral.ugcc.common.event.handler.GoToDirectionEventHandler;
+
+import com.google.gwt.event.shared.GwtEvent;
 
 public class GoToDirectionEvent extends GwtEvent<GoToDirectionEventHandler> {
 

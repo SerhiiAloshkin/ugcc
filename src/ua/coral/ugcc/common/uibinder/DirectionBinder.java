@@ -1,5 +1,7 @@
 package ua.coral.ugcc.common.uibinder;
 
+import ua.coral.ugcc.common.presenter.impl.DirectionPresenter;
+
 import com.google.gwt.core.client.Callback;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
@@ -22,8 +24,8 @@ import com.google.maps.gwt.client.LatLng;
 import com.google.maps.gwt.client.MapOptions;
 import com.google.maps.gwt.client.MapTypeId;
 import com.google.maps.gwt.client.TravelMode;
+
 import org.gwtbootstrap3.client.ui.Button;
-import ua.coral.ugcc.common.presenter.impl.DirectionPresenter;
 
 public class DirectionBinder extends Composite {
     interface DirectionBinderUiBinder extends UiBinder<HTMLPanel, DirectionBinder> {

@@ -1,5 +1,12 @@
 package ua.coral.ugcc.admin.client.uibinder.news;
 
+import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
+import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.component.GrowlUtils;
+import ua.coral.ugcc.common.dto.impl.News;
+
+import java.util.Date;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -12,6 +19,7 @@ import com.google.gwt.user.client.ui.FileUpload;
 import com.google.gwt.user.client.ui.FormPanel;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
+
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Panel;
@@ -22,12 +30,6 @@ import org.gwtbootstrap3.extras.growl.client.ui.GrowlType;
 import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadEvent;
 import org.gwtbootstrap3.extras.summernote.client.event.SummernoteOnImageUploadHandler;
 import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
-import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
-import ua.coral.ugcc.common.client.UGCCConstants;
-import ua.coral.ugcc.common.component.GrowlUtils;
-import ua.coral.ugcc.common.dto.impl.News;
-
-import java.util.Date;
 
 public class AddNewsBinder extends Composite {
     interface AddNewsBinderUiBinder extends UiBinder<HTMLPanel, AddNewsBinder> {

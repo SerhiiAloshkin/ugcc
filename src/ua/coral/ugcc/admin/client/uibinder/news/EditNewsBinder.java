@@ -1,5 +1,10 @@
 package ua.coral.ugcc.admin.client.uibinder.news;
 
+import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
+import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.component.GrowlUtils;
+import ua.coral.ugcc.common.dto.impl.News;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
@@ -8,6 +13,7 @@ import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
+
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.Panel;
@@ -15,10 +21,6 @@ import org.gwtbootstrap3.client.ui.TextBox;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.extras.growl.client.ui.GrowlType;
 import org.gwtbootstrap3.extras.summernote.client.ui.Summernote;
-import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
-import ua.coral.ugcc.common.client.UGCCConstants;
-import ua.coral.ugcc.common.component.GrowlUtils;
-import ua.coral.ugcc.common.dto.impl.News;
 
 public class EditNewsBinder extends Composite {
     interface EditNewsBinderUiBinder extends UiBinder<HTMLPanel, EditNewsBinder> {

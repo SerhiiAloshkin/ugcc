@@ -1,14 +1,16 @@
 package ua.coral.ugcc.common.uibinder;
 
+import ua.coral.ugcc.common.dto.impl.News;
+
+import java.util.List;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.HTMLPanel;
-import org.gwtbootstrap3.client.ui.Row;
-import ua.coral.ugcc.common.dto.impl.News;
 
-import java.util.List;
+import org.gwtbootstrap3.client.ui.Row;
 
 public class LastNewsBinder extends Composite {
 

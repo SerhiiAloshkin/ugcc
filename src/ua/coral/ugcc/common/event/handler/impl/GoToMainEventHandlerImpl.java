@@ -1,13 +1,14 @@
 package ua.coral.ugcc.common.event.handler.impl;
 
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.HasWidgets;
 import ua.coral.ugcc.common.client.HistoryToken;
 import ua.coral.ugcc.common.event.GoToMainEvent;
 import ua.coral.ugcc.common.event.handler.GoToMainEventHandler;
 import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.common.presenter.impl.MainPresenter;
+
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.HasWidgets;
 
 public class GoToMainEventHandlerImpl implements GoToMainEventHandler {
 

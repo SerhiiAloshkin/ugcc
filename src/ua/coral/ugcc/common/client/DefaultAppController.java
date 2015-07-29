@@ -1,12 +1,5 @@
 package ua.coral.ugcc.common.client;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.logical.shared.ValueChangeHandler;
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.History;
-import com.google.gwt.user.client.ui.HasWidgets;
 import ua.coral.ugcc.common.event.GoToContactsEvent;
 import ua.coral.ugcc.common.event.GoToDirectionEvent;
 import ua.coral.ugcc.common.event.GoToMainEvent;
@@ -22,11 +15,18 @@ import ua.coral.ugcc.common.event.handler.impl.GoToNewsEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToParishEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToScheduleEventHandlerImpl;
 import ua.coral.ugcc.common.presenter.Presenter;
-import ua.coral.ugcc.admin.client.presenter.ContactsPresenter;
 import ua.coral.ugcc.common.presenter.impl.DirectionPresenter;
 import ua.coral.ugcc.common.presenter.impl.MainPresenter;
 import ua.coral.ugcc.common.presenter.impl.MapPresenter;
 import ua.coral.ugcc.common.uibinder.DefaultBinder;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.History;
+import com.google.gwt.user.client.ui.HasWidgets;
 
 public abstract class DefaultAppController implements Presenter, ValueChangeHandler<String> {
 

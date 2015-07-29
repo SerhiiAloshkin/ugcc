@@ -1,14 +1,15 @@
 package ua.coral.ugcc.common.uibinder;
 
+import java.util.Date;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.user.client.ui.Composite;
 import com.google.gwt.user.client.ui.Widget;
-import org.gwtbootstrap3.client.ui.Label;
 
-import java.util.Date;
+import org.gwtbootstrap3.client.ui.Label;
 
 public class MainBinder extends Composite {
 

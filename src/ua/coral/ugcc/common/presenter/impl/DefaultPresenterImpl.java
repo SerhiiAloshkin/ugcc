@@ -1,12 +1,13 @@
 package ua.coral.ugcc.common.presenter.impl;
 
-import com.google.gwt.event.shared.HandlerManager;
 import ua.coral.ugcc.common.event.GoToContactsEvent;
 import ua.coral.ugcc.common.event.GoToMapEvent;
 import ua.coral.ugcc.common.event.GoToNewsEvent;
 import ua.coral.ugcc.common.event.GoToParishEvent;
 import ua.coral.ugcc.common.event.GoToScheduleEvent;
 import ua.coral.ugcc.common.presenter.DefaultPresenter;
+
+import com.google.gwt.event.shared.HandlerManager;
 
 public class DefaultPresenterImpl implements DefaultPresenter {
 

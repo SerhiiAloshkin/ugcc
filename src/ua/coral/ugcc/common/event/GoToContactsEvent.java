@@ -1,7 +1,8 @@
 package ua.coral.ugcc.common.event;
 
-import com.google.gwt.event.shared.GwtEvent;
 import ua.coral.ugcc.common.event.handler.GoToContactsEventHandler;
+
+import com.google.gwt.event.shared.GwtEvent;
 
 public class GoToContactsEvent extends GwtEvent<GoToContactsEventHandler> {
 

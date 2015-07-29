@@ -1,9 +1,10 @@
 package ua.coral.ugcc.common.presenter.impl;
 
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.ui.HasWidgets;
 import ua.coral.ugcc.common.presenter.Presenter;
 import ua.coral.ugcc.common.uibinder.MainBinder;
+
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.ui.HasWidgets;
 
 public class MainPresenter extends DefaultPresenterImpl implements Presenter {
 

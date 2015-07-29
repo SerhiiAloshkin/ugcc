@@ -1,7 +1,8 @@
 package ua.coral.ugcc.common.event;
 
-import com.google.gwt.event.shared.GwtEvent;
 import ua.coral.ugcc.common.event.handler.GoToScheduleEventHandler;
+
+import com.google.gwt.event.shared.GwtEvent;
 
 public class GoToScheduleEvent extends GwtEvent<GoToScheduleEventHandler> {
 
