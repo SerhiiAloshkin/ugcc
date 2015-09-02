@@ -3,7 +3,7 @@
              xmlns:e="urn:import:org.gwtbootstrap3.extras.summernote.client.ui"
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+    <ui:with field="res" type="ua.coral.ugcc.common.client.Locale"/>
 
     <ui:style>
         .button-panel {

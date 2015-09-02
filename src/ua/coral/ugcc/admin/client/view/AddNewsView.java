@@ -8,8 +8,11 @@ import ua.coral.ugcc.common.view.View;
 public interface AddNewsView extends View<AddNewsView.Presenter> {
 
     interface Presenter extends DefaultPresenter {
+
         void addNews(News news, AddNewsBinder addView);
 
         void listNews();
+
+        void checkExpiredAccess(AddNewsBinder addView);
     }
 }

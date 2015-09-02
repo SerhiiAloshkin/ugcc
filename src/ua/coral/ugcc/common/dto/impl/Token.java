@@ -12,6 +12,7 @@ public class Token implements Dto, Serializable {
     private String accessToken;
     @ShortString
     private String refreshToken;
+    private Long expiredDate;
 
     @Override
     public void setId(final Long id) {
@@ -37,5 +38,13 @@ public class Token implements Dto, Serializable {
 
     public void setRefreshToken(final String refreshToken) {
         this.refreshToken = refreshToken;
+    }
+
+    public Long getExpiredDate() {
+        return expiredDate;
+    }
+
+    public void setExpiredDate(final Long expiredDate) {
+        this.expiredDate = expiredDate;
     }
 }

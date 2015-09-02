@@ -1,5 +1,18 @@
 package ua.coral.ugcc.admin.server;
 
+import ua.coral.ugcc.common.dao.TokenDao;
+import ua.coral.ugcc.common.dao.impl.TokenDaoImpl;
+
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.HttpTransport;
@@ -9,25 +22,16 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.gdata.client.photos.PicasawebService;
 import com.google.gdata.data.media.MediaByteArraySource;
 import com.google.gdata.data.photos.PhotoEntry;
+
 import org.apache.commons.fileupload.FileItemIterator;
 import org.apache.commons.fileupload.FileItemStream;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
-import ua.coral.ugcc.common.dao.TokenDao;
-import ua.coral.ugcc.common.dao.impl.TokenDaoImpl;
 
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URL;
+import static ua.coral.ugcc.common.client.UGCCAuth.CLIENT_ID;
+import static ua.coral.ugcc.common.client.UGCCAuth.CLIENT_SECRET;
 
 public class FileUpload extends HttpServlet {
 
-    private static final String CLIENT_ID = "318390621392-obe6svtjgf95l8vu9m80f5t8hgp3gb2e.apps.googleusercontent.com";
-    private static final String CLIENT_SECRET = "vgHUSYD3qu_69WLXjPid7u02";
     private final TokenDao tokenDao = new TokenDaoImpl();
 
     public void doPost(final HttpServletRequest request, final HttpServletResponse response)
@@ -80,8 +84,7 @@ public class FileUpload extends HttpServlet {
         final JsonFactory jsonFactory = new JacksonFactory();
 
         GoogleCredential credential = new GoogleCredential.Builder()
-                .setClientSecrets(CLIENT_ID,
-                        CLIENT_SECRET)
+                .setClientSecrets(CLIENT_ID.getValue(), CLIENT_SECRET.getValue())
                 .setJsonFactory(jsonFactory)
                 .setTransport(httpTransport)
                 .build()

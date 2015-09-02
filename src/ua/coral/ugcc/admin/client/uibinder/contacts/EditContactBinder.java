@@ -1,7 +1,7 @@
 package ua.coral.ugcc.admin.client.uibinder.contacts;
 
 import ua.coral.ugcc.admin.client.presenter.UpdateContactPresenter;
-import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.client.Locale;
 import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.Contact;
 
@@ -40,7 +40,7 @@ public class EditContactBinder extends Composite {
 
     private final Contact contact;
     private final UpdateContactPresenter presenter;
-    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
+    private final Locale constants = GWT.create(Locale.class);
 
     public EditContactBinder(final Contact contact, final UpdateContactPresenter presenter) {
         this.contact = contact;

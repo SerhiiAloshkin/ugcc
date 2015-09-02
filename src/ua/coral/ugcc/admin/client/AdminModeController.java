@@ -1,11 +1,5 @@
 package ua.coral.ugcc.admin.client;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
-import com.google.gwt.event.logical.shared.ValueChangeEvent;
-import com.google.gwt.event.shared.HandlerManager;
-import com.google.gwt.user.client.History;
-
 import ua.coral.ugcc.admin.client.event.AddContactEvent;
 import ua.coral.ugcc.admin.client.event.AddNewsEvent;
 import ua.coral.ugcc.admin.client.event.ListNewsEvent;
@@ -25,7 +19,12 @@ import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
 import ua.coral.ugcc.common.client.DefaultAppController;
 import ua.coral.ugcc.common.client.HistoryToken;
 import ua.coral.ugcc.common.presenter.Presenter;
-import ua.coral.ugcc.common.uibinder.DefaultBinder;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
+import com.google.gwt.event.logical.shared.ValueChangeEvent;
+import com.google.gwt.event.shared.HandlerManager;
+import com.google.gwt.user.client.History;
 
 public class AdminModeController extends DefaultAppController {
 

@@ -1,7 +1,7 @@
 package ua.coral.ugcc.admin.client.uibinder.contacts;
 
 import ua.coral.ugcc.admin.client.view.ListContactsView;
-import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.client.Locale;
 import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.Contact;
 
@@ -11,12 +11,10 @@ import com.google.gwt.uibinder.client.UiBinder;
 import com.google.gwt.uibinder.client.UiField;
 import com.google.gwt.uibinder.client.UiHandler;
 import com.google.gwt.user.client.ui.Composite;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HTMLPanel;
 
 import org.gwtbootstrap3.client.ui.Button;
 import org.gwtbootstrap3.client.ui.FormControlStatic;
-import org.gwtbootstrap3.client.ui.Heading;
 import org.gwtbootstrap3.client.ui.constants.IconType;
 import org.gwtbootstrap3.extras.bootbox.client.Bootbox;
 import org.gwtbootstrap3.extras.bootbox.client.callback.ConfirmCallback;
@@ -45,7 +43,7 @@ public class SingleContactBinder extends Composite {
 
     private final Contact contact;
     private final ListContactsView.Presenter presenter;
-    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
+    private final Locale constants = GWT.create(Locale.class);
 
     public SingleContactBinder(final Contact contact, final ListContactsView.Presenter presenter) {
         this.contact = contact;

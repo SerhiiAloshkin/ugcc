@@ -2,13 +2,18 @@
              xmlns:g='urn:import:com.google.gwt.user.client.ui'
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+    <ui:with field="res" type="ua.coral.ugcc.common.client.Locale"/>
 
     <ui:style>
         .background {
             width: 100%;
+            min-height: 100%;
             padding-top: 70px;
             padding-bottom: 50px;
+            background: url("/img/kostel-sv-iosifa-nikolaev_opacities.jpg");
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
         .fixed-footer {
@@ -22,6 +27,15 @@
         .separator-bottom {
             display: block;
             border-bottom: #DDD solid 1px;
+        }
+
+        .menu-color {
+            background-color: whitesmoke;
+        }
+
+        .content-background {
+            padding-top: 25px;
+            background-color: white;
         }
     </ui:style>
 
@@ -39,7 +53,7 @@
         <b:Container>
             <b:Row>
                 <b:Column size="MD_3">
-                    <b:NavPills stacked="true">
+                    <b:NavPills stacked="true" addStyleNames="{style.menu-color}">
                         <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#news"
                                           text="{res.pageDefaultNews}"/>
                         <b:AnchorListItem addStyleNames="{style.separator-bottom}" text="{res.pageDefaultParish}"/>
@@ -50,7 +64,7 @@
                                           text="{res.pageDefaultMap}"/>
                     </b:NavPills>
                 </b:Column>
-                <b:Column size="MD_9">
+                <b:Column size="MD_9" addStyleNames="{style.content-background}">
                     <b:Container ui:field="content" fluid="true"/>
                 </b:Column>
 

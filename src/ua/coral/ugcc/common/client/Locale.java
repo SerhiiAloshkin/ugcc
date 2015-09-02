@@ -2,7 +2,7 @@ package ua.coral.ugcc.common.client;
 
 import com.google.gwt.i18n.client.Constants;
 
-public interface UGCCConstants extends Constants {
+public interface Locale extends Constants {
 
     @DefaultStringValue("Edit")
     @Key("btn.edit")

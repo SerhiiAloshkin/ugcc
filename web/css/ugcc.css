@@ -1,4 +1,8 @@
 
+body, html, main {
+    height: 100%;
+}
+
 .mainDockPanel {
     padding: 3px;
     margin-left:auto;
@@ -32,4 +36,9 @@
     border: 1 solid black;
 }
 
+.panel-default > .panel-heading {
+    color: #333;
+    background-color: darkgray;
+    border-color: #ddd
+}
 

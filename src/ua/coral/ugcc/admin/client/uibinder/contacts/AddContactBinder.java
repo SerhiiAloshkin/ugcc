@@ -1,7 +1,7 @@
 package ua.coral.ugcc.admin.client.uibinder.contacts;
 
 import ua.coral.ugcc.admin.client.presenter.AddContactPresenter;
-import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.client.Locale;
 import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.Contact;
 
@@ -39,7 +39,7 @@ public class AddContactBinder extends Composite {
     Button saveBtn;
 
     private final AddContactPresenter presenter;
-    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
+    private final Locale constants = GWT.create(Locale.class);
 
     public AddContactBinder(final AddContactPresenter presenter) {
         this.presenter = presenter;

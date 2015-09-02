@@ -3,7 +3,7 @@
              xmlns:roll="urn:import:ua.coral.ugcc.admin.client.uibinder.news"
              xmlns:b="urn:import:org.gwtbootstrap3.client.ui">
 
-    <ui:with field="res" type="ua.coral.ugcc.common.client.UGCCConstants"/>
+    <ui:with field="res" type="ua.coral.ugcc.common.client.Locale"/>
 
     <ui:style>
         .add-button {

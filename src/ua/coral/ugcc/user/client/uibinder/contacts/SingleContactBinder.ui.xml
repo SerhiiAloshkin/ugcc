@@ -4,77 +4,44 @@
 
     <ui:with field="res" type="ua.coral.ugcc.common.client.Locale"/>
 
-    <ui:style>
-        .button-panel {
-            padding: 10px 15px;
-            text-align: right;
-        }
-
-        .row {
-            padding-left: 15px;
-            padding-right: 25px;
-        }
-
-        .preview-button {
-            margin-right: 10px;
-        }
-
-        .upload-space {
-            margin-bottom: 10px;
-        }
-    </ui:style>
-
     <g:HTMLPanel>
         <b:Panel>
             <b:Form type="HORIZONTAL">
-                <b:FieldSet>
-                    <b:Legend addStyleNames="{style.row}">Create contact</b:Legend>
-                </b:FieldSet>
-
                 <b:FormGroup>
                     <b:FormLabel for="address" addStyleNames="col-lg-2">Address</b:FormLabel>
-                    <b:InlineHelpBlock iconType="EXCLAMATION_TRIANGLE" />
                     <g:FlowPanel addStyleNames="col-lg-9">
-                        <b:TextBox b:id="address" placeholder="Town, Street, ..." ui:field="addressField" />
+                        <b:FormControlStatic b:id="address" ui:field="addressField"/>
                     </g:FlowPanel>
                 </b:FormGroup>
 
                 <b:FormGroup>
                     <b:FormLabel for="index" addStyleNames="col-lg-2">Postal Code</b:FormLabel>
-                    <b:InlineHelpBlock iconType="EXCLAMATION_TRIANGLE" />
                     <g:FlowPanel addStyleNames="col-lg-9">
-                        <b:TextBox b:id="index" placeholder="00000" ui:field="indexField" />
+                        <b:FormControlStatic b:id="index" ui:field="indexField"/>
                     </g:FlowPanel>
                 </b:FormGroup>
 
                 <b:FormGroup>
                     <b:FormLabel for="phone" addStyleNames="col-lg-2">Phone Number</b:FormLabel>
-                    <b:InlineHelpBlock iconType="EXCLAMATION_TRIANGLE" />
                     <g:FlowPanel addStyleNames="col-lg-9">
-                        <b:TextBox b:id="phone" placeholder="(xxx) xxx-xx-xx" ui:field="phoneField" />
+                        <b:FormControlStatic b:id="phone" ui:field="phoneField"/>
                     </g:FlowPanel>
                 </b:FormGroup>
 
                 <b:FormGroup>
                     <b:FormLabel for="email" addStyleNames="col-lg-2">Email</b:FormLabel>
-                    <b:InlineHelpBlock iconType="EXCLAMATION_TRIANGLE" />
                     <g:FlowPanel addStyleNames="col-lg-9">
-                        <b:TextBox b:id="email" placeholder="email@example.example" ui:field="emailField" />
+                        <b:FormControlStatic b:id="email" ui:field="emailField"/>
                     </g:FlowPanel>
                 </b:FormGroup>
 
                 <b:FormGroup>
                     <b:FormLabel for="description" addStyleNames="col-lg-2">Description</b:FormLabel>
                     <g:FlowPanel addStyleNames="col-lg-9">
-                        <b:TextArea b:id="description" maxLength="255" ui:field="descriptionField" />
+                        <b:FormControlStatic b:id="description" ui:field="descriptionField"/>
                     </g:FlowPanel>
                 </b:FormGroup>
 
-                <b:FormGroup>
-                    <g:FlowPanel addStyleNames="col-lg-offset-2 col-lg-9 {style.button-panel}">
-                        <b:Button size="SMALL" type="SUCCESS" icon="SAVE" text="{res.save}" ui:field="saveBtn"/>
-                    </g:FlowPanel>
-                </b:FormGroup>
             </b:Form>
         </b:Panel>
     </g:HTMLPanel>

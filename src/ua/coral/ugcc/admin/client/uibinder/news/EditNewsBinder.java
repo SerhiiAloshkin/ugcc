@@ -1,7 +1,7 @@
 package ua.coral.ugcc.admin.client.uibinder.news;
 
 import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
-import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.client.Locale;
 import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.News;
 
@@ -49,7 +49,7 @@ public class EditNewsBinder extends Composite {
 
     private final News news;
     private final UpdateNewsPresenter presenter;
-    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
+    private final Locale constants = GWT.create(Locale.class);
 
     public EditNewsBinder(final News news, final UpdateNewsPresenter presenter) {
         this.news = news;

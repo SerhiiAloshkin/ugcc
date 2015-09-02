@@ -1,7 +1,7 @@
 package ua.coral.ugcc.admin.client.uibinder.news;
 
 import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
-import ua.coral.ugcc.common.client.UGCCConstants;
+import ua.coral.ugcc.common.client.Locale;
 import ua.coral.ugcc.common.component.GrowlUtils;
 import ua.coral.ugcc.common.dto.impl.News;
 
@@ -63,7 +63,7 @@ public class AddNewsBinder extends Composite {
     FormPanel form;
 
     private final AddNewsPresenter presenter;
-    private final UGCCConstants constants = GWT.create(UGCCConstants.class);
+    private final Locale constants = GWT.create(Locale.class);
 
     public AddNewsBinder(final AddNewsPresenter presenter) {
         this.presenter = presenter;
@@ -104,7 +104,7 @@ public class AddNewsBinder extends Composite {
         upload.addClickHandler(new ClickHandler() {
             @Override
             public void onClick(final ClickEvent event) {
-                uploadFile();
+                checkExpiredAccess();
             }
         });
 
@@ -131,7 +131,11 @@ public class AddNewsBinder extends Composite {
         });
     }
 
-    private void uploadFile() {
+    private void checkExpiredAccess() {
+        presenter.checkExpiredAccess(this);
+    }
+
+    public void uploadFile() {
         form.submit();
         GrowlUtils.showMessage(constants.uploadImageTitle(), constants.uploadImageBegin(),
                 GrowlType.SUCCESS, IconType.SMILE_O);

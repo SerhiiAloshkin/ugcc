@@ -7,8 +7,10 @@ public final class StringUtils {
     }
 
     public static String abbreviate(final String str, final int maxWidth) {
-        if (str == null) {
+        if (str == null || str.isEmpty()) {
             return null;
+        } else if (str.length() <= maxWidth) {
+            return str + "...";
         }
         return abbreviate(str, 0, maxWidth, 0);
     }
@@ -24,7 +26,9 @@ public final class StringUtils {
 
     private static int getFoundIndex(final String str, final int index) {
         final int foundIndex = str.indexOf(" ", index);
-        if (str.charAt(foundIndex + 1) == ' ') {
+        if (foundIndex == -1) {
+            return index;
+        } else if ((foundIndex + 1) < str.length() && str.charAt(foundIndex + 1) == ' ') {
             return getFoundIndex(str, foundIndex + 1);
         }
         return foundIndex + 1;
