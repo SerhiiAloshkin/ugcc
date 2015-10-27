@@ -1,9 +1,10 @@
 package ua.coral.ugcc.admin.client;
 
+import ua.coral.ugcc.common.services.Service;
+
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.user.client.rpc.RemoteService;
 import com.google.gwt.user.client.rpc.RemoteServiceRelativePath;
-import ua.coral.ugcc.common.services.Service;
 
 @RemoteServiceRelativePath("AdminModeService")
 public interface AdminModeService extends RemoteService, Service {
@@ -24,4 +25,11 @@ public interface AdminModeService extends RemoteService, Service {
         }
     }
 
+    String greetServer(String name) throws IllegalArgumentException;
+
+    String getUserEmail(String token);
+
+    LoginInfo login(String requestUri);
+
+    LoginInfo loginDetails(String token);
 }
