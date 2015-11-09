@@ -66,7 +66,12 @@ public class AdminMode extends AbstractEntryPoint {
         signInLink.setTitle("Sign out");
     }
 
-    private void addGoogleAuthHelper() {
+    private void addGoogleAuthHelper(final String email) {
+        if (!"sem.aleshkin@gmail.com".equals(email)) {
+            GWT.log("FUUUUUUUU!");
+            return;
+        }
+
         final AuthRequest req = new AuthRequest(GOOGLE_AUTH_URL.getValue(), CLIENT_ID.getValue())
                 .withScopes(PLUS_SCOPE.getValue(), PICASA_SCOPE.getValue());
         AUTH.login(req, new Callback<String, Throwable>() {
@@ -232,7 +237,7 @@ public class AdminMode extends AbstractEntryPoint {
         loginPanel.add(signInLink);
         RootPanel.get("loginPanelContainer").add(loginPanel);
         final StringBuilder userEmail = new StringBuilder();
-        rpcService.login(GWT.getHostPageBaseURL(), new AsyncCallback<LoginInfo>() {
+        rpcService.login(Window.Location.getHref(), new AsyncCallback<LoginInfo>() {
             @Override
             public void onFailure(final Throwable caught) {
                 GWT.log("login -> onFailure");
@@ -241,7 +246,7 @@ public class AdminMode extends AbstractEntryPoint {
             @Override
             public void onSuccess(final LoginInfo result) {
                 if (result.getName() != null && !result.getName().isEmpty()) {
-                    addGoogleAuthHelper();
+                    addGoogleAuthHelper(result.getEmailAddress());
                     loadLogout(result);
                     sendButton.setEnabled(true);
                     nameField.setEnabled(true);
