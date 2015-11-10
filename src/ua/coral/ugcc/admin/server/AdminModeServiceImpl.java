@@ -65,7 +65,7 @@ public class AdminModeServiceImpl extends AbstractServiceImpl implements AdminMo
         final UserService userService = UserServiceFactory.getUserService();
         final User user = userService.getCurrentUser();
         final LoginInfo loginInfo = new LoginInfo();
-        if (user != null) {
+        if (user != null && "sem.aleshkin@gmail.com".equals(user.getEmail())) {
             loginInfo.setLoggedIn(true);
             loginInfo.setName(user.getEmail());
             loginInfo.setLogoutUrl(userService.createLogoutURL(requestUri));
@@ -74,6 +74,13 @@ public class AdminModeServiceImpl extends AbstractServiceImpl implements AdminMo
             loginInfo.setLoginUrl(userService.createLoginURL(requestUri));
         }
         return loginInfo;
+    }
+
+    @Override
+    public void logout() {
+        final UserService userService = UserServiceFactory.getUserService();
+        final User user = userService.getCurrentUser();
+
     }
 
     @Override

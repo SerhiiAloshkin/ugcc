@@ -31,5 +31,7 @@ public interface AdminModeService extends RemoteService, Service {
 
     LoginInfo login(String requestUri);
 
+    void logout();
+
     LoginInfo loginDetails(String token);
 }
