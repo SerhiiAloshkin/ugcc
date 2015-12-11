@@ -143,6 +143,13 @@ public class AdminMode extends AbstractEntryPoint {
 
     @Override
     public void onModuleLoad() {
+        if (true) {
+            final HandlerManager eventBus = new HandlerManager(null);
+            final AdminModeController appViewer = new AdminModeController(rpcService, eventBus);
+            appViewer.go(RootPanel.get());
+            return;
+        }
+
         // Focus the cursor on the name field when the app loads
         nameField.setFocus(true);
         nameField.selectAll();

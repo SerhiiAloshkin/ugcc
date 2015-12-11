@@ -2,6 +2,7 @@ package ua.coral.ugcc.common.presenter.impl;
 
 import ua.coral.ugcc.common.event.GoToContactsEvent;
 import ua.coral.ugcc.common.event.GoToMapEvent;
+import ua.coral.ugcc.common.event.GoToMediaEvent;
 import ua.coral.ugcc.common.event.GoToNewsEvent;
 import ua.coral.ugcc.common.event.GoToParishEvent;
 import ua.coral.ugcc.common.event.GoToScheduleEvent;
@@ -40,5 +41,10 @@ public class DefaultPresenterImpl implements DefaultPresenter {
     @Override
     public void goToMap() {
         eventBus.fireEvent(new GoToMapEvent());
+    }
+
+    @Override
+    public void goToMedia() {
+        eventBus.fireEvent(new GoToMediaEvent());
     }
 }

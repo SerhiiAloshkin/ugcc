@@ -138,6 +138,17 @@
                                         </b:Anchor>
                                     </b:Column>
                                     <b:Column size="MD_4"/>
+                                    <b:Column size="MD_4">
+                                        <b:Anchor href="#media" addStyleNames="{style.separator-bottom}">
+                                            <h2>
+                                                <ui:text from="{res.pageDefaultMedia}"/>
+                                            </h2>
+                                            <h4 style="line-height: 1.5;">
+                                                <ui:text from="{res.pageDefaultMediaDescription}"/>
+                                            </h4>
+                                        </b:Anchor>
+                                    </b:Column>
+                                    <b:Column size="MD_4"/>
                                 </b:Row>
                             </b:Container>
                         </b:Column>

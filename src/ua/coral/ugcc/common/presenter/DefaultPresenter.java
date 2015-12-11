@@ -11,4 +11,6 @@ public interface DefaultPresenter {
     void goToContacts();
 
     void goToMap();
+
+    void goToMedia();
 }

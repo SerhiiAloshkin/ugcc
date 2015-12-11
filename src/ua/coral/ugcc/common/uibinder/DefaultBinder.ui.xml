@@ -62,6 +62,8 @@
                                           text="{res.pageDefaultContacts}"/>
                         <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#map"
                                           text="{res.pageDefaultMap}"/>
+                        <b:AnchorListItem addStyleNames="{style.separator-bottom}" href="#media"
+                                          text="{res.pageDefaultMedia}"/>
                     </b:NavPills>
                 </b:Column>
                 <b:Column size="MD_9" addStyleNames="{style.content-background}">

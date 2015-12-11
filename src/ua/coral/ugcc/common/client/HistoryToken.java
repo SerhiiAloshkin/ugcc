@@ -14,7 +14,8 @@ public enum HistoryToken {
     TO_CONTACTS("contacts"),
     TO_MAP("map"),
     TO_DIRECTION("direction"),
-    TO_OPENED_NEWS("opened_news");
+    TO_OPENED_NEWS("opened_news"),
+    TO_MEDIA("media");
 
     private String token;
 

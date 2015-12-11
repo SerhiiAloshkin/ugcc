@@ -77,13 +77,6 @@ public class AdminModeServiceImpl extends AbstractServiceImpl implements AdminMo
     }
 
     @Override
-    public void logout() {
-        final UserService userService = UserServiceFactory.getUserService();
-        final User user = userService.getCurrentUser();
-
-    }
-
-    @Override
     public LoginInfo loginDetails(final String token) {
         String url = "https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=" + token;
 

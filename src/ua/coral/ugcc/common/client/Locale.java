@@ -64,6 +64,10 @@ public interface Locale extends Constants {
     @Key("page.default.map")
     String pageDefaultMap();
 
+    @DefaultStringValue("Media")
+    @Key("page.default.media")
+    String pageDefaultMedia();
+
     @DefaultStringValue("Title")
     @Key("page.default.title")
     String pageDefaultTitle();
@@ -87,6 +91,10 @@ public interface Locale extends Constants {
     @DefaultStringValue("Description")
     @Key("page.default.map.description")
     String pageDefaultMapDescription();
+
+    @DefaultStringValue("Description")
+    @Key("page.default.media.description")
+    String pageDefaultMediaDescription();
 
     @DefaultStringValue("Title")
     @Key("page.news.title")

@@ -13,6 +13,4 @@ public interface AdminModeServiceAsync extends ServiceAsync {
     void login(String requestUri, AsyncCallback<LoginInfo> asyncCallback);
 
     void loginDetails(String token, AsyncCallback<LoginInfo> asyncCallback);
-
-    void logout(final AsyncCallback<Void> async);
 }

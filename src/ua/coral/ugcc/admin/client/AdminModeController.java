@@ -14,6 +14,7 @@ import ua.coral.ugcc.admin.client.presenter.AddContactPresenter;
 import ua.coral.ugcc.admin.client.presenter.AddNewsPresenter;
 import ua.coral.ugcc.admin.client.presenter.ContactsPresenter;
 import ua.coral.ugcc.admin.client.presenter.ListNewsPresenter;
+import ua.coral.ugcc.admin.client.presenter.MediaPresenter;
 import ua.coral.ugcc.admin.client.presenter.UpdateContactPresenter;
 import ua.coral.ugcc.admin.client.presenter.UpdateNewsPresenter;
 import ua.coral.ugcc.common.client.DefaultAppController;
@@ -150,5 +151,10 @@ public class AdminModeController extends DefaultAppController {
     @Override
     protected void loadContactsPresenter() {
         new ContactsPresenter(rpcService, eventBus).go(getContainer());
+    }
+
+    @Override
+    protected void loadMediaPresenter() {
+        new MediaPresenter(rpcService, eventBus).go(getContainer());
     }
 }

@@ -4,6 +4,7 @@ import ua.coral.ugcc.common.event.GoToContactsEvent;
 import ua.coral.ugcc.common.event.GoToDirectionEvent;
 import ua.coral.ugcc.common.event.GoToMainEvent;
 import ua.coral.ugcc.common.event.GoToMapEvent;
+import ua.coral.ugcc.common.event.GoToMediaEvent;
 import ua.coral.ugcc.common.event.GoToNewsEvent;
 import ua.coral.ugcc.common.event.GoToParishEvent;
 import ua.coral.ugcc.common.event.GoToScheduleEvent;
@@ -11,6 +12,7 @@ import ua.coral.ugcc.common.event.handler.impl.GoToContactsEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToDirectionEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToMainEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToMapEventHandlerImpl;
+import ua.coral.ugcc.common.event.handler.impl.GoToMediaEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToNewsEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToParishEventHandlerImpl;
 import ua.coral.ugcc.common.event.handler.impl.GoToScheduleEventHandlerImpl;
@@ -47,6 +49,7 @@ public abstract class DefaultAppController implements Presenter, ValueChangeHand
         eventBus.addHandler(GoToContactsEvent.TYPE, new GoToContactsEventHandlerImpl());
         eventBus.addHandler(GoToMapEvent.TYPE, new GoToMapEventHandlerImpl(eventBus, container));
         eventBus.addHandler(GoToDirectionEvent.TYPE, new GoToDirectionEventHandlerImpl(eventBus, container));
+        eventBus.addHandler(GoToMediaEvent.TYPE, new GoToMediaEventHandlerImpl(eventBus, container));
     }
 
     @Override
@@ -122,8 +125,22 @@ public abstract class DefaultAppController implements Presenter, ValueChangeHand
                     loadContactsPresenter();
                 }
             });
+        } else if (HistoryToken.TO_MEDIA.getToken().equals(token)) {
+            GWT.runAsync(new RunAsyncCallback() {
+                @Override
+                public void onFailure(final Throwable reason) {
+
+                }
+
+                @Override
+                public void onSuccess() {
+                    loadMediaPresenter();
+                }
+            });
         }
     }
 
     protected abstract void loadContactsPresenter();
+
+    protected abstract void loadMediaPresenter();
 }

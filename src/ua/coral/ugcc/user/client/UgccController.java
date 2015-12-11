@@ -85,4 +85,9 @@ public class UgccController extends DefaultAppController {
     protected void loadContactsPresenter() {
         new ContactsPresenter(rpcService, eventBus).go(getContainer());
     }
+
+    @Override
+    protected void loadMediaPresenter() {
+
+    }
 }
